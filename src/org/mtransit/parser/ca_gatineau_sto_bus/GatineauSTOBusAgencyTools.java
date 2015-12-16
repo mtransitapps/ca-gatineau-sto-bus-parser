@@ -91,6 +91,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
+		if ("33".equals(gRoute.getRouteShortName())) {
+			return "Station De La Cité / Cegep Gabrielle-Roy / Ottawa";
+		}
 		return cleanRouteLongName(gRoute);
 	}
 
@@ -222,7 +225,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				0, MTrip.HEADSIGN_TYPE_STRING, PLATEAU, //
 				1, MTrip.HEADSIGN_TYPE_STRING, OTTAWA) //
 				.addTripSort(0, //
-						Arrays.asList(new String[] { "5014", "2510", "2769" })) //
+						Arrays.asList(new String[] { "5026", "2510", "2769" })) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { "2767", "2508", "5016" })) //
 				.compileBothTripSort());
@@ -343,12 +346,22 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(DE_LA_GALÈNE, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 36l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 37l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 38l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(FREEMAN, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 39l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(FREEMAN, mTrip.getHeadsignId());
 				return true;
