@@ -203,6 +203,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String SLASH = " / ";
 	private static final String STATION_ = ""; // "Ston ";
 	private static final String LABROSSE_STATION = STATION_ + "Labrosse";
+	private static final String MUSEE_CANADIEN_HISTOIRE = "Musée Canadien de l'Histoire";
 	private static final String MUSEE_CANADIEN_HISTOIRE_SHORT = "Musée de l'Histoire";
 	private static final String FREEMAN = "Freeman";
 	private static final String OTTAWA = "Ottawa";
@@ -213,10 +214,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String P_O_B_ALLUM = "P-O-B Allum";
 	private static final String CEGEP_ = "Cegep ";
 	private static final String CEGEP_GABRIELLE_ROY = CEGEP_ + "Gabrielle-Roy";
-	private static final String DE_LA_GALÈNE = "Galène"; // De La
 	private static final String DES_TREMBLES = "Trembles"; // Des
 	private static final String PLATEAU = "Plateau";
-	private static final String OTTAWA_MUSEE_HISTOIRE = OTTAWA + SLASH + MUSEE_CANADIEN_HISTOIRE_SHORT;
+	private static final String OTTAWA_MUSEE_HISTOIRE = OTTAWA + SLASH + MUSEE_CANADIEN_HISTOIRE;
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
@@ -341,11 +341,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 35l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(DE_LA_GALÈNE, mTrip.getHeadsignId());
-				return true;
-			}
 		} else if (mTrip.getRouteId() == 36l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY, mTrip.getHeadsignId());
@@ -420,8 +415,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern TO = Pattern.compile("((^|\\W){1}(to)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final Pattern VIA = Pattern.compile("((^|\\W){1}(via)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 
-	private static final Pattern MUSEE_CANADIEN_HISTOIRE = Pattern
-			.compile("((^|\\W){1}(mus[e|é]e canadien de l'histoire)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern MUSEE_CANADIEN_HISTOIRE_ = Pattern.compile("((^|\\W){1}(mus[e|é]e canadien de l'histoire)(\\W|$){1})",
+			Pattern.CASE_INSENSITIVE);
 	private static final String MUSEE_CANADIEN_HISTOIRE_REPLACEMENT = "$2" + MUSEE_CANADIEN_HISTOIRE_SHORT + "$4";
 
 	private static final Pattern CLEAN_STATION = Pattern.compile("((^|\\W){1}(station|ston|sta)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
@@ -440,12 +435,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			tripHeadsign = gTripHeadsignBeforeVIA;
 		}
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
-		tripHeadsign = MUSEE_CANADIEN_HISTOIRE.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
+		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_ET.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_ET_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
 		tripHeadsign = CleanUtils.removePoints(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanStreetTypesFRCA(tripHeadsign);
+		if (Utils.isUppercaseOnly(tripHeadsign, true, true)) {
+			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
+		}
 		return CleanUtils.cleanLabelFR(tripHeadsign);
 	}
 
