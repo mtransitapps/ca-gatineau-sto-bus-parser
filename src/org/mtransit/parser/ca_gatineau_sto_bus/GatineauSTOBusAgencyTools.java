@@ -212,8 +212,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String LORRAIN = "Lorrain";
 	private static final String RIVERMEAD = "Rivermead";
 	private static final String P_O_B_ALLUM = "P-O-B Allum";
-	private static final String CEGEP_ = "Cegep ";
-	private static final String CEGEP_GABRIELLE_ROY = CEGEP_ + "Gabrielle-Roy";
+	private static final String CEGEP_GABRIELLE_ROY_SHORT = "Cgp GRoy";
 	private static final String DES_TREMBLES = "Trembles"; // Des
 	private static final String PLATEAU = "Plateau";
 	private static final String OTTAWA_MUSEE_HISTOIRE = OTTAWA + SLASH + MUSEE_CANADIEN_HISTOIRE;
@@ -343,12 +342,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 36l) {
 			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
+				return true;
+			} else if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 37l) {
 			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 38l) {
@@ -371,7 +373,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 49l) {
 			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			} else if (mTrip.getHeadsignId() == 1) {
 				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
@@ -422,6 +424,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern CLEAN_STATION = Pattern.compile("((^|\\W){1}(station|ston|sta)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_STATION_REPLACEMENT = "$2" + STATION_ + "$4";
 
+	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile("((^|\\W){1}(c[é|e]gep gabrielle-roy)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
+
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
 		Matcher matcherTO = TO.matcher(tripHeadsign);
@@ -435,6 +440,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			tripHeadsign = gTripHeadsignBeforeVIA;
 		}
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
+		tripHeadsign = CEGEP_GABRIELLE_ROY_.matcher(tripHeadsign).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
 		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_ET.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_ET_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
