@@ -213,6 +213,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String RIVERMEAD = "Rivermead";
 	private static final String P_O_B_ALLUM = "P-O-B Allum";
 	private static final String CEGEP_GABRIELLE_ROY_SHORT = "Cgp GRoy";
+	private static final String DE_LA_GALÈNE = "Galène"; // De La
 	private static final String DES_TREMBLES = "Trembles"; // Des
 	private static final String PLATEAU = "Plateau";
 	private static final String OTTAWA_MUSEE_HISTOIRE = OTTAWA + SLASH + MUSEE_CANADIEN_HISTOIRE;
@@ -340,6 +341,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 35l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(DE_LA_GALÈNE, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 36l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
@@ -406,6 +412,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			} else if (mTrip.getHeadsignId() == 1) {
 				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 88l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(LABROSSE_STATION, mTrip.getHeadsignId());
 				return true;
 			}
 		}
