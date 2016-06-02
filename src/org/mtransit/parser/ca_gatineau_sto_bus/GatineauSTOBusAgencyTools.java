@@ -448,7 +448,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern CLEAN_STATION = Pattern.compile("((^|\\W){1}(station|ston|sta)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_STATION_REPLACEMENT = "$2" + STATION_ + "$4";
 
-	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile("((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|cgp gabrielle-r)(\\W|$){1})",
+	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile("((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|cgp gabrielle-r|cgp groy)(\\W|$){1})",
 			Pattern.CASE_INSENSITIVE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
 
@@ -457,6 +457,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
+		tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
 		Matcher matcherTO = TO.matcher(tripHeadsign);
 		if (matcherTO.find()) {
 			String gTripHeadsignAfterTO = tripHeadsign.substring(matcherTO.end());
@@ -476,9 +477,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
 		tripHeadsign = CleanUtils.removePoints(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanStreetTypesFRCA(tripHeadsign);
-		if (Utils.isUppercaseOnly(tripHeadsign, true, true)) {
-			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
-		}
 		return CleanUtils.cleanLabelFR(tripHeadsign);
 	}
 
