@@ -233,17 +233,25 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				0, MTrip.HEADSIGN_TYPE_STRING, DE_LA_CITÉ, //
 				1, MTrip.HEADSIGN_TYPE_STRING, MUSEE_CANADIEN_HISTOIRE_SHORT) //
 				.addTripSort(0, //
-						Arrays.asList(new String[] { "2618", "2692", "2010", "2155", "3500" })) //
+						Arrays.asList(new String[] { //
+						"2618", "2692", "2010", "2155", "3500" //
+						})) //
 				.addTripSort(1, //
-						Arrays.asList(new String[] { "3501", "2155", "2153", "2011", "2618A" })) //
+						Arrays.asList(new String[] { //
+						"3501", "2155", "2153", "2011", "2618" //
+						})) //
 				.compileBothTripSort());
 		map2.put(79l, new RouteTripSpec(79l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LORRAIN, // St-Thomas
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LABROSSE_STATION) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "3991", "4476", "4502" })) //
+						Arrays.asList(new String[] { //
+						"3991", "4476", "4502" //
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "4502", "4167", "8103" })) //
+						Arrays.asList(new String[] { //
+						"4502", "4167", "8502" //
+						})) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
@@ -414,6 +422,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 58l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 88l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(LABROSSE_STATION, mTrip.getHeadsignId());
@@ -435,9 +448,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern CLEAN_STATION = Pattern.compile("((^|\\W){1}(station|ston|sta)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_STATION_REPLACEMENT = "$2" + STATION_ + "$4";
 
-	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile("((^|\\W){1}(c[é|e]gep gabrielle-roy|cgp gabrielle-r)(\\W|$){1})",
+	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile("((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|cgp gabrielle-r)(\\W|$){1})",
 			Pattern.CASE_INSENSITIVE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
+
+	private static final Pattern PRE_TUNNEY_ = Pattern.compile("((^|\\W){1}(pr[e|é|É] tunney)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String PRE_TUNNEY__REPLACEMENT = "$2" + "Pré-Tunney" + "$4";
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
@@ -453,6 +469,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		}
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
 		tripHeadsign = CEGEP_GABRIELLE_ROY_.matcher(tripHeadsign).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
+		tripHeadsign = PRE_TUNNEY_.matcher(tripHeadsign).replaceAll(PRE_TUNNEY__REPLACEMENT);
 		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_ET.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_ET_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
