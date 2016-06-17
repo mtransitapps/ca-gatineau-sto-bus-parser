@@ -458,8 +458,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern CLEAN_STATION = Pattern.compile("((^|\\W){1}(station|ston|sta)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_STATION_REPLACEMENT = "$2" + STATION_ + "$4";
 
-	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile("((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|cgp gabrielle-r|cgp groy)(\\W|$){1})",
-			Pattern.CASE_INSENSITIVE);
+	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile(
+			"((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|cgp gabrielle-r|cgp groy|cgp g-roy)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
 
 	private static final Pattern PRE_TUNNEY_ = Pattern.compile("((^|\\W){1}(pr[e|é|É] tunney)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
