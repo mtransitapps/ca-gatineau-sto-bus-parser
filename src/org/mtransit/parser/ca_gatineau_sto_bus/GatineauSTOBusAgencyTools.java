@@ -168,7 +168,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 65: return REGULAR_COLOR;
 			case 66: return REGULAR_COLOR;
 			case 67: return PEAK_COLOR;
-			case 68: return REGULAR_COLOR; // RAPIDBUS_COLOR
+			case 68: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 69: return REGULAR_COLOR;
 			case 71: return REGULAR_COLOR;
 			case 73: return REGULAR_COLOR;
@@ -180,17 +180,18 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 79: return REGULAR_COLOR;
 			case 85: return PEAK_COLOR;
 			case 88: return PEAK_COLOR;
-			case 93: return PEAK_COLOR; // RAPIDBUS_COLOR
-			case 95: return PEAK_COLOR; // RAPIDBUS_COLOR
+			case 93: return PEAK_COLOR; // RAPIBUS_COLOR
+			case 95: return PEAK_COLOR; // RAPIBUS_COLOR
 			case 94: return PEAK_COLOR;
 			case 97: return REGULAR_COLOR;
 			case 98: return PEAK_COLOR;
-			case 100: return RB100_COLOR; // RAPIDBUS_COLOR
-			case 200: return RB200_COLOR; // RAPIDBUS_COLOR
-			case 300: return REGULAR_COLOR; // RAPIDBUS_COLOR
-			case 400: return REGULAR_COLOR; // RAPIDBUS_COLOR
-			case 800: return PEAK_COLOR; // RAPIDBUS_COLOR
-			case 810: return PEAK_COLOR; // RAPIDBUS_COLOR
+			case 100: return RB100_COLOR; // RAPIBUS_COLOR
+			case 200: return RB200_COLOR; // RAPIBUS_COLOR
+			case 300: return REGULAR_COLOR; // RAPIBUS_COLOR
+			case 400: return REGULAR_COLOR; // RAPIBUS_COLOR
+			case 500: return REGULAR_COLOR; // RAPIBUS_COLOR
+			case 800: return PEAK_COLOR; // RAPIBUS_COLOR
+			case 810: return PEAK_COLOR; // RAPIBUS_COLOR
 			// @formatter:on
 			}
 			System.out.printf("\nUnexpected route color %s!\n", gRoute);
@@ -234,11 +235,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				1, MTrip.HEADSIGN_TYPE_STRING, MUSEE_CANADIEN_HISTOIRE_SHORT) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
-						"2618", "2692", "2010", "2155", "3500" //
+						"2618", "2692", "5050", "2010", "2155", "3500" //
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"3501", "2155", "2153", "2011", "2618" //
+						"3501", // ==
+								"8081", // !=
+								"3590", "3593", // !=
+								"3604", // ==
+								"2155", "2153", "2011", "2618", "5048" //
 						})) //
 				.compileBothTripSort());
 		map2.put(79l, new RouteTripSpec(79l, //
@@ -347,6 +352,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 31l) {
 			if (mTrip.getHeadsignId() == 1) {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 32l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 35l) {
