@@ -235,11 +235,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				1, MTrip.HEADSIGN_TYPE_STRING, MUSEE_CANADIEN_HISTOIRE_SHORT) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
-						"2618", "2692", "5050", "2010", "2155", "3500" //
+						"2618", "2692", "5050", "2010", "2015", "2155", "3500" //
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"3501", // ==
+						"3480", //
+								"3501", // ==
 								"8081", // !=
 								"3590", "3593", // !=
 								"3604", // ==
@@ -251,11 +252,22 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LABROSSE_STATION) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3991", "4476", "4502" //
+						"3991", // Quai local LABROSSE #5
+								"3994", // Quai local LABROSSE #8
+								"4476", // LORRAIN/des POMMETIERS est
+
+								"4482", // == LORRAIN/BLANCHETTE est
+								"4483", "4502", // !=
+								"4484", "4512", // !=
+								"4481", // == LORRAIN/THÉRÈSE ouest
+						// "4502" // de CHAMBORD/LORRAIN nord
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"4502", "4167", "8502" //
+						// "4502", // de CHAMBORD/LORRAIN nord
+								"4481", // == LORRAIN/THÉRÈSE ouest
+								"4167", // LORRAIN/des FLEURS ouest
+								"8502" // arrivée quai local LABROSSE ligne 79
 						})) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
@@ -432,6 +444,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 57l) {
+			if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 58l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
@@ -459,8 +476,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String CLEAN_STATION_REPLACEMENT = "$2" + STATION_ + "$4";
 
 	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile(
-			"((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|cgp gabrielle-r|cgp groy|cgp g-roy)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+			"((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|c[é|É|e|è|È]gep groy|cgp gabrielle-r|cgp groy|cgp g-roy)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
+
+	private static final Pattern P_O_B = Pattern.compile("((^|\\W){1}(pob|p\\-o\\-b)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String P_O_B_REPLACEMENT = "$2" + P_O_B_SHORT + "$4";
 
 	private static final Pattern PRE_TUNNEY_ = Pattern.compile("((^|\\W){1}(pr[e|é|É] tunney)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String PRE_TUNNEY__REPLACEMENT = "$2" + "Pré-Tunney" + "$4";
@@ -480,6 +500,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		}
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
 		tripHeadsign = CEGEP_GABRIELLE_ROY_.matcher(tripHeadsign).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
+		tripHeadsign = P_O_B.matcher(tripHeadsign).replaceAll(P_O_B_REPLACEMENT);
 		tripHeadsign = PRE_TUNNEY_.matcher(tripHeadsign).replaceAll(PRE_TUNNEY__REPLACEMENT);
 		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_ET.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_ET_REPLACEMENT);
