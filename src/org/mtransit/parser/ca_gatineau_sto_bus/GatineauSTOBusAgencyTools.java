@@ -212,7 +212,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String DE_LA_CITÉ = "Cité"; // De La
 	private static final String LORRAIN = "Lorrain";
 	private static final String RIVERMEAD = "Rivermead";
-	private static final String P_O_B_ALLUM = "P-O-B Allum";
+	private static final String P_O_B_SHORT = "P-O-B";
+	private static final String P_O_B_ALLUM = P_O_B_SHORT + " Allum";
 	private static final String CEGEP_GABRIELLE_ROY_SHORT = "Cgp GRoy";
 	private static final String DE_LA_GALÈNE = "Galène"; // De La
 	private static final String DES_TREMBLES = "Trembles"; // Des
@@ -268,6 +269,30 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"4481", // == LORRAIN/THÉRÈSE ouest
 								"4167", // LORRAIN/des FLEURS ouest
 								"8502" // arrivée quai local LABROSSE ligne 79
+						})) //
+				.compileBothTripSort());
+		map2.put(633l, new RouteTripSpec(633l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, FREEMAN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Polyvalente de l'Île") //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2644", "2151" //
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2153", "2642" //
+						})) //
+				.compileBothTripSort());
+		map2.put(753l, new RouteTripSpec(753l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Lucerne / Robert-Sterward", //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "ESGRivière") //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"1073", "1298" //
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"1298", "1075" //
 						})) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
@@ -353,6 +378,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 27l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString("Hplaines", mTrip.getHeadsignId());
+				return true;
+			} else if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString("Ottawa", mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 29l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(DES_TREMBLES, mTrip.getHeadsignId());
@@ -362,7 +395,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 31l) {
-			if (mTrip.getHeadsignId() == 1) {
+			if (mTrip.getHeadsignId() == 0) {
+			} else if (mTrip.getHeadsignId() == 1) {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
@@ -371,9 +405,20 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 33l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(DE_LA_CITÉ, mTrip.getHeadsignId());
+				return true;
+			} else if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 35l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(DE_LA_GALÈNE, mTrip.getHeadsignId());
+				return true;
+			} else if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 36l) {
@@ -388,16 +433,28 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
+			} else if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
+				return true;
 			}
 		} else if (mTrip.getRouteId() == 38l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(FREEMAN, mTrip.getHeadsignId());
+				return true;
+			} else if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 39l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(FREEMAN, mTrip.getHeadsignId());
 				return true;
+			} else if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 40l) {
+			if (mTrip.getHeadsignId() == 1) {
 			}
 		} else if (mTrip.getRouteId() == 41l) {
 			if (mTrip.getHeadsignId() == 0) {
@@ -444,6 +501,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 54l) {
+			if (mTrip.getHeadsignId() == 0) {
+			} else if (mTrip.getHeadsignId() == 1) {
+			}
 		} else if (mTrip.getRouteId() == 57l) {
 			if (mTrip.getHeadsignId() == 1) {
 				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
@@ -454,9 +515,40 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 64l) {
+			if (mTrip.getHeadsignId() == 0) {
+			} else if (mTrip.getHeadsignId() == 1) {
+			}
+		} else if (mTrip.getRouteId() == 66l) {
+			if (mTrip.getHeadsignId() == 0) {
+			} else if (mTrip.getHeadsignId() == 1) {
+			}
+		} else if (mTrip.getRouteId() == 67l) {
+			if (mTrip.getHeadsignId() == 0) {
+			}
 		} else if (mTrip.getRouteId() == 88l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString(LABROSSE_STATION, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 650l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 731l) {
+			if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString("Polyvalente De L''île", mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 735l) {
+			if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 739l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString("Plateau", mTrip.getHeadsignId());
 				return true;
 			}
 		}
@@ -476,7 +568,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String CLEAN_STATION_REPLACEMENT = "$2" + STATION_ + "$4";
 
 	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile(
-			"((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|c[é|É|e|è|È]gep groy|cgp gabrielle-r|cgp groy|cgp g-roy)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+			"((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|c[é|É|e|è|È]gep groy|cgp gabrielle-r|cgp groy|cgp g-roy|Cegep Gab\\.Roy)(\\W|$){1})",
+			Pattern.CASE_INSENSITIVE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
 
 	private static final Pattern P_O_B = Pattern.compile("((^|\\W){1}(pob|p\\-o\\-b)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
