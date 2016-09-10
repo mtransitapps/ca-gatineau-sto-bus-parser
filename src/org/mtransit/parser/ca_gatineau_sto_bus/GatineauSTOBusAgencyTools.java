@@ -208,7 +208,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String MUSEE_CANADIEN_HISTOIRE_SHORT = "Musée de l'Histoire";
 	private static final String FREEMAN = "Freeman";
 	private static final String OTTAWA = "Ottawa";
-	private static final String PLACE_D_ACCUEIL = "Place d'Accueil";
+	private static final String PLACE_D_ACCUEIL = "Pl.Accueil"; // "Place d'Accueil";
 	private static final String DE_LA_CITÉ = "Cité"; // De La
 	private static final String LORRAIN = "Lorrain";
 	private static final String RIVERMEAD = "Rivermead";
@@ -525,6 +525,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 67l) {
 			if (mTrip.getHeadsignId() == 0) {
+		} else if (mTrip.getRouteId() == 87l) {
+			if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString(PLACE_D_ACCUEIL, mTrip.getHeadsignId());
+				return true;
 			}
 		} else if (mTrip.getRouteId() == 88l) {
 			if (mTrip.getHeadsignId() == 0) {
