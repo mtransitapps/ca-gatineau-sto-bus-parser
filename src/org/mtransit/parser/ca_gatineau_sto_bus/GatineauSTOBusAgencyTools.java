@@ -550,6 +550,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 737l) {
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 739l) {
 			if (mTrip.getHeadsignId() == 0) {
 				mTrip.setHeadsignString("Plateau", mTrip.getHeadsignId());
