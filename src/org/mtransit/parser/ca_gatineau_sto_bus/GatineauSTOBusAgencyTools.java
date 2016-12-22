@@ -271,6 +271,93 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"8502" // arrivée quai local LABROSSE ligne 79
 						})) //
 				.compileBothTripSort());
+		map2.put(325l, new RouteTripSpec(325l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINY_ALEXANDRE_SHORT, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2767", // PINK/de la SAPINIÈRE nord
+								"2273", // du PLATEAU/SAINT-RAYMOND sud
+								"3440" // SAINT-LOUIS/LEBAUDY est
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"3442", // SAINT-LOUIS/LEBAUDY ouest
+								"2767", // PINK/de la SAPINIÈRE nord
+								"2273" // du PLATEAU/SAINT-RAYMOND sud
+						})) //
+				.compileBothTripSort());
+		map2.put(327l, new RouteTripSpec(327l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINY_ALEXANDRE_SHORT, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Hautes-Plaines") //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2777", // MARIE-BURGER/de la GALÈNE est
+								"3440" // SAINT-LOUIS/LEBAUDY est
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"3442", // SAINT-LOUIS/LEBAUDY ouest
+								"2653" // de la GALÈNE/des MINEURS ouest
+						})) //
+				.compileBothTripSort());
+		map2.put(333l, new RouteTripSpec(333l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINY_ALEXANDRE_SHORT, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, FREEMAN) // CEGEP_GABRIELLE_ROY_SHORT) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2015", // CEGEP GABRIELLE-ROY #
+								"3440" // SAINT-LOUIS/LEBAUDY est
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"3442", // SAINT-LOUIS/LEBAUDY ouest
+								"2153" // TERMINUS FREEMAN
+						})) //
+				.compileBothTripSort());
+		map2.put(339l, new RouteTripSpec(339l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINY_ALEXANDRE_SHORT, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2602", // TERRASSES de la CHAUDIÈRE nord
+								"2004", // ALEXANDRE-TACHÉ/SAINT-RAYMOND sud
+								"3440" // SAINT-LOUIS/LEBAUDY est
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"3442", // SAINT-LOUIS/LEBAUDY ouest
+								"2604" // TERRASSES de la CHAUDIÈRE sud
+						})) //
+				.compileBothTripSort());
+		map2.put(439l, new RouteTripSpec(439l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "École De L'île", //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2271", // du PLATEAU/SAINT-RAYMOND nord
+								"2642" // SAINT-RÉDEMPTEUR/SACRÉ-COEUR ouest
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
+								"2604" // TERRASSES de la CHAUDIÈRE sud
+						})) //
+				.compileBothTripSort());
+		map2.put(533l, new RouteTripSpec(533l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Promenades", //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Cité des jeunes") //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND est
+								"3588" // de la CITÉ/LAMARCHE ouest
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"3587", // de la CITÉ/LAMARCHE est
+								"2420" // LIONEL-ÉMOND/SAINT-RAYMOND ouest
+						})) //
+				.compileBothTripSort());
 		map2.put(633l, new RouteTripSpec(633l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, FREEMAN, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Polyvalente de l'Île") //
@@ -281,6 +368,21 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2153", "2642" //
+						})) //
+				.compileBothTripSort());
+		map2.put(737l, new RouteTripSpec(737l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, TERRASSES_DE_LA_CHAUDIERE, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "E Montbleu") //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2192", // de la CITÉ-DES-JEUNES/TALBOT ouest
+								"2604" // TERRASSES de la CHAUDIÈRE sud
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2602", // TERRASSES de la CHAUDIÈRE nord
+								"2120", // SAINT-JOSEPH/RENÉ-MARENGÈRE est
+								"2188" // de la CITÉ-DES-JEUNES/TALBOT est
 						})) //
 				.compileBothTripSort());
 		map2.put(753l, new RouteTripSpec(753l, //
@@ -396,6 +498,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 31l) {
 			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
+				return true;
 			} else if (mTrip.getHeadsignId() == 1) {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
@@ -515,6 +619,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 59l) {
+			if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 64l) {
 			if (mTrip.getHeadsignId() == 0) {
 			} else if (mTrip.getHeadsignId() == 1) {
@@ -541,8 +650,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 731l) {
-			if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString("Polyvalente De L''île", mTrip.getHeadsignId());
+			if (mTrip.getHeadsignId() == 0) {
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
+				return true;
+			} else if (mTrip.getHeadsignId() == 1) {
+				mTrip.setHeadsignString("Coll St-Jo", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 735l) {
@@ -581,6 +693,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			Pattern.CASE_INSENSITIVE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
 
+	private static final Pattern COLLEGE_SAINY_ALEXANDRE_ = Pattern.compile("((^|\\W){1}(Col Stalex)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String COLLEGE_SAINY_ALEXANDRE_REPLACEMENT = "$2" + COLLEGE_SAINY_ALEXANDRE_SHORT + "$4";
+
 	private static final Pattern P_O_B = Pattern.compile("((^|\\W){1}(pob|p\\-o\\-b)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String P_O_B_REPLACEMENT = "$2" + P_O_B_SHORT + "$4";
 
@@ -602,6 +717,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		}
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
 		tripHeadsign = CEGEP_GABRIELLE_ROY_.matcher(tripHeadsign).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
+		tripHeadsign = COLLEGE_SAINY_ALEXANDRE_.matcher(tripHeadsign).replaceAll(COLLEGE_SAINY_ALEXANDRE_REPLACEMENT);
 		tripHeadsign = P_O_B.matcher(tripHeadsign).replaceAll(P_O_B_REPLACEMENT);
 		tripHeadsign = PRE_TUNNEY_.matcher(tripHeadsign).replaceAll(PRE_TUNNEY__REPLACEMENT);
 		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
