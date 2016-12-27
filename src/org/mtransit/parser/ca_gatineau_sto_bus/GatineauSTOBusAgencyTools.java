@@ -117,6 +117,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String PEAK_COLOR = "9B0078"; // VIOLET (from PDF)
 	private static final String RB100_COLOR = "0067AC"; // BLUE (from PDF)
 	private static final String RB200_COLOR = "DA002E"; // RED (from PDF)
+	private static final String SCHOOL_BUS_COLOR = "FFD800"; // YELLOW (from Wikipedia)
 
 	@Override
 	public String getRouteColor(GRoute gRoute) {
@@ -157,6 +158,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 52: return REGULAR_COLOR;
 			case 53: return REGULAR_COLOR;
 			case 54: return PEAK_COLOR;
+			case 55: return REGULAR_COLOR;
 			case 57: return REGULAR_COLOR;
 			case 58: return PEAK_COLOR;
 			case 59: return REGULAR_COLOR; // OCCASIONAL_COLOR;
@@ -179,6 +181,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 78: return REGULAR_COLOR;
 			case 79: return REGULAR_COLOR;
 			case 85: return PEAK_COLOR;
+			case 87: return PEAK_COLOR;
 			case 88: return PEAK_COLOR;
 			case 93: return PEAK_COLOR; // RAPIBUS_COLOR
 			case 95: return PEAK_COLOR; // RAPIBUS_COLOR
@@ -188,10 +191,25 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 100: return RB100_COLOR; // RAPIBUS_COLOR
 			case 200: return RB200_COLOR; // RAPIBUS_COLOR
 			case 300: return REGULAR_COLOR; // RAPIBUS_COLOR
+			case 325: return SCHOOL_BUS_COLOR;
+			case 327: return SCHOOL_BUS_COLOR;
+			case 331: return SCHOOL_BUS_COLOR;
+			case 333: return SCHOOL_BUS_COLOR;
+			case 338: return SCHOOL_BUS_COLOR;
+			case 339: return SCHOOL_BUS_COLOR;
 			case 400: return REGULAR_COLOR; // RAPIBUS_COLOR
+			case 439: return SCHOOL_BUS_COLOR;
 			case 500: return REGULAR_COLOR; // RAPIBUS_COLOR
+			case 533: return SCHOOL_BUS_COLOR;
+			case 539: return SCHOOL_BUS_COLOR;
+			case 564: return SCHOOL_BUS_COLOR;
+			case 625: return SCHOOL_BUS_COLOR;
+			case 627: return SCHOOL_BUS_COLOR;
+			case 629: return SCHOOL_BUS_COLOR;
+			case 739: return SCHOOL_BUS_COLOR;
 			case 800: return PEAK_COLOR; // RAPIBUS_COLOR
 			case 810: return PEAK_COLOR; // RAPIBUS_COLOR
+			case 901: return null;
 			// @formatter:on
 			}
 			System.out.printf("\nUnexpected route color %s!\n", gRoute);
@@ -214,11 +232,16 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String RIVERMEAD = "Rivermead";
 	private static final String P_O_B_SHORT = "P-O-B";
 	private static final String P_O_B_ALLUM = P_O_B_SHORT + " Allum";
-	private static final String CEGEP_GABRIELLE_ROY_SHORT = "Cgp GRoy";
 	private static final String DE_LA_GALÈNE = "Galène"; // De La
 	private static final String DES_TREMBLES = "Trembles"; // Des
 	private static final String PLATEAU = "Plateau";
 	private static final String OTTAWA_MUSEE_HISTOIRE = OTTAWA + SLASH + MUSEE_CANADIEN_HISTOIRE;
+	private static final String TERRASSES_DE_LA_CHAUDIERE = "Tsses de la Chaudière";
+	private static final String CEGEP_GABRIELLE_ROY_SHORT = "Cgp GRoy";
+	private static final String COLLEGE_SAINT_ALEXANDRE_SHORT = "Col St-Alex";
+	private static final String COLLEGE_SAINT_JOSEPH_SHORT = "Col St-Jo";
+	private static final String COLLEGE_NOUVELLES_FRONTIERES_SHORT = "Col NF";
+	private static final String ECOLE_SECONDAIRE_DE_L_ILE_SHORT = "ES De L'Île";
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
@@ -272,7 +295,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(325l, new RouteTripSpec(325l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINY_ALEXANDRE_SHORT, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -288,7 +311,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(327l, new RouteTripSpec(327l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINY_ALEXANDRE_SHORT, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Hautes-Plaines") //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -302,7 +325,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(333l, new RouteTripSpec(333l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINY_ALEXANDRE_SHORT, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, FREEMAN) // CEGEP_GABRIELLE_ROY_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -316,7 +339,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(339l, new RouteTripSpec(339l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINY_ALEXANDRE_SHORT, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -358,9 +381,52 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2420" // LIONEL-ÉMOND/SAINT-RAYMOND ouest
 						})) //
 				.compileBothTripSort());
+		map2.put(539l, new RouteTripSpec(539l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT, // "Émond / Gamelin"
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_JOSEPH_SHORT) // "Taché / St-Joseph"
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2427", // LIONEL-ÉMOND/GAMELIN ouest
+								"2064" // ALEXANDRE-TACHÉ/SAINT-JOSEPH sud
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2065", // ALEXANDRE-TACHÉ/SAINT-JOSEPH nord
+								"2239", // du PLATEAU/des CÈDRES nord
+								"2421" // LIONEL-ÉMOND/GAMELIN ouest
+						})) //
+				.compileBothTripSort());
+		map2.put(564L, new RouteTripSpec(564L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Promenades", //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND est
+								"4377" // de la GAPPE/BELLEHUMEUR sud
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"4376", // de la GAPPE/BELLEHUMEUR nord
+								"2421" // LIONEL-ÉMOND/GAMELIN ouest
+						})) //
+				.compileBothTripSort());
+		map2.put(625L, new RouteTripSpec(625L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Pink / Conservatoire") //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"1459", // du CONSERVATOIRE/du LOUVRE ouest
+								"2642" // SAINT-RÉDEMPTEUR/SACRÉ-COEUR ouest
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
+								"1460" // du CONSERVATOIRE/du LOUVRE est
+						})) //
+				.compileBothTripSort());
 		map2.put(633l, new RouteTripSpec(633l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, FREEMAN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Polyvalente de l'Île") //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2644", "2015", "2151" //
@@ -693,8 +759,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			Pattern.CASE_INSENSITIVE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
 
+	private static final Pattern ECOLE_SECONDAIRE_DE_L_ILE_ = Pattern.compile("((^|\\W){1}([e|é]cole De l'[i|î]le)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String ECOLE_SECONDAIRE_DE_L_ILE_REPLACEMENT = "$2" + ECOLE_SECONDAIRE_DE_L_ILE_SHORT + "$4";
+
 	private static final Pattern COLLEGE_SAINY_ALEXANDRE_ = Pattern.compile("((^|\\W){1}(Col Stalex)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-	private static final String COLLEGE_SAINY_ALEXANDRE_REPLACEMENT = "$2" + COLLEGE_SAINY_ALEXANDRE_SHORT + "$4";
+	private static final String COLLEGE_SAINY_ALEXANDRE_REPLACEMENT = "$2" + COLLEGE_SAINT_ALEXANDRE_SHORT + "$4";
 
 	private static final Pattern P_O_B = Pattern.compile("((^|\\W){1}(pob|p\\-o\\-b)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String P_O_B_REPLACEMENT = "$2" + P_O_B_SHORT + "$4";
@@ -718,6 +787,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
 		tripHeadsign = CEGEP_GABRIELLE_ROY_.matcher(tripHeadsign).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
 		tripHeadsign = COLLEGE_SAINY_ALEXANDRE_.matcher(tripHeadsign).replaceAll(COLLEGE_SAINY_ALEXANDRE_REPLACEMENT);
+		tripHeadsign = ECOLE_SECONDAIRE_DE_L_ILE_.matcher(tripHeadsign).replaceAll(ECOLE_SECONDAIRE_DE_L_ILE_REPLACEMENT);
 		tripHeadsign = P_O_B.matcher(tripHeadsign).replaceAll(P_O_B_REPLACEMENT);
 		tripHeadsign = PRE_TUNNEY_.matcher(tripHeadsign).replaceAll(PRE_TUNNEY__REPLACEMENT);
 		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
