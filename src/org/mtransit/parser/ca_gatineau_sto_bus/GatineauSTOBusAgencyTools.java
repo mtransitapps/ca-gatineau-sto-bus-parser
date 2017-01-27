@@ -209,6 +209,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 739: return SCHOOL_BUS_COLOR;
 			case 800: return PEAK_COLOR; // RAPIBUS_COLOR
 			case 810: return PEAK_COLOR; // RAPIBUS_COLOR
+			case 870: return PEAK_COLOR; // RAPIBUS_COLOR // TODO ??
 			case 901: return null;
 			// @formatter:on
 			}
@@ -354,7 +355,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(439l, new RouteTripSpec(439l, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "École De L'île", //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -461,6 +462,20 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1298", "1075" //
+						})) //
+				.compileBothTripSort());
+		map2.put(870l, new RouteTripSpec(870l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Arena Guertin", //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Wellington/Metcalfe") //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"5030", // WELLINGTON/METCALFE nord
+								"2643", // SAINT-RÉDEMPTEUR/ALLARD ouest
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2643", // SAINT-RÉDEMPTEUR/ALLARD ouest
+								"5032", // WELLINGTON/METCALFE sud
 						})) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
