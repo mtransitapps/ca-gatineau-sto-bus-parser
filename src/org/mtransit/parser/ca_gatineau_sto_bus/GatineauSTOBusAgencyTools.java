@@ -425,6 +425,24 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"1460" // du CONSERVATOIRE/du LOUVRE est
 						})) //
 				.compileBothTripSort());
+		map2.put(629L, new RouteTripSpec(629L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Le Manoir") //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2763", // des TREMBLES/des GRIVES ouest
+								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE sud
+								"2025", //
+								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR ouest
+								"2506", //
+								"2775", // LOUISE-CAMPAGNA/SAINT-RAYMOND nord
+								"2763", // des TREMBLES/des GRIVES ouest
+						})) //
+				.compileBothTripSort());
 		map2.put(633l, new RouteTripSpec(633l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, FREEMAN, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) //
@@ -435,6 +453,20 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2153", "2642" //
+						})) //
+				.compileBothTripSort());
+		map2.put(637L, new RouteTripSpec(637L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "St-Joseph") //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE sud
+								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR ouest
+								"2004", // ALEXANDRE-TACHÉ/SAINT-RAYMOND sud
 						})) //
 				.compileBothTripSort());
 		map2.put(737l, new RouteTripSpec(737l, //
