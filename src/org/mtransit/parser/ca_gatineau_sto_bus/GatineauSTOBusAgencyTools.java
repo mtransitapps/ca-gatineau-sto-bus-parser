@@ -91,10 +91,16 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
-		if ("33".equals(gRoute.getRouteShortName())) {
-			return "Station De La Cité / Cegep Gabrielle-Roy / Ottawa";
-		}
 		return cleanRouteLongName(gRoute);
+	}
+
+	@Override
+	public boolean mergeRouteLongName(MRoute mRoute, MRoute mRouteToMerge) {
+		if (mRoute.getId() == 33L) {
+			mRoute.setLongName("Station De La Cité / Cegep Gabrielle-Roy / Ottawa");
+			return true;
+		}
+		return super.mergeRouteLongName(mRoute, mRouteToMerge);
 	}
 
 	private String cleanRouteLongName(GRoute gRoute) {
@@ -246,10 +252,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		return super.getRouteColor(gRoute);
 	}
 
-	private static final String SLASH = " / ";
 	private static final String STATION_ = ""; // "Ston ";
 	private static final String LABROSSE_STATION = STATION_ + "Labrosse";
-	private static final String MUSEE_CANADIEN_HISTOIRE = "Musée Canadien de l'Histoire";
 	private static final String MUSEE_CANADIEN_HISTOIRE_SHORT = "Musée de l'Histoire";
 	private static final String FREEMAN = "Freeman";
 	private static final String OTTAWA = "Ottawa";
@@ -264,9 +268,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String P_O_B_FREEMAN = P_O_B_SHORT + " " + FREEMAN;
 	private static final String P_O_B_LES_PROMENDADES = P_O_B_SHORT + " " + LES_PROMENADES;
 	private static final String DE_LA_GALÈNE = "Galène"; // De La
-	private static final String DES_TREMBLES = "Trembles"; // Des
 	private static final String PLATEAU = "Plateau";
-	private static final String OTTAWA_MUSEE_HISTOIRE = OTTAWA + SLASH + MUSEE_CANADIEN_HISTOIRE;
 	private static final String TERRASSES_DE_LA_CHAUDIERE = "Tsses de la Chaudière";
 	private static final String PARC_CHAMPLAIN = "Parc Champlain";
 	private static final String MONT_LUC = "Mont-Luc";
@@ -650,6 +652,22 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2188" // de la CITÉ-DES-JEUNES/TALBOT est
 						})) //
 				.compileBothTripSort());
+		map2.put(739l, new RouteTripSpec(739l, //
+				0, MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_JOSEPH_SHORT, //
+				1, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+								"2604", // TERRASSES de la CHAUDIÈRE
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2621", // LAURIER/ÉLISABETH-BRUYÈRE
+								"2741", // SAINT-RAYMOND/LOUISE-CAMPAGNA
+								"2427", // LIONEL-ÉMOND/GAMELIN
+								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
+						})) //
+				.compileBothTripSort());
 		map2.put(740l, new RouteTripSpec(740l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_JOSEPH_SHORT, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Jardins-Lavigne") //
@@ -781,247 +799,125 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		String tripHeadsign = gTrip.getTripHeadsign();
-		if (StringUtils.isEmpty(tripHeadsign)) {
-			tripHeadsign = mRoute.getLongName();
-		}
-		if (mRoute.getId() == 21l) {
-			if (OTTAWA_MUSEE_HISTOIRE.equalsIgnoreCase(mTrip.getHeadsignValue())) {
-				mTrip.setHeadsignString(MUSEE_CANADIEN_HISTOIRE_SHORT, gTrip.getDirectionId());
-				return;
-			}
-		}
-		mTrip.setHeadsignString(cleanTripHeadsign(tripHeadsign), gTrip.getDirectionId());
+		mTrip.setHeadsignString(cleanTripHeadsign(gTrip.getTripHeadsign()), gTrip.getDirectionId());
 	}
 
 	@Override
 	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
-		if (mTrip.getRouteId() == 11l) {
-			if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(PLACE_D_ACCUEIL, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 17l) {
-			if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(PLACE_D_ACCUEIL, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 20l) {
-			if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
+		List<String> headsignsValues = Arrays.asList(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignValue());
+		if (mTrip.getRouteId() == 20l) {
+			if (Arrays.asList( //
+					"Mhistoire", //
+					"Tsses" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Mhistoire", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 21l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(FREEMAN, mTrip.getHeadsignId());
+			if (Arrays.asList( //
+					"Casino", //
+					"Freeman" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Casino", mTrip.getHeadsignId());
 				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(MUSEE_CANADIEN_HISTOIRE_SHORT, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 24l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(PLATEAU, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 25l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(PLATEAU, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 27l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString("Hplaines", mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
+			} else if (Arrays.asList( //
+					"Casino", //
+					"Ottawa" //
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString("Ottawa", mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 29l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(DES_TREMBLES, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
-				return true;
-			}
 		} else if (mTrip.getRouteId() == 31l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
+			if (Arrays.asList( //
+					CEGEP_GABRIELLE_ROY_SHORT, //
+					"Laurier", //
+					"Ottawa" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Ottawa", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 32l) {
-			if (mTrip.getHeadsignId() == 0) {
+			if (Arrays.asList( //
+					CEGEP_GABRIELLE_ROY_SHORT, //
+					"Ed.Lst-Lau" //
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 33l) {
-			if (mTrip.getHeadsignId() == 0) {
+			if (Arrays.asList( //
+					"Freeman", //
+					DE_LA_CITÉ //
+					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(DE_LA_CITÉ, mTrip.getHeadsignId());
 				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
+			} else if (Arrays.asList( //
+					"Mhistoire", //
+					"Ottawa", //
+					CEGEP_GABRIELLE_ROY_SHORT //
+					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 35l) {
-			if (mTrip.getHeadsignId() == 0) {
+			if (Arrays.asList( //
+					CEGEP_GABRIELLE_ROY_SHORT, //
+					DE_LA_GALÈNE //
+					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(DE_LA_GALÈNE, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 36l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 37l) {
-			if (mTrip.getHeadsignId() == 0) {
+			if (Arrays.asList( //
+					CEGEP_GABRIELLE_ROY_SHORT, //
+					"H.De-Ville" //
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 38l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(FREEMAN, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 39l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(FREEMAN, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 40l) {
-			if (mTrip.getHeadsignId() == 1) {
-			}
-		} else if (mTrip.getRouteId() == 41l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(P_O_B_ALLUM, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 49l) {
-			if (mTrip.getHeadsignId() == 0) {
+			if (Arrays.asList( //
+					CEGEP_GABRIELLE_ROY_SHORT, //
+					"Gam.Emond" //
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
+			} else if (Arrays.asList( //
+					"Gal.Aylmer", //
+					"Gam.Emond" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Gal.Aylmer", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 50l) {
-			if (mTrip.getHeadsignId() == 1) {
+			if (Arrays.asList( //
+					"Gal.Aylmer", //
+					P_O_B_ALLUM //
+					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(P_O_B_ALLUM, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 51l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(P_O_B_ALLUM, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 52l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(P_O_B_ALLUM, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 53l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(P_O_B_ALLUM, mTrip.getHeadsignId());
-				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 54l) {
-			if (mTrip.getHeadsignId() == 0) {
-			} else if (mTrip.getHeadsignId() == 1) {
-			}
-		} else if (mTrip.getRouteId() == 57l) {
-			if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 58l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 59l) {
-			if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 64l) {
-			if (mTrip.getHeadsignId() == 0) {
-			} else if (mTrip.getHeadsignId() == 1) {
-			}
-		} else if (mTrip.getRouteId() == 66l) {
-			if (mTrip.getHeadsignId() == 0) {
-			} else if (mTrip.getHeadsignId() == 1) {
-			}
-		} else if (mTrip.getRouteId() == 67l) {
-			if (mTrip.getHeadsignId() == 0) {
 		} else if (mTrip.getRouteId() == 87l) {
-			if (mTrip.getHeadsignId() == 1) {
+			if (Arrays.asList( //
+					PLACE_D_ACCUEIL, //
+					OTTAWA //
+					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(PLACE_D_ACCUEIL, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 88l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(LABROSSE_STATION, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 650l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString(RIVERMEAD, mTrip.getHeadsignId());
-				return true;
-			}
 		} else if (mTrip.getRouteId() == 731l) {
-			if (mTrip.getHeadsignId() == 0) {
+			if (Arrays.asList( //
+					CEGEP_GABRIELLE_ROY_SHORT, //
+					"Coll St-Jo", //
+					"ES De L'Île" //
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
-			} else if (mTrip.getHeadsignId() == 1) {
-				mTrip.setHeadsignString(COLLEGE_SAINT_JOSEPH_SHORT, mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 735l) {
-			if (mTrip.getHeadsignId() == 1) {
+			} else if (Arrays.asList( //
+					"ES De L'Île", //
+					"E Montbleu" //
+			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 737l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
-				return true;
-			}
-		} else if (mTrip.getRouteId() == 739l) {
-			if (mTrip.getHeadsignId() == 0) {
-				mTrip.setHeadsignString("Plateau", mTrip.getHeadsignId());
 				return true;
 			}
 		}
