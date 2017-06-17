@@ -252,8 +252,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		return super.getRouteColor(gRoute);
 	}
 
+	private static final String SLASH = " / ";
 	private static final String STATION_ = ""; // "Ston ";
-	private static final String LABROSSE_STATION = STATION_ + "Labrosse";
+	private static final String LABROSSE = "Labrosse";
+	private static final String LABROSSE_STATION = STATION_ + LABROSSE;
 	private static final String MUSEE_CANADIEN_HISTOIRE_SHORT = "Musée de l'Histoire";
 	private static final String FREEMAN = "Freeman";
 	private static final String OTTAWA = "Ottawa";
@@ -366,6 +368,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2602", // TERRASSES de la CHAUDIÈRE nord
 								"2004", // ALEXANDRE-TACHÉ/SAINT-RAYMOND sud
+								"2239", // du PLATEAU/des CÈDRES
 								"3440" // SAINT-LOUIS/LEBAUDY est
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
@@ -720,6 +723,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1333", // MC CONNELL/MORLEY-WALTERS sud
+								"1075", // WILFRID-LAVIGNE/LEGUERRIER
 								"1078", // WILFRID-LAVIGNE/JOHN-EGAN est
 						})) //
 				.compileBothTripSort());
@@ -895,6 +899,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					P_O_B_ALLUM //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(P_O_B_ALLUM, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 68L) {
+			if (Arrays.asList( //
+					LABROSSE, //
+					"Aff" + SLASH + "Entr" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(LABROSSE, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 87l) {
