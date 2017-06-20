@@ -236,13 +236,19 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 754: return SCHOOL_BUS_COLOR;
 			case 767: return SCHOOL_BUS_COLOR;
 			case 800: return PEAK_COLOR; // RAPIBUS_COLOR
+			case 804: return null; // TODO
+			case 805: return null; // TODO
 			case 810: return PEAK_COLOR; // RAPIBUS_COLOR
+			case 813: return null; // TODO
 			case 829: return SCHOOL_BUS_COLOR;
 			case 839: return SCHOOL_BUS_COLOR;
 			case 849: return SCHOOL_BUS_COLOR;
 			case 850: return SCHOOL_BUS_COLOR;
+			case 859: return null; // TODO
 			case 870: return PEAK_COLOR; // RAPIBUS_COLOR // TODO ??
+			case 873: return null; // TODO
 			case 901: return null;
+			case 950: return null; // TODO
 			// @formatter:on
 			}
 			System.out.printf("\nUnexpected route color %s!\n", gRoute);
@@ -759,16 +765,30 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(870l, new RouteTripSpec(870l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Arena Guertin", //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Wellington/Metcalfe") //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Laurier / Allumettières") //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"5030", // WELLINGTON/METCALFE nord
-								"2643", // SAINT-RÉDEMPTEUR/ALLARD ouest
+						"2662", // SACRÉ-COEUR/NOTRE-DAME-de-l'ÎLE
+								"2643", // SAINT-RÉDEMPTEUR/ALLARD
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2643", // SAINT-RÉDEMPTEUR/ALLARD ouest
-								"5032", // WELLINGTON/METCALFE sud
+						"2643", // SAINT-RÉDEMPTEUR/ALLARD
+								"2682", // LAURIER/des ALLUMETTIÈRES
+						})) //
+				.compileBothTripSort());
+		map2.put(950L, new RouteTripSpec(950L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Galerie Aylmer", //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Front / Harvey") //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"1040", // FRONT/HARVEY
+								"1077", // GALERIES AYLMER arrivée
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"1079", // GALERIES AYLMER départ
+								"1038", // FRONT/HARVEY
 						})) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
