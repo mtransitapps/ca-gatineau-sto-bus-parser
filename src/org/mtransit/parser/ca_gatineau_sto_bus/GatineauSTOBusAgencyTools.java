@@ -96,11 +96,36 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public boolean mergeRouteLongName(MRoute mRoute, MRoute mRouteToMerge) {
+		List<String> routeLongNamess = Arrays.asList(mRoute.getLongName(), mRouteToMerge.getLongName());
 		if (mRoute.getId() == 33L) {
-			mRoute.setLongName("Station De La Cité / Cegep Gabrielle-Roy / Ottawa");
-			return true;
+			if (Arrays.asList( //
+					"Station Cité / G-Roy / Ottawa", //
+					"Station Cité / Cegep G-Roy / Ottawa", //
+					"Station De La Cité / Cegep Gabrielle-Roy / Ottawa" //
+			).containsAll(routeLongNamess)) {
+				mRoute.setLongName("Station De La Cité / Cegep Gabrielle-Roy / Ottawa");
+				return true;
+			}
+		} else if (mRoute.getId() == 37L) {
+			if (Arrays.asList( //
+					"Cegep G-Roy", //
+					"Cegep Gabrielle-Roy" //
+			).containsAll(routeLongNamess)) {
+				mRoute.setLongName("Cegep Gabrielle-Roy");
+				return true;
+			}
+		} else if (mRoute.getId() == 68L) {
+			if (Arrays.asList( //
+					"Gabrielle Roy", //
+					"Gabrielle Roy / Garage Gatineau" //
+			).containsAll(routeLongNamess)) {
+				mRoute.setLongName("Gabrielle Roy / Garage Gatineau");
+				return true;
+			}
 		}
-		return super.mergeRouteLongName(mRoute, mRouteToMerge);
+		System.out.printf("\nUnexpected routes to merge: %s & %s!\n", mRoute, mRouteToMerge);
+		System.exit(-1);
+		return false;
 	}
 
 	private String cleanRouteLongName(GRoute gRoute) {
