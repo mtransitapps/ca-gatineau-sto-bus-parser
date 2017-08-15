@@ -80,6 +80,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
+	public boolean excludeRoute(GRoute gRoute) {
+		return super.excludeRoute(gRoute);
+	}
+
+	@Override
 	public Integer getAgencyRouteType() {
 		return MAgency.ROUTE_TYPE_BUS;
 	}
@@ -92,6 +97,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
 		return cleanRouteLongName(gRoute);
+	}
+
+	private String cleanRouteLongName(GRoute gRoute) {
+		String routeLongName = gRoute.getRouteLongName();
+		routeLongName = routeLongName.toLowerCase(Locale.ENGLISH);
+		routeLongName = CleanUtils.cleanSlashes(routeLongName);
+		return CleanUtils.cleanLabel(routeLongName);
 	}
 
 	@Override
@@ -128,13 +140,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		return false;
 	}
 
-	private String cleanRouteLongName(GRoute gRoute) {
-		String routeLongName = gRoute.getRouteLongName();
-		routeLongName = routeLongName.toLowerCase(Locale.ENGLISH);
-		routeLongName = CleanUtils.cleanSlashes(routeLongName);
-		return CleanUtils.cleanLabel(routeLongName);
-	}
-
+	@SuppressWarnings("unused")
+	private static final String AGENCY_COLOR_GREEN = "33A949"; // GREEN PANTONE 360 / 361 (90%) (from Corporate Logo Usage PDF)
 	private static final String AGENCY_COLOR_BLUE = "007F89"; // BLUE PANTONE 7474 (from Corporate Logo Usage PDF)
 
 	private static final String AGENCY_COLOR = AGENCY_COLOR_BLUE;
@@ -265,6 +272,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 805: return null; // TODO
 			case 810: return PEAK_COLOR; // RAPIBUS_COLOR
 			case 813: return null; // TODO
+			case 824: return null; // TODO
 			case 829: return SCHOOL_BUS_COLOR;
 			case 839: return SCHOOL_BUS_COLOR;
 			case 849: return SCHOOL_BUS_COLOR;
@@ -283,7 +291,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		return super.getRouteColor(gRoute);
 	}
 
-	private static final String SLASH = " / ";
 	private static final String STATION_ = ""; // "Ston ";
 	private static final String LABROSSE = "Labrosse";
 	private static final String LABROSSE_STATION = STATION_ + LABROSSE;
@@ -294,7 +301,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String DE_LA_CITÉ = "Cité"; // De La
 	private static final String LORRAIN = "Lorrain";
 	private static final String RIVERMEAD = "Rivermead";
-	private static final String PROMENADES = "Promenades";
 	private static final String LES_PROMENADES = "Les Promenades";
 	private static final String P_O_B_SHORT = "P-O-B";
 	private static final String P_O_B_ALLUM = P_O_B_SHORT + " Allum";
@@ -338,12 +344,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"4483", "4502", // !=
 								"4484", "4512", // !=
 								"4481", // == LORRAIN/THÉRÈSE ouest
-						// "4502" // de CHAMBORD/LORRAIN nord
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						// "4502", // de CHAMBORD/LORRAIN nord
-								"4481", // == LORRAIN/THÉRÈSE ouest
+						"4481", // == LORRAIN/THÉRÈSE ouest
 								"4167", // LORRAIN/des FLEURS ouest
 								"8502" // arrivée quai local LABROSSE ligne 79
 						})) //
@@ -422,18 +426,18 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2604" // TERRASSES de la CHAUDIÈRE sud
 						})) //
 				.compileBothTripSort());
-		map2.put(533l, new RouteTripSpec(533l, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, PROMENADES, //
+		map2.put(533L, new RouteTripSpec(533L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LES_PROMENADES, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Cité des jeunes") //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND est
-								"3588" // de la CITÉ/LAMARCHE ouest
+						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
+								"3003", // LES PROMENADES
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"3587", // de la CITÉ/LAMARCHE est
-								"2420" // LIONEL-ÉMOND/SAINT-RAYMOND ouest
+						"3003", // LES PROMENADES
+								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
 		map2.put(539l, new RouteTripSpec(539l, //
@@ -452,17 +456,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(564L, new RouteTripSpec(564L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, PROMENADES, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LES_PROMENADES, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND est
-								"4377" // de la GAPPE/BELLEHUMEUR sud
+						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
+								"3003", // LES PROMENADES
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"4376", // de la GAPPE/BELLEHUMEUR nord
-								"2421" // LIONEL-ÉMOND/GAMELIN ouest
+						"3000", // LES PROMENADES
+								"2421", // LIONEL-ÉMOND/GAMELIN
 						})) //
 				.compileBothTripSort());
 		map2.put(625L, new RouteTripSpec(625L, //
@@ -772,6 +776,20 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
 						})) //
 				.compileBothTripSort());
+		map2.put(813L, new RouteTripSpec(813L, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Robert Guertin Ctr", //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MUSEE_CANADIEN_HISTOIRE_SHORT) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2618", // MUSÉE DE L'HISTOIRE
+								"2643", // SAINT-RÉDEMPTEUR/ALLARD
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"2643", // SAINT-RÉDEMPTEUR/ALLARD
+								"2618", // MUSÉE DE L'HISTOIRE
+						})) //
+				.compileBothTripSort());
 		map2.put(839l, new RouteTripSpec(839l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Taché / St-Joseph") //
@@ -949,9 +967,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 68L) {
 			if (Arrays.asList( //
 					LABROSSE, //
-					"Aff" + SLASH + "Entr" //
+					"Affaires" //
 			).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(LABROSSE, mTrip.getHeadsignId());
+				mTrip.setHeadsignString("Affaires", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 87l) {
