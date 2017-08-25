@@ -102,12 +102,16 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private String cleanRouteLongName(GRoute gRoute) {
 		String routeLongName = gRoute.getRouteLongName();
 		routeLongName = routeLongName.toLowerCase(Locale.ENGLISH);
+		routeLongName = CEGEP_GABRIELLE_ROY_.matcher(routeLongName).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
 		routeLongName = CleanUtils.cleanSlashes(routeLongName);
 		return CleanUtils.cleanLabel(routeLongName);
 	}
 
 	@Override
 	public boolean mergeRouteLongName(MRoute mRoute, MRoute mRouteToMerge) {
+		if (mRoute.simpleMergeLongName(mRouteToMerge)) {
+			return super.mergeRouteLongName(mRoute, mRouteToMerge);
+		}
 		List<String> routeLongNamess = Arrays.asList(mRoute.getLongName(), mRouteToMerge.getLongName());
 		if (mRoute.getId() == 33L) {
 			if (Arrays.asList( //
@@ -126,14 +130,34 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mRoute.setLongName("Cegep Gabrielle-Roy");
 				return true;
 			}
-		} else if (mRoute.getId() == 68L) {
 			if (Arrays.asList( //
-					"Gabrielle Roy", //
-					"Gabrielle Roy / Garage Gatineau" //
+					"Cegep G-Roy", //
+					"Cegep Gabrielle-Roy", //
+					"Cegep Gab-Roy / St-Joseph" //
 			).containsAll(routeLongNamess)) {
-				mRoute.setLongName("Gabrielle Roy / Garage Gatineau");
+				mRoute.setLongName("Cegep Gab-Roy / St-Joseph");
 				return true;
 			}
+		} else if (mRoute.getId() == 66L) {
+			if (Arrays.asList( //
+					"Mont-Luc / Dubarry", //
+					"Montluc Dubarry" //
+			).containsAll(routeLongNamess)) {
+				mRoute.setLongName("Mont-Luc / Dubarry");
+				return true;
+			}
+		} else if (mRoute.getId() == 88L) {
+			if (Arrays.asList( //
+					"Station Labrosse / Cheval-Blanc", //
+					"Station Labrosse-Cheval Blanc" //
+			).containsAll(routeLongNamess)) {
+				mRoute.setLongName("Station Labrosse / Cheval-Blanc");
+				return true;
+			}
+		}
+		if (isGoodEnoughAccepted()) {
+			return super.mergeRouteLongName(mRoute, mRouteToMerge);
+		}
 		}
 		System.out.printf("\nUnexpected routes to merge: %s & %s!\n", mRoute, mRouteToMerge);
 		System.exit(-1);
@@ -166,9 +190,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 11: return PEAK_COLOR;
 			case 15: return PEAK_COLOR;
 			case 17: return PEAK_COLOR;
+			case 18: return null; // TODO ?
 			case 20: return PEAK_COLOR;
 			case 21: return REGULAR_COLOR;
 			case 22: return PEAK_COLOR;
+			case 23: return null; // TODO ?
 			case 24: return PEAK_COLOR;
 			case 25: return PEAK_COLOR;
 			case 26: return PEAK_COLOR;
@@ -178,6 +204,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 31: return REGULAR_COLOR; // OCCASIONAL_COLOR;
 			case 32: return PEAK_COLOR;
 			case 33: return REGULAR_COLOR; // OCCASIONAL_COLOR;
+			case 34: return null; // TODO ?
 			case 35: return REGULAR_COLOR; // OCCASIONAL_COLOR;
 			case 36: return REGULAR_COLOR; // OCCASIONAL_COLOR;
 			case 37: return REGULAR_COLOR; // OCCASIONAL_COLOR;
@@ -197,6 +224,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 53: return REGULAR_COLOR;
 			case 54: return PEAK_COLOR;
 			case 55: return REGULAR_COLOR;
+			case 56: return null; // TODO ?
 			case 57: return REGULAR_COLOR;
 			case 58: return PEAK_COLOR;
 			case 59: return REGULAR_COLOR; // OCCASIONAL_COLOR;
@@ -235,6 +263,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 333: return SCHOOL_BUS_COLOR;
 			case 338: return SCHOOL_BUS_COLOR;
 			case 339: return SCHOOL_BUS_COLOR;
+			case 371: return null; // TODO ?
 			case 400: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 439: return SCHOOL_BUS_COLOR;
 			case 472: return null; // TODO ?
@@ -270,7 +299,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 800: return PEAK_COLOR; // RAPIBUS_COLOR
 			case 804: return null; // TODO
 			case 805: return null; // TODO
+			case 807: return null; // TODO ?
 			case 810: return PEAK_COLOR; // RAPIBUS_COLOR
+			case 811: return null; // TODO ?
 			case 813: return null; // TODO
 			case 824: return null; // TODO
 			case 829: return SCHOOL_BUS_COLOR;
@@ -281,8 +312,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 870: return PEAK_COLOR; // RAPIBUS_COLOR // TODO ??
 			case 873: return null; // TODO
 			case 901: return null;
+			case 904: return null; // TODO ?
 			case 950: return null; // TODO
 			// @formatter:on
+			}
+			if (isGoodEnoughAccepted()) {
+				return null;
 			}
 			System.out.printf("\nUnexpected route color %s!\n", gRoute);
 			System.exit(-1);
@@ -323,14 +358,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
-		map2.put(26l, new RouteTripSpec(26l, //
-				0, MTrip.HEADSIGN_TYPE_STRING, PLATEAU, //
-				1, MTrip.HEADSIGN_TYPE_STRING, OTTAWA) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { "5026", "2510", "2769" })) //
-				.addTripSort(1, //
-						Arrays.asList(new String[] { "2767", "2508", "5016" })) //
-				.compileBothTripSort());
 		map2.put(79l, new RouteTripSpec(79l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LORRAIN, // St-Thomas
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LABROSSE_STATION) //
@@ -533,19 +560,20 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1124", // BROAD/ANNA est
-								"1355", // ++
-								"1377", // PARC-O-BUS RIVERMEAD ouest
-								"1307", // ++
+								"1355", // !=
+								"1377", // <> PARC-O-BUS RIVERMEAD ouest
+								"1307", // !=
 								"1403", // PINK/du CONSERVATOIRE sud
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1402", // PINK/du CONSERVATOIRE nord
-								"1306", // ++
-								"1377", // PARC-O-BUS RIVERMEAD ouest
-								"1352", // ++
+								"1306", // !=
+								"1377", // <> PARC-O-BUS RIVERMEAD ouest
+								"1352", // !=
 								"1226", // PRINCIPALE/du BORDEAUX nord
 								"1129", // BROAD/LOUIS-SAINT-LAURENT ouest
+								"9037", // FICTIF GRANDE RIVIÈRE
 						})) //
 				.compileBothTripSort());
 		map2.put(651L, new RouteTripSpec(651L, //
@@ -553,13 +581,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1128", // BROAD/LOUIS-SAINT-LAURENT est
+						"9036", // FICTIF GRANDE RIVIERE
+								"1128", // BROAD/LOUIS-SAINT-LAURENT est
 								"1171", // Parc-O-Bus RIVERMEAD arrivée RIVERMEAD
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1377", // PARC-O-BUS RIVERMEAD ouest
 								"1131", // BAGOT/BROAD sud
+								"9037", // FICTIF GRANDE RIVIÈRE
 						})) //
 				.compileBothTripSort());
 		map2.put(653L, new RouteTripSpec(653L, //
@@ -567,13 +597,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1128", // BROAD/LOUIS-SAINT-LAURENT est
+						"9036", // FICTIF GRANDE RIVIERE
+								"1128", // BROAD/LOUIS-SAINT-LAURENT est
 								"1358", // chemin d'AYLMER/RIVERMEAD sud
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1377", // PARC-O-BUS RIVERMEAD ouest
-								"1129", // BROAD/LOUIS-SAINT-LAURENT ouest
+								"1075", // ++
+								"9036", // FICTIF GRANDE RIVIERE
 						})) //
 				.compileBothTripSort());
 		map2.put(654L, new RouteTripSpec(654L, //
@@ -581,13 +613,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1128", // BROAD/LOUIS-SAINT-LAURENT est
+						"9036", // FICTIF GRANDE RIVIERE
+								"1128", // BROAD/LOUIS-SAINT-LAURENT est
 								"1281", // d'HOCHELAGA/ATHOLL DOUNE nord
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1365", // d'HOCHELAGA/ATHOLL DOUNE nord
 								"1129", // BROAD/LOUIS-SAINT-LAURENT ouest
+								"9037", // FICTIF GRANDE RIVIÈRE
 						})) //
 				.compileBothTripSort());
 		map2.put(666l, new RouteTripSpec(666l, //
@@ -713,6 +747,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"1108", // FRONT/des ALLUMETTIÈRES est
 								"2604", // TERRASSES de la CHAUDIÈRE sud
+								"2615", // LAVAL/LAURIER
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -726,13 +761,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1124", // BROAD/ANNA est
+						"9036", // FICTIF GRANDE RIVIERE
+								"1124", // BROAD/ANNA est
 								"1358", // chemin d'AYLMER/RIVERMEAD sud
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1290", // chemin d'AYLMER/GRIMES nord
 								"1078", // WILFRID-LAVIGNE/JOHN-EGAN est
+								"9036", // FICTIF GRANDE RIVIERE
 						})) //
 				.compileBothTripSort());
 		map2.put(753l, new RouteTripSpec(753l, //
@@ -740,11 +777,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1073", "1298" //
+						"9036", // FICTIF GRANDE RIVIERE
+								"1128", // ++
+								"1073", // ++
+								"1298", // de LUCERNE/ROBERT-STEWARD
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1298", "1075" //
+						"1298", // de LUCERNE/ROBERT-STEWARD
+								"1075", // ++
+								"1082", // ++
+								"9036", // FICTIF GRANDE RIVIERE
 						})) //
 				.compileBothTripSort());
 		map2.put(754l, new RouteTripSpec(754l, //
@@ -760,6 +803,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						"1333", // MC CONNELL/MORLEY-WALTERS sud
 								"1075", // WILFRID-LAVIGNE/LEGUERRIER
 								"1078", // WILFRID-LAVIGNE/JOHN-EGAN est
+								"9036", // FICTIF GRANDE RIVIERE
 						})) //
 				.compileBothTripSort());
 		map2.put(767l, new RouteTripSpec(767l, //
@@ -769,6 +813,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
 								"3066", // GRÉBER/de la SAVANE est
+								"3000", // LES PROMENADES
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -942,6 +987,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 39l) {
+			if (Arrays.asList( //
+					PLATEAU, //
+					OTTAWA //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 49l) {
 			if (Arrays.asList( //
 					CEGEP_GABRIELLE_ROY_SHORT, //
@@ -962,6 +1015,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					P_O_B_ALLUM //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(P_O_B_ALLUM, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 64L) {
+			if (Arrays.asList( //
+					"Ar Beaudry", //
+					FREEMAN //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(FREEMAN, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 68L) {
@@ -996,6 +1057,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
+		if (isGoodEnoughAccepted()) {
+			return super.mergeHeadsign(mTrip, mTripToMerge);
+		}
 		System.out.printf("\nUnexpected trips to merge: %s & %s!\n", mTrip, mTripToMerge);
 		System.exit(-1);
 		return false;
@@ -1011,9 +1075,25 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern CLEAN_STATION = Pattern.compile("((^|\\W){1}(station|ston|sta)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_STATION_REPLACEMENT = "$2" + STATION_ + "$4";
 
-	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile(
-			"((^|\\W){1}(c[é|É|e|è|È]gep gabrielle-roy|c[é|É|e|è|È]gep groy|cgp gabrielle-r|cgp groy|cgp g-roy|Cegep Gab\\.Roy)(\\W|$){1})",
-			Pattern.CASE_INSENSITIVE);
+	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile("((^|\\W){1}(" //
+			+ "c[é|É|e|è|È]gep gabrielle\\-roy" //
+			+ "|" //
+			+ "cegep gab\\.roy" //
+			+ "|" //
+			+ "cegep gab\\-roy"//
+			+ "|" //
+			+ "c[é|É|e|è|È]gep groy" //
+			+ "|" //
+			+ "cegep g\\-roy" //
+			+ "|" //
+			+ "cgp gabrielle\\-r" //
+			+ "|" //
+			+ "cgp groy" //
+			+ "|" //
+			+ "cgp g\\-roy" //
+			+ "|" //
+			+ "g\\-roy" //
+			+ ")(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
 
 	private static final Pattern ECOLE_SECONDAIRE_DE_L_ILE_ = Pattern.compile("((^|\\W){1}([e|é]cole De l'[i|î]le)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
