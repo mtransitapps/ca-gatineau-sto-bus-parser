@@ -158,7 +158,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		if (isGoodEnoughAccepted()) {
 			return super.mergeRouteLongName(mRoute, mRouteToMerge);
 		}
-		}
 		System.out.printf("\nUnexpected routes to merge: %s & %s!\n", mRoute, mRouteToMerge);
 		System.exit(-1);
 		return false;
@@ -343,7 +342,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String P_O_B_LES_PROMENDADES = P_O_B_SHORT + " " + LES_PROMENADES;
 	private static final String DE_LA_GALÈNE = "Galène"; // De La
 	private static final String PLATEAU = "Plateau";
-	private static final String TERRASSES_DE_LA_CHAUDIERE = "Tsses de la Chaudière";
+	private static final String TERRASSES = "Tsses";
+	private static final String TERRASSES_DE_LA_CHAUDIERE = TERRASSES + " de la Chaudière";
 	private static final String PARC_CHAMPLAIN = "Parc Champlain";
 	private static final String MONT_LUC = "Mont-Luc";
 	private static final String MASSON_ANGERS = "Masson-Angers";
@@ -552,6 +552,20 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR ouest
 								"2004", // ALEXANDRE-TACHÉ/SAINT-RAYMOND sud
+						})) //
+				.compileBothTripSort());
+		map2.put(649L, new RouteTripSpec(649L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
+				1, MTrip.HEADSIGN_TYPE_STRING, RIVERMEAD) // PLATEAU
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"1377", // PARC-O-BUS RIVERMEAD
+								"2188", // de la CITÉ-DES-JEUNES/TALBOT
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2192", // de la CITÉ-DES-JEUNES/TALBOT
+								"1171", // Parc-O-Bus RIVERMEAD arrivée RIVERMEAD
 						})) //
 				.compileBothTripSort());
 		map2.put(650L, new RouteTripSpec(650L, //
@@ -919,10 +933,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		List<String> headsignsValues = Arrays.asList(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignValue());
 		if (mTrip.getRouteId() == 20l) {
 			if (Arrays.asList( //
-					"Mhistoire", //
-					"Tsses" //
-			).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString("Mhistoire", mTrip.getHeadsignId());
+					// "Mhistoire", //
+					TERRASSES, //
+					OTTAWA //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 21l) {
@@ -973,6 +988,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 35l) {
 			if (Arrays.asList( //
+					"H.De-Ville", //
 					CEGEP_GABRIELLE_ROY_SHORT, //
 					DE_LA_GALÈNE //
 					).containsAll(headsignsValues)) {
