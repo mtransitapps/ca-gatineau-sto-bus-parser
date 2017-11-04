@@ -581,7 +581,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1402", // PINK/du CONSERVATOIRE nord
+						"1460", // du CONSERVATOIRE/du LOUVRE
 								"1306", // !=
 								"1377", // <> PARC-O-BUS RIVERMEAD ouest
 								"1352", // !=
@@ -769,7 +769,21 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"1109", // FRONT/des ALLUMETTIÈRES ouest
 						})) //
 				.compileBothTripSort());
-		// TODO 749
+		map2.put(749L, new RouteTripSpec(749L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
+				1, MTrip.HEADSIGN_TYPE_STRING, RIVERMEAD) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"1459", // du CONSERVATOIRE/du LOUVRE
+								"2188", // de la CITÉ-DES-JEUNES/TALBOT
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2192", // de la CITÉ-DES-JEUNES/TALBOT
+								"2806", // du PLATEAU/du MARIGOT
+								"1171", // Parc-O-Bus RIVERMEAD arrivée RIVERMEAD
+						})) //
+				.compileBothTripSort());
 		map2.put(751l, new RouteTripSpec(751l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, RIVERMEAD, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
