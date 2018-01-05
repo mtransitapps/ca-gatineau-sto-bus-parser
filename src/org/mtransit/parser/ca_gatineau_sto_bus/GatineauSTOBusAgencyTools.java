@@ -694,6 +694,25 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2421", // LIONEL-ÉMOND/GAMELIN ouest
 						})) //
 				.compileBothTripSort());
+		map2.put(731L, new RouteTripSpec(731L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, CEGEP_GABRIELLE_ROY_SHORT, //
+				1, MTrip.HEADSIGN_TYPE_STRING, "E Montbleu") //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"2682", // LAURIER/des ALLUMETTIÈRES
+								"2650", // SACRÉ-COEUR/SAINT-HENRI
+								"2424", // LIONEL-ÉMOND/GAMELIN
+								"2008", // CEGEP GABRIELLE-ROY/arrivée
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2013", // CEGEP GABRIELLE-ROY #3
+								"2188", // de la CITÉ-DES-JEUNES/TALBOT
+								"2272", // RIEL/ISABELLE
+								"2672", // SACRÉ-COEUR/SAINT-RÉDEMPTEUR
+								"2680", // LAURIER/des ALLUMETTIÈRES
+						})) //
+				.compileBothTripSort());
 		map2.put(733L, new RouteTripSpec(733L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, P_O_B_FREEMAN, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU) //
@@ -913,7 +932,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public int compareEarly(long routeId, List<MTripStop> list1, List<MTripStop> list2, MTripStop ts1, MTripStop ts2, GStop ts1GStop, GStop ts2GStop) {
 		if (ALL_ROUTE_TRIPS2.containsKey(routeId)) {
-			return ALL_ROUTE_TRIPS2.get(routeId).compare(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop);
+			return ALL_ROUTE_TRIPS2.get(routeId).compare(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop, this);
 		}
 		return super.compareEarly(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop);
 	}
@@ -929,7 +948,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public Pair<Long[], Integer[]> splitTripStop(MRoute mRoute, GTrip gTrip, GTripStop gTripStop, ArrayList<MTrip> splitTrips, GSpec routeGTFS) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
-			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS2.get(mRoute.getId()));
+			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS2.get(mRoute.getId()), this);
 		}
 		return super.splitTripStop(mRoute, gTrip, gTripStop, splitTrips, routeGTFS);
 	}
@@ -1086,9 +1105,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
 				return true;
 			}
-		}
-		if (isGoodEnoughAccepted()) {
-			return super.mergeHeadsign(mTrip, mTripToMerge);
 		}
 		System.out.printf("\nUnexpected trips to merge: %s & %s!\n", mTrip, mTripToMerge);
 		System.exit(-1);
