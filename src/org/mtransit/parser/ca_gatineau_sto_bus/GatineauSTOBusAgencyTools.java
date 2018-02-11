@@ -73,6 +73,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public boolean excludeTrip(GTrip gTrip) {
+		if (gTrip.getTripHeadsign().equalsIgnoreCase("En Transit")) {
+			return true;
+		}
 		if (this.serviceIds != null) {
 			return excludeUselessTrip(gTrip, this.serviceIds);
 		}
@@ -1019,7 +1022,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 35l) {
+		} else if (mTrip.getRouteId() == 35L) {
 			if (Arrays.asList( //
 					"H.De-Ville", //
 					CEGEP_GABRIELLE_ROY_SHORT, //
@@ -1028,9 +1031,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(DE_LA_GALÈNE, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 37l) {
+		} else if (mTrip.getRouteId() == 37L) {
 			if (Arrays.asList( //
 					CEGEP_GABRIELLE_ROY_SHORT, //
+					"Laurier", //
 					"H.De-Ville" //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
