@@ -470,19 +470,19 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
-		map2.put(539l, new RouteTripSpec(539l, //
+		map2.put(539L, new RouteTripSpec(539L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT, // "Émond / Gamelin"
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_JOSEPH_SHORT) // "Taché / St-Joseph"
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2427", // LIONEL-ÉMOND/GAMELIN ouest
-								"2064" // ALEXANDRE-TACHÉ/SAINT-JOSEPH sud
+								"2064", // ALEXANDRE-TACHÉ/SAINT-JOSEPH sud
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2065", // ALEXANDRE-TACHÉ/SAINT-JOSEPH nord
 								"2239", // du PLATEAU/des CÈDRES nord
-								"2421" // LIONEL-ÉMOND/GAMELIN ouest
+								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
 		map2.put(564L, new RouteTripSpec(564L, //
@@ -496,7 +496,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"3000", // LES PROMENADES
-								"2421", // LIONEL-ÉMOND/GAMELIN
+								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
 		map2.put(625L, new RouteTripSpec(625L, //
@@ -652,7 +652,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"4352", // de CANNES/de CAVAILLON est
-								"2421", // LIONEL-ÉMOND/GAMELIN ouest
+								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
 		map2.put(671L, new RouteTripSpec(671L, //
@@ -666,7 +666,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"3991", // Quai local LABROSSE #5
-								"2421", // LIONEL-ÉMOND/GAMELIN ouest
+								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
 		map2.put(676L, new RouteTripSpec(676L, //
@@ -680,7 +680,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"3991", // Quai local LABROSSE #5
-								"2421", // LIONEL-ÉMOND/GAMELIN ouest
+								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
 		map2.put(696L, new RouteTripSpec(696L, //
@@ -694,7 +694,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"4772", // de l'ARÉNA/LOMBARD nord
-								"2421", // LIONEL-ÉMOND/GAMELIN ouest
+								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
 		map2.put(731L, new RouteTripSpec(731L, //
