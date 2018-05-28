@@ -382,51 +382,57 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"8502" // arrivée quai local LABROSSE ligne 79
 						})) //
 				.compileBothTripSort());
-		map2.put(325l, new RouteTripSpec(325l, //
+		map2.put(325L, new RouteTripSpec(325L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2767", // PINK/de la SAPINIÈRE nord
 								"2273", // du PLATEAU/SAINT-RAYMOND sud
-								"3440" // SAINT-LOUIS/LEBAUDY est
+								"3440", // SAINT-LOUIS/LEBAUDY est
+								"9603", // ÉCOLE SAINT-ALEXANDRE
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3442", // SAINT-LOUIS/LEBAUDY ouest
+						"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3442", // SAINT-LOUIS/LEBAUDY ouest
 								"2767", // PINK/de la SAPINIÈRE nord
-								"2273" // du PLATEAU/SAINT-RAYMOND sud
+								"2273", // du PLATEAU/SAINT-RAYMOND sud
 						})) //
 				.compileBothTripSort());
-		map2.put(327l, new RouteTripSpec(327l, //
+		map2.put(327L, new RouteTripSpec(327L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Hautes-Plaines") //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2777", // MARIE-BURGER/de la GALÈNE est
-								"3440" // SAINT-LOUIS/LEBAUDY est
+								"3440", // SAINT-LOUIS/LEBAUDY est
+								"9603", // ÉCOLE SAINT-ALEXANDRE
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3442", // SAINT-LOUIS/LEBAUDY ouest
-								"2653" // de la GALÈNE/des MINEURS ouest
+						"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3442", // SAINT-LOUIS/LEBAUDY ouest
+								"2653", // de la GALÈNE/des MINEURS ouest
 						})) //
 				.compileBothTripSort());
-		map2.put(333l, new RouteTripSpec(333l, //
+		map2.put(333L, new RouteTripSpec(333L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, FREEMAN) // CEGEP_GABRIELLE_ROY_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2015", // CEGEP GABRIELLE-ROY #
-								"3440" // SAINT-LOUIS/LEBAUDY est
+								"3440", // SAINT-LOUIS/LEBAUDY est
+								"9603", // ÉCOLE SAINT-ALEXANDRE
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3442", // SAINT-LOUIS/LEBAUDY ouest
-								"2153" // TERMINUS FREEMAN
+						"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3442", // SAINT-LOUIS/LEBAUDY ouest
+								"2153", // TERMINUS FREEMAN
 						})) //
 				.compileBothTripSort());
-		map2.put(339l, new RouteTripSpec(339l, //
+		map2.put(339L, new RouteTripSpec(339L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
@@ -434,12 +440,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						"2602", // TERRASSES de la CHAUDIÈRE nord
 								"2004", // ALEXANDRE-TACHÉ/SAINT-RAYMOND sud
 								"2239", // du PLATEAU/des CÈDRES
-								"3440" // SAINT-LOUIS/LEBAUDY est
+								"3440", // SAINT-LOUIS/LEBAUDY est
+								"9603", // ÉCOLE SAINT-ALEXANDRE
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3442", // SAINT-LOUIS/LEBAUDY ouest
-								"2604" // TERRASSES de la CHAUDIÈRE sud
+						"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3442", // SAINT-LOUIS/LEBAUDY ouest
+								"2604", // TERRASSES de la CHAUDIÈRE sud
 						})) //
 				.compileBothTripSort());
 		map2.put(439l, new RouteTripSpec(439l, //
