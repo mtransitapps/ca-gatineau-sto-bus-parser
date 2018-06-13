@@ -649,17 +649,19 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"9037", // FICTIF GRANDE RIVIÈRE
 						})) //
 				.compileBothTripSort());
-		map2.put(666l, new RouteTripSpec(666l, //
+		map2.put(666L, new RouteTripSpec(666L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MONT_LUC, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND est
+								"3446", // ++
 								"4351", // de CANNES/de CAVAILLON ouest
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"4352", // de CANNES/de CAVAILLON est
+								"4319", // ++
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
@@ -669,11 +671,18 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND est
+								"3666", // ++
 								"3990", // Terminus Labrosse
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"3991", // Quai local LABROSSE #5
+								"8061", // == Station de la GAPPE #1
+								"2553", // != de la CARRIÈRE/d'EDMONTON
+								"2549", // != de la CARRIÈRE/du CASINO
+								"8051", // != Station LAC LEAMY
+								"2114", // != SAINT-JOSEPH/GAMELIN
+								"2404", // == SAINT-RAYMOND/ROY
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
@@ -784,18 +793,25 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
 						})) //
 				.compileBothTripSort());
-		map2.put(740l, new RouteTripSpec(740l, //
+		map2.put(740L, new RouteTripSpec(740L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_JOSEPH_SHORT, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Jardins-Lavigne") //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1108", // FRONT/des ALLUMETTIÈRES est
+								"1441", // == KLOCK/de la CLÉMATITE
+								"1437", // != MAURICE-DUPLESSIS/KLOCK
+								"1425", // != MAURICE-DUPLESSIS/WILFRID-LAVIGNE
+								"1453", // != KLOCK/MAURICE-DUPLESSIS
+								"1123", // != WILFRID-LAVIGNE/MAURICE-DUPLESSIS
+								"1426", // == WILFRID-LAVIGNE/JEAN-LESAGE
 								"2604", // TERRASSES de la CHAUDIÈRE sud
 								"2615", // LAVAL/LAURIER
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2612", // de l'HÔTEL-de-VILLE/du PORTAGE nord
+								"1282", // ++
 								"1109", // FRONT/des ALLUMETTIÈRES ouest
 						})) //
 				.compileBothTripSort());
