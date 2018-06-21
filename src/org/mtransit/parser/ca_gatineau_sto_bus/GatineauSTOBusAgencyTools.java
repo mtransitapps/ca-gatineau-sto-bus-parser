@@ -361,25 +361,24 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
-		map2.put(79l, new RouteTripSpec(79l, //
+		map2.put(79L, new RouteTripSpec(79L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LORRAIN, // St-Thomas
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LABROSSE_STATION) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3991", // Quai local LABROSSE #5
-								"3994", // Quai local LABROSSE #8
+						"3997", // Quai local Labrosse
+								"3744", // ++
 								"4476", // LORRAIN/des POMMETIERS est
-
 								"4482", // == LORRAIN/BLANCHETTE est
-								"4483", "4502", // !=
-								"4484", "4512", // !=
-								"4481", // == LORRAIN/THÉRÈSE ouest
+								"4484", // !=
+								"4512", // != de CHAMBORD/LORRAIN
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"4481", // == LORRAIN/THÉRÈSE ouest
+						"4512", // != de CHAMBORD/LORRAIN
 								"4167", // LORRAIN/des FLEURS ouest
-								"8502" // arrivée quai local LABROSSE ligne 79
+								"3746", // ++
+								"8502" // Terminus ligne 79
 						})) //
 				.compileBothTripSort());
 		map2.put(325L, new RouteTripSpec(325L, //
