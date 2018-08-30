@@ -354,6 +354,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String TERRASSES = "Tsses";
 	private static final String TERRASSES_DE_LA_CHAUDIERE = TERRASSES + " Chaudière";
 	private static final String PARC_CHAMPLAIN = "Parc Champlain";
+	private static final String PARC_LA_BAIE = "Parc La Baie";
 	private static final String MONT_LUC = "Mont-Luc";
 	private static final String MASSON_ANGERS = "Masson-Angers";
 	private static final String CEGEP_GABRIELLE_ROY_SHORT = "Cgp GRoy";
@@ -989,6 +990,22 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
 						})) //
 				.compileBothTripSort());
+		map2.put(811L, new RouteTripSpec(811L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, GALERIES_AYLMER_SHORT, //
+				1, MTrip.HEADSIGN_TYPE_STRING, PARC_LA_BAIE) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"3217", // SAINT-LOUIS/SAINT-ANTOINE
+								"2586", // ++
+								"1077", // GALERIES AYLMER arrivée
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"1079", // GALERIES AYLMER départ
+								"2408", // ++
+								"2726", // FOURNIER/du LAC LEAMY
+						})) //
+				.compileBothTripSort());
 		map2.put(813L, new RouteTripSpec(813L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Robert Guertin Ctr", //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MUSEE_CANADIEN_HISTOIRE_SHORT) //
@@ -1105,17 +1122,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			mTrip.setHeadsignString(mTripToMerge.getHeadsignValue(), mTrip.getHeadsignId());
 			return true;
 		} else if (mTripToMerge.getHeadsignValue().equalsIgnoreCase("EN TRANSIT")) {
-			mTrip.setHeadsignString(mTrip.getHeadsignValue(), mTrip.getHeadsignId());
+			mTripToMerge.setHeadsignString(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignId());
 			return true;
 		}
 		if (mTrip.getHeadsignValue().equalsIgnoreCase("DÉSOLÉ,F-D SERV")) {
 			mTrip.setHeadsignString(mTripToMerge.getHeadsignValue(), mTrip.getHeadsignId());
 			return true;
 		} else if (mTripToMerge.getHeadsignValue().equalsIgnoreCase("DÉSOLÉ,F-D SERV")) {
-			mTrip.setHeadsignString(mTrip.getHeadsignValue(), mTrip.getHeadsignId());
+			mTripToMerge.setHeadsignString(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignId());
 			return true;
 		}
-		if (mTrip.getRouteId() == 20l) {
+		if (mTrip.getRouteId() == 20L) {
 			if (Arrays.asList( //
 					// "Mhistoire", //
 					TERRASSES, //
@@ -1182,7 +1199,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 35L) {
 			if (Arrays.asList( //
-					"H.De-Ville", //
+					OTTAWA, // <>
 					CEGEP_GABRIELLE_ROY_SHORT, //
 					DE_LA_GALÈNE //
 					).containsAll(headsignsValues)) {
@@ -1260,7 +1277,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString("Affaires" + SLASH + "Entreprises", mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 87l) {
+		} else if (mTrip.getRouteId() == 87L) {
 			if (Arrays.asList( //
 					PLACE_D_ACCUEIL, //
 					OTTAWA //
