@@ -575,11 +575,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1459", // du CONSERVATOIRE/du LOUVRE ouest
-								"2642" // SAINT-RÉDEMPTEUR/SACRÉ-COEUR ouest
+								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
+						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
 								"1460" // du CONSERVATOIRE/du LOUVRE est
 						})) //
 				.compileBothTripSort());
