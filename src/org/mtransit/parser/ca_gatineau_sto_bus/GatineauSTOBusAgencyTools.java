@@ -629,15 +629,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(649L, new RouteTripSpec(649L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
-				1, MTrip.HEADSIGN_TYPE_STRING, RIVERMEAD) // PLATEAU
+				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) // RIVERMEAD) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"1377", // PARC-O-BUS RIVERMEAD
-								"2188", // de la CITÉ-DES-JEUNES/TALBOT
+								"2243", // ++
+								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2192", // de la CITÉ-DES-JEUNES/TALBOT
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+								"2245", // ++
 								"1171", // Parc-O-Bus RIVERMEAD arrivée RIVERMEAD
 						})) //
 				.compileBothTripSort());
@@ -812,16 +814,18 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(733L, new RouteTripSpec(733L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, P_O_B_FREEMAN, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU) //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CEGEP_GABRIELLE_ROY_SHORT) // ECOLE_SECONDAIRE_MONT_BLEU
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2188", // de la CITÉ-DES-JEUNES/TALBOT est
-								"2151", // TERMINUS Parc-o-bus FREEMAN
+						"2153", // TERMINUS FREEMAN
+								"2011", // CEGEP GABRIELLE-ROY
+								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2153", // TERMINUS FREEMAN
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
+								"2153", // TERMINUS FREEMAN
 								"2011", // CEGEP GABRIELLE-ROY
 						})) //
 				.compileBothTripSort());
@@ -844,32 +848,39 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(735L, new RouteTripSpec(735L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Galène" + SLASH + "Mineurs", //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Émond" + SLASH + "Raymond") //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) // "Émond" + SLASH + "Raymond") //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2188", // de la CITÉ-DES-JEUNES/TALBOT #ECOLE_SECONDAIRE_MONT_BLEU
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
+								"2188", // de la CITÉ-DES-JEUNES/TALBOT #ECOLE_SECONDAIRE_MONT_BLEU
 								"2653", // de la GALÈNE/des MINEURS
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2777", // MARIE-BURGER/de la GALÈNE est
 								"2192", // de la CITÉ-DES-JEUNES/TALBOT ouest #ECOLE_SECONDAIRE_MONT_BLEU
+								"2011", // CEGEP GABRIELLE-ROY
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
+								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
 						})) //
 				.compileBothTripSort());
-		map2.put(737l, new RouteTripSpec(737l, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, TERRASSES_DE_LA_CHAUDIERE, //
+		map2.put(737L, new RouteTripSpec(737L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, // TERRASSES_DE_LA_CHAUDIERE, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2192", // de la CITÉ-DES-JEUNES/TALBOT ouest
-								"2604" // TERRASSES de la CHAUDIÈRE sud
+						"2192", // de la CITÉ-DES-JEUNES/TALBOT ouest #ES_MONT_BLEU
+								"2360", // DANIEL-JOHNSON/RADISSON
+								"2122", // SAINT-JOSEPH/RENÉ-MARENGÈRE
+								"2604", // TERRASSES de la CHAUDIÈRE sud
+								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2602", // TERRASSES de la CHAUDIÈRE nord
+						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
+								"2602", // TERRASSES de la CHAUDIÈRE nord
 								"2120", // SAINT-JOSEPH/RENÉ-MARENGÈRE est
-								"2188" // de la CITÉ-DES-JEUNES/TALBOT est
+								"2188" // de la CITÉ-DES-JEUNES/TALBOT est #ES_MONT_BLEU
 						})) //
 				.compileBothTripSort());
 		map2.put(739l, new RouteTripSpec(739l, //
@@ -911,18 +922,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(749L, new RouteTripSpec(749L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, // ECOLE_SECONDAIRE_MONT_BLEU, //
 				1, MTrip.HEADSIGN_TYPE_STRING, RIVERMEAD) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"1459", // du CONSERVATOIRE/du LOUVRE
-								"2188", // de la CITÉ-DES-JEUNES/TALBOT
+								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2192", // de la CITÉ-DES-JEUNES/TALBOT
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
 								"2806", // du PLATEAU/du MARIGOT
-								"1171", // Parc-O-Bus RIVERMEAD arrivée RIVERMEAD
 						})) //
 				.compileBothTripSort());
 		map2.put(751l, new RouteTripSpec(751l, //
@@ -1021,17 +1031,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(834L, new RouteTripSpec(834L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, // ECOLE_SECONDAIRE_MONT_BLEU
 				1, MTrip.HEADSIGN_TYPE_STRING, "Taché" + SLASH + "St-Joseph") //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"2004", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 								"2239", // du PLATEAU/des CÈDRES
-								"2188", // de la CITÉ-DES-JEUNES/TALBOT
+								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2192", // de la CITÉ-DES-JEUNES/TALBOT
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
 								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 								"2064", // ALEXANDRE-TACHÉ/SAINT-JOSEPH
 						})) //
@@ -1200,6 +1210,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 35L) {
 			if (Arrays.asList( //
 					OTTAWA, // <>
+					"H.De-Ville", //
 					CEGEP_GABRIELLE_ROY_SHORT, //
 					DE_LA_GALÈNE //
 					).containsAll(headsignsValues)) {
