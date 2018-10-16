@@ -347,7 +347,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String COTES_DES_NEIGES = "Côtes-Des-Neiges";
 	private static final String P_O_B_SHORT = "P-O-B";
 	private static final String P_O_B_ALLUMETTIERES = P_O_B_SHORT + " " + ALLUMETTIERES_SHORT;
-	private static final String P_O_B_FREEMAN = P_O_B_SHORT + " " + FREEMAN;
 	private static final String P_O_B_LES_PROMENDADES = P_O_B_SHORT + " " + LES_PROMENADES;
 	private static final String DE_LA_GALÈNE = "Galène"; // De La
 	private static final String PLATEAU = "Plateau";
@@ -358,9 +357,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String MONT_LUC = "Mont-Luc";
 	private static final String MASSON_ANGERS = "Masson-Angers";
 	private static final String CEGEP_GABRIELLE_ROY_SHORT = "Cgp GRoy";
-	private static final String COLLEGE_SAINT_ALEXANDRE_SHORT = "Col St-Alex";
-	private static final String COLLEGE_SAINT_JOSEPH_SHORT = "Col St-Jo";
-	private static final String COLLEGE_NOUVELLES_FRONTIERES_SHORT = "Col NF";
+	private static final String COLLEGE_SHORT = "Col";
+	private static final String COLLEGE_SAINT_ALEXANDRE_SHORT = COLLEGE_SHORT + " St-Alex";
+	private static final String COLLEGE_SAINT_JOSEPH_SHORT = COLLEGE_SHORT + " St-Jo";
+	private static final String COLLEGE_NOUVELLES_FRONTIERES_SHORT = COLLEGE_SHORT + " NF";
 	private static final String ECOLE_SECONDAIRE_DE_L_ILE_SHORT = "ES De L'Île";
 	private static final String JARDINS_LAVIGNE_SHORT = "JLavigne";
 	private static final String ECOLE_SECONDAIRE_GRANDE_RIVIERE = "ES G Rivière";
@@ -825,8 +825,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
+								"2520", // ==
+								"2480", // !=
+								"2151", // != TERMINUS Parc-o-bus FREEMAN =>
+								"2108", // !=
 								"2153", // TERMINUS FREEMAN
-								"2011", // CEGEP GABRIELLE-ROY
+								"2011", // CEGEP GABRIELLE-ROY =>
 						})) //
 				.compileBothTripSort());
 		map2.put(734L, new RouteTripSpec(734L, //
@@ -870,17 +874,18 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2192", // de la CITÉ-DES-JEUNES/TALBOT ouest #ES_MONT_BLEU
+								"2011", // CEGEP GABRIELLE-ROY
 								"2360", // DANIEL-JOHNSON/RADISSON
 								"2122", // SAINT-JOSEPH/RENÉ-MARENGÈRE
-								"2604", // TERRASSES de la CHAUDIÈRE sud
+								"2604", // ++ TERRASSES de la CHAUDIÈRE sud
 								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
-								"2602", // TERRASSES de la CHAUDIÈRE nord
-								"2120", // SAINT-JOSEPH/RENÉ-MARENGÈRE est
-								"2188" // de la CITÉ-DES-JEUNES/TALBOT est #ES_MONT_BLEU
+								"2602", // ++ TERRASSES de la CHAUDIÈRE nord
+								"2120", // ++ SAINT-JOSEPH/RENÉ-MARENGÈRE est
+								"2188", // de la CITÉ-DES-JEUNES/TALBOT est #ES_MONT_BLEU
 						})) //
 				.compileBothTripSort());
 		map2.put(739l, new RouteTripSpec(739l, //
@@ -1296,7 +1301,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(PLACE_D_ACCUEIL, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 731l) {
+		} else if (mTrip.getRouteId() == 731L) {
 			if (Arrays.asList( //
 					CEGEP_GABRIELLE_ROY_SHORT, //
 					"Coll St-Jo", //
@@ -1309,6 +1314,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					"E Montbleu" //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 850L) {
+			if (Arrays.asList( //
+					COLLEGE_NOUVELLES_FRONTIERES_SHORT, //
+					P_O_B_ALLUMETTIERES //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(COLLEGE_NOUVELLES_FRONTIERES_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
 		}
@@ -1359,7 +1372,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern GALERIES_AYLMER_ = Pattern.compile("((^|\\W){1}(galeries aylmer|gal\\.aylmer)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String GALERIES_AYLMER_REPLACEMENT = "$2" + GALERIES_AYLMER_SHORT + "$4";
 
-	private static final Pattern COLLEGE_SAINY_ALEXANDRE_ = Pattern.compile("((^|\\W){1}(Col Stalex)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COLLEGE_ = Pattern.compile("((^|\\W){1}(college)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String COLLEGE_REPLACEMENT = "$2" + COLLEGE_SHORT + "$4";
+
+	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W){1}(col nf)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String COLLEGE_NOUVELLES_FRONTIERES_REPLACEMENT = "$2" + COLLEGE_NOUVELLES_FRONTIERES_SHORT + "$4";
+
+	private static final Pattern COLLEGE_SAINY_ALEXANDRE_ = Pattern.compile("((^|\\W){1}(col stalex)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_SAINY_ALEXANDRE_REPLACEMENT = "$2" + COLLEGE_SAINT_ALEXANDRE_SHORT + "$4";
 
 	private static final Pattern ALLUMETTIERES_ = Pattern.compile("((^|\\W){1}(des allumetti[è|e]res|allumetti[è|e]res|allum)(\\W|$){1})",
@@ -1377,7 +1396,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
-		tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
+		if (Utils.isUppercaseOnly(tripHeadsign, true, true)) {
+			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
+		}
 		Matcher matcherTO = TO.matcher(tripHeadsign);
 		if (matcherTO.find()) {
 			String gTripHeadsignAfterTO = tripHeadsign.substring(matcherTO.end());
@@ -1390,6 +1411,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		}
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
 		tripHeadsign = CEGEP_GABRIELLE_ROY_.matcher(tripHeadsign).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
+		tripHeadsign = COLLEGE_.matcher(tripHeadsign).replaceAll(COLLEGE_REPLACEMENT);
+		tripHeadsign = COLLEGE_NOUVELLES_FRONTIERES_.matcher(tripHeadsign).replaceAll(COLLEGE_NOUVELLES_FRONTIERES_REPLACEMENT);
 		tripHeadsign = COLLEGE_SAINY_ALEXANDRE_.matcher(tripHeadsign).replaceAll(COLLEGE_SAINY_ALEXANDRE_REPLACEMENT);
 		tripHeadsign = ECOLE_SECONDAIRE_DE_L_ILE_.matcher(tripHeadsign).replaceAll(ECOLE_SECONDAIRE_DE_L_ILE_REPLACEMENT);
 		tripHeadsign = GALERIES_AYLMER_.matcher(tripHeadsign).replaceAll(GALERIES_AYLMER_REPLACEMENT);
