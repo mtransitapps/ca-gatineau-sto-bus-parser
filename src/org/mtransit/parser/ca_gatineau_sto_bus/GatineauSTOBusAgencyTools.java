@@ -60,108 +60,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	private void setupNext() {
-		ALL_ROUTE_TRIPS2.put(649L, new RouteTripSpec(649L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
-				1, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER)// PLATEAU) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"1377", // PARC-O-BUS RIVERMEAD
-								"2243", // ++
-								// "2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
-								"2089", // CENTRE ASTICOU
-						})) //
-				.addTripSort(1, //
-						Arrays.asList(new String[] { //
-						"2210", // CENTRE ASTICOU
-								// "2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
-								"2245", // ++
-								"1171", // Parc-O-Bus RIVERMEAD arrivée RIVERMEAD
-						})) //
-				.compileBothTripSort());
-		ALL_ROUTE_TRIPS2.put(733L, new RouteTripSpec(733L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
-				1, MTrip.HEADSIGN_TYPE_STRING, FREEMAN) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"2153", // TERMINUS FREEMAN
-								"2011", // CEGEP GABRIELLE-ROY
-								"2210", // CENTRE ASTICOU
-						})) //
-				.addTripSort(1, //
-						Arrays.asList(new String[] { //
-						"2210", // CENTRE ASTICOU
-								"2183", // ++
-								"2151", // TERMINUS Parc-o-bus FREEMAN
-						})) //
-				.compileBothTripSort());
-		ALL_ROUTE_TRIPS2.put(735L, new RouteTripSpec(735L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, "Galène" + SLASH + "Mineurs", //
-				1, MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"2210", // CENTRE ASTICOU
-								"2188", // de la CITÉ-DES-JEUNES/TALBOT #ECOLE_SECONDAIRE_MONT_BLEU
-								"2653", // de la GALÈNE/des MINEURS
-						})) //
-				.addTripSort(1, //
-						Arrays.asList(new String[] { //
-						"2777", // MARIE-BURGER/de la GALÈNE est
-								"2192", // de la CITÉ-DES-JEUNES/TALBOT ouest #ECOLE_SECONDAIRE_MONT_BLEU
-								"2011", // CEGEP GABRIELLE-ROY
-								"2206", // ==
-								"2089", // != CENTRE ASTICOU =>
-								"2312", // !=
-								"2420", // != LIONEL-ÉMOND/SAINT-RAYMOND =>
-						})) //
-				.compileBothTripSort());
-		ALL_ROUTE_TRIPS2.put(737L, new RouteTripSpec(737L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
-				1, MTrip.HEADSIGN_TYPE_STRING, TERRASSES_DE_LA_CHAUDIERE) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"2602", // TERRASSES de la CHAUDIÈRE
-								"2120", // SAINT-JOSEPH/RENÉ-MARENGÈRE
-								"2011", // CEGEP GABRIELLE-ROY
-								"2210", // CENTRE ASTICOU
-						})) //
-				.addTripSort(1, //
-						Arrays.asList(new String[] { //
-						"2210", // CENTRE ASTICOU
-								"2360", // DANIEL-JOHNSON/RADISSON
-								"2122", // SAINT-JOSEPH/RENÉ-MARENGÈRE
-								"2604", // TERRASSES de la CHAUDIÈRE sud
-						})) //
-				.compileBothTripSort());
-		ALL_ROUTE_TRIPS2.put(749L, new RouteTripSpec(749L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
-				1, MTrip.HEADSIGN_TYPE_STRING, RIVERMEAD) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"1459", // du CONSERVATOIRE/du LOUVRE
-								"2210", // CENTRE ASTICOU
-						})) //
-				.addTripSort(1, //
-						Arrays.asList(new String[] { //
-						"2089", // CENTRE ASTICOU
-								"2806", // du PLATEAU/du MARIGOT
-						})) //
-				.compileBothTripSort());
-		ALL_ROUTE_TRIPS2.put(834L, new RouteTripSpec(834L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
-				1, MTrip.HEADSIGN_TYPE_STRING, "Taché" + SLASH + "St-Joseph") //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"2004", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
-								"2239", // du PLATEAU/des CÈDRES
-								"2210", // CENTRE ASTICOU
-						})) //
-				.addTripSort(1, //
-						Arrays.asList(new String[] { //
-						"2089", // CENTRE ASTICOU
-								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
-								"2064", // ALEXANDRE-TACHÉ/SAINT-JOSEPH
-						})) //
-				.compileBothTripSort());
 	}
 
 	@Override
@@ -750,16 +648,24 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(649L, new RouteTripSpec(649L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
-				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) // RIVERMEAD) //
+				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) // ASTICOU_CENTER) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"1377", // PARC-O-BUS RIVERMEAD
 								"2243", // ++
-								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
+								"2273", // ==
+								"2215", // !=
+								"2089", // CENTRE ASTICOU =>
+								"2285", // !=
+								"2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+						"2644", // != SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
+								"2287", // !=
+								"2210", // != CENTRE ASTICOU <=
+								"2218", // !=
+								"2766", // ==
 								"2245", // ++
 								"1171", // Parc-O-Bus RIVERMEAD arrivée RIVERMEAD
 						})) //
@@ -958,23 +864,25 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(733L, new RouteTripSpec(733L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CEGEP_GABRIELLE_ROY_SHORT) // ECOLE_SECONDAIRE_MONT_BLEU
-				.addTripSort(MDirectionType.EAST.intValue(), //
+				0, MTrip.HEADSIGN_TYPE_STRING, PLATEAU, // ASTICOU_CENTER, //
+				1, MTrip.HEADSIGN_TYPE_STRING, FREEMAN) //
+				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"2153", // TERMINUS FREEMAN
 								"2011", // CEGEP GABRIELLE-ROY
-								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
+								"2206", // ==
+								"2210", // != CENTRE ASTICOU =>
+								"2214", // !=
+								"2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
 						})) //
-				.addTripSort(MDirectionType.WEST.intValue(), //
+				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
-								"2520", // ==
-								"2480", // !=
-								"2151", // != TERMINUS Parc-o-bus FREEMAN =>
-								"2108", // !=
-								"2153", // TERMINUS FREEMAN
-								"2011", // CEGEP GABRIELLE-ROY =>
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
+								"2216", // !=
+								"2210", // != CENTRE ASTICOU <=
+								"2212", // ==
+								"2183", // ++
+								"2151", // TERMINUS Parc-o-bus FREEMAN
 						})) //
 				.compileBothTripSort());
 		map2.put(734L, new RouteTripSpec(734L, //
@@ -995,41 +903,55 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(735L, new RouteTripSpec(735L, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Galène" + SLASH + "Mineurs", //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) // "Émond" + SLASH + "Raymond") //
-				.addTripSort(MDirectionType.NORTH.intValue(), //
+				0, MTrip.HEADSIGN_TYPE_STRING, "Galène" + SLASH + "Mineurs", //
+				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) // COLLEGE_NOUVELLES_FRONTIERES_SHORT
+				.addTripSort(0, //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
+								"2314", // !=
+								"2210", // != CENTRE ASTICOU <=
+								"2212", // !=
+								"2208", // ==
 								"2188", // de la CITÉ-DES-JEUNES/TALBOT #ECOLE_SECONDAIRE_MONT_BLEU
 								"2653", // de la GALÈNE/des MINEURS
 						})) //
-				.addTripSort(MDirectionType.SOUTH.intValue(), //
+				.addTripSort(1, //
 						Arrays.asList(new String[] { //
 						"2777", // MARIE-BURGER/de la GALÈNE est
 								"2192", // de la CITÉ-DES-JEUNES/TALBOT ouest #ECOLE_SECONDAIRE_MONT_BLEU
 								"2011", // CEGEP GABRIELLE-ROY
-								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
-								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
+								"2206", // ==
+								"2089", // != CENTRE ASTICOU =>
+								"2312", // !=
+								"2420", // != LIONEL-ÉMOND/SAINT-RAYMOND
+								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
 						})) //
 				.compileBothTripSort());
 		map2.put(737L, new RouteTripSpec(737L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, // TERRASSES_DE_LA_CHAUDIERE, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU) //
-				.addTripSort(MDirectionType.EAST.intValue(), //
+				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
+				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) // TERRASSES_DE_LA_CHAUDIERE
+				.addTripSort(0, //
 						Arrays.asList(new String[] { //
-						"2192", // de la CITÉ-DES-JEUNES/TALBOT ouest #ES_MONT_BLEU
-								"2011", // CEGEP GABRIELLE-ROY
+						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU <=
+								"2602", // TERRASSES de la CHAUDIÈRE
+								"2120", // SAINT-JOSEPH/RENÉ-MARENGÈRE
+								"2316", // ==
+								"2190", // !=
+								"2188", // != de la CITÉ-DES-JEUNES/TALBOT =>
+								"2011", // <> CEGEP GABRIELLE-ROY
+								"2200", // !=
+								"2210", // CENTRE ASTICOU =>
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2210", // != CENTRE ASTICOU <=
+								"2221", // !=
+								"2011", // != CEGEP GABRIELLE-ROY <=
+								"2318", // ==
 								"2360", // DANIEL-JOHNSON/RADISSON
 								"2122", // SAINT-JOSEPH/RENÉ-MARENGÈRE
-								"2604", // ++ TERRASSES de la CHAUDIÈRE sud
-								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
-						})) //
-				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { //
-						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
-								"2602", // ++ TERRASSES de la CHAUDIÈRE nord
-								"2120", // ++ SAINT-JOSEPH/RENÉ-MARENGÈRE est
-								"2188", // de la CITÉ-DES-JEUNES/TALBOT est #ES_MONT_BLEU
+								"2604", // TERRASSES de la CHAUDIÈRE sud
+								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
 						})) //
 				.compileBothTripSort());
 		map2.put(739l, new RouteTripSpec(739l, //
@@ -1071,16 +993,24 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(749L, new RouteTripSpec(749L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, // ECOLE_SECONDAIRE_MONT_BLEU, //
+				0, MTrip.HEADSIGN_TYPE_STRING, PLATEAU, // ASTICOU_CENTER
 				1, MTrip.HEADSIGN_TYPE_STRING, RIVERMEAD) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"1459", // du CONSERVATOIRE/du LOUVRE
-								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
+								"2273", // ==
+								"2215", // !=
+								"2210", // != CENTRE ASTICOU =>
+								"2285", // !=
+								"2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
+						"2644", // != SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
+								"2287", // !=
+								"2089", // != CENTRE ASTICOU <=
+								"2218", // !=
+								"2766", // ==
 								"2806", // du PLATEAU/du MARIGOT
 						})) //
 				.compileBothTripSort());
@@ -1180,17 +1110,25 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(834L, new RouteTripSpec(834L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, // ECOLE_SECONDAIRE_MONT_BLEU
+				0, MTrip.HEADSIGN_TYPE_STRING, PLATEAU, // ASTICOU_CENTER
 				1, MTrip.HEADSIGN_TYPE_STRING, "Taché" + SLASH + "St-Joseph") //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"2004", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 								"2239", // du PLATEAU/des CÈDRES
-								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #ES_DE_L_ILE
+								"2769", // ==
+								"2215", // !=
+								"2210", // != CENTRE ASTICOU =>
+								"2285", // !=
+								"2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #ES_DE_L_ILE
+						"2644", // != SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
+								"2287", // !=
+								"2089", // != CENTRE ASTICOU <=
+								"2218", // !=
+								"2767", // ==
 								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 								"2064", // ALEXANDRE-TACHÉ/SAINT-JOSEPH
 						})) //
@@ -1445,6 +1383,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(PLACE_D_ACCUEIL, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 649L) {
+			if (Arrays.asList( //
+					"ES De L'Île", //
+					"E Montbleu" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 731L) {
 			if (Arrays.asList( //
 					CEGEP_GABRIELLE_ROY_SHORT, //
@@ -1454,6 +1400,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( //
+					"ES De L'Île", //
+					"E Montbleu" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 733L) {
+			if (Arrays.asList( //
 					"ES De L'Île", //
 					"E Montbleu" //
 			).containsAll(headsignsValues)) {
