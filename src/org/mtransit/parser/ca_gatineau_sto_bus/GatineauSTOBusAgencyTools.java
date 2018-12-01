@@ -848,8 +848,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2140", // SAINT-JOSEPH/MEUNIER
 								"2364", // !=
-								"2360", // <> DANIEL-JOHNSON/RADISSON
-								"2346", // <>
+								"2358", // DANIEL-JOHNSON/LUCIEN-BRAULT
 								"2342", // !=
 								"2089", // CENTRE ASTICOU
 						})) //
@@ -903,28 +902,27 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(735L, new RouteTripSpec(735L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, "Galène" + SLASH + "Mineurs", //
-				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) // COLLEGE_NOUVELLES_FRONTIERES_SHORT
+				0, MTrip.HEADSIGN_TYPE_STRING, "Galène" + SLASH + "Mineurs", // PM
+				1, MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT) // "Émond / Gamelin" // AM
 				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
-								"2314", // !=
-								"2210", // != CENTRE ASTICOU <=
-								"2212", // !=
-								"2208", // ==
+						Arrays.asList(new String[] { // PM
+						"2210", // != CENTRE ASTICOU <=
+								"2212", // <>
+								"2208", // !=
 								"2188", // de la CITÉ-DES-JEUNES/TALBOT #ECOLE_SECONDAIRE_MONT_BLEU
 								"2653", // de la GALÈNE/des MINEURS
 						})) //
 				.addTripSort(1, //
-						Arrays.asList(new String[] { //
+						Arrays.asList(new String[] { // AM
 						"2777", // MARIE-BURGER/de la GALÈNE est
 								"2192", // de la CITÉ-DES-JEUNES/TALBOT ouest #ECOLE_SECONDAIRE_MONT_BLEU
 								"2011", // CEGEP GABRIELLE-ROY
 								"2206", // ==
 								"2089", // != CENTRE ASTICOU =>
+								"2212", // <>
 								"2312", // !=
 								"2420", // != LIONEL-ÉMOND/SAINT-RAYMOND
-								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
+								"2427", // LIONEL-ÉMOND / GAMELIN
 						})) //
 				.compileBothTripSort());
 		map2.put(737L, new RouteTripSpec(737L, //
