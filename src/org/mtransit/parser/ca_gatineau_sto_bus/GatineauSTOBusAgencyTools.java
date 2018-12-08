@@ -1359,6 +1359,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 68L) {
 			if (Arrays.asList( //
+					"E Montbleu", //
 					LABROSSE, //
 					"Affaires" //
 			).containsAll(headsignsValues)) {
