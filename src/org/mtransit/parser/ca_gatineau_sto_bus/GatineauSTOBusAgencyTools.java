@@ -378,33 +378,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
-		map2.put(20L, new RouteTripSpec(20L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, FREEMAN, //
-				1, MTrip.HEADSIGN_TYPE_STRING, OTTAWA) //
-				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"2692", // MAISONNEUVE/des ALLUMETTIÈRES <=
-								"5014", // RIDEAU/CUMBERLAND
-								"5050", // !== WELLINGTON/LYON
-								"5104", // !== WELLINGTON/LYON <=
-								"5040", // != <> WELLINGTON/BANK
-								"5108", // != != BANK/QUEEN
-								"5112", // != STATION LYON
-								"5100", // !== WELLINGTON/LYON
-								"2612", // == de l'HÔTEL-de-VILLE/du PORTAGE
-								"2161", // FREEMAN/AUDET
-						})) //
-				.addTripSort(1, //
-						Arrays.asList(new String[] { //
-						"2051", // TERMINUS FREEMAN
-								"2604", // TERRASSES de la CHAUDIÈRE
-								"5048", // !== WELLINGTON/LYON
-								"5040", // != <> WELLINGTON/BANK
-								"5109", // != != BANK/QUEEN
-								"5113", // !== STATION LYON =>
-								"2618", // !== MUSÉE DE L'HISTOIRE =>
-						})) //
-				.compileBothTripSort());
 		map2.put(79L, new RouteTripSpec(79L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LORRAIN, // "St-Thomas"
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LABROSSE_STATION) //
@@ -1229,9 +1202,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		}
 		if (mTrip.getRouteId() == 20L) {
 			if (Arrays.asList( //
-					// "Mhistoire", //
 					TERRASSES, //
-					OTTAWA //
+					"Mhistoire", //
+					OTTAWA + SLASH + "Portage", //
+					OTTAWA // ++
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
