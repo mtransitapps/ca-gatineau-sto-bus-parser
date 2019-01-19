@@ -621,21 +621,22 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(649L, new RouteTripSpec(649L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
-				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) // ASTICOU_CENTER) //
+				1, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER) // PLATEAU) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"1377", // PARC-O-BUS RIVERMEAD
+								"1051", // VANIER/du PLATEAU
 								"2243", // ++
 								"2273", // ==
 								"2215", // !=
 								"2089", // CENTRE ASTICOU =>
-								"2285", // !=
-								"2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
+						// "2285", // != #PLATEAU
+						// "2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU => #PLATEAU
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2644", // != SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
-								"2287", // !=
+						// "2644", // != SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <= #PLATEAU
+						// "2287", // != #PLATEAU
 								"2210", // != CENTRE ASTICOU <=
 								"2218", // !=
 								"2766", // ==
@@ -836,21 +837,22 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(733L, new RouteTripSpec(733L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, PLATEAU, // ASTICOU_CENTER, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, // PLATEAU, //
 				1, MTrip.HEADSIGN_TYPE_STRING, FREEMAN) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"2153", // TERMINUS FREEMAN
+								"2175", // des HAUTES-PLAINES/du TERROIR
 								"2011", // CEGEP GABRIELLE-ROY
 								"2206", // ==
 								"2210", // != CENTRE ASTICOU =>
-								"2214", // !=
-								"2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
+						// "2214", // != #PLATEAU
+						// "2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU => #PLATEAU
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
-								"2216", // !=
+						// "2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <= #PLATEAU
+						// "2216", // != #PLATEAU
 								"2210", // != CENTRE ASTICOU <=
 								"2212", // ==
 								"2183", // ++
@@ -1258,6 +1260,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(DE_LA_CITÉ, mTrip.getHeadsignId());
 				return true;
 			} else if (Arrays.asList( // #OTTAWA
+					TERRASSES, //
 					"Mhistoire", //
 					CEGEP_GABRIELLE_ROY_SHORT, //
 					FREEMAN + SLASH + CEGEP_GABRIELLE_ROY_SHORT + SLASH + OTTAWA, //
