@@ -902,11 +902,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(737L, new RouteTripSpec(737L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
-				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) // TERRASSES_DE_LA_CHAUDIERE
+				1, MTrip.HEADSIGN_TYPE_STRING, TERRASSES_DE_LA_CHAUDIERE) // PLATEAU) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
-						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU <=
+						// "2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU <=
 								"2602", // TERRASSES de la CHAUDIÈRE
+								"2066", // SAINT-JOSEPH/ CHÂTELAIN
 								"2120", // SAINT-JOSEPH/RENÉ-MARENGÈRE
 								"2316", // ==
 								"2190", // !=
@@ -924,7 +925,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2360", // DANIEL-JOHNSON/RADISSON
 								"2122", // SAINT-JOSEPH/RENÉ-MARENGÈRE
 								"2604", // TERRASSES de la CHAUDIÈRE sud
-								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
+						// "2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU =>
 						})) //
 				.compileBothTripSort());
 		map2.put(739l, new RouteTripSpec(739l, //
