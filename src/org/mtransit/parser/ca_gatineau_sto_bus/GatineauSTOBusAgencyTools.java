@@ -1235,10 +1235,16 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(PLATEAU, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 31l) {
+		} else if (mTrip.getRouteId() == 31L) {
+			if (Arrays.asList( //
+					PLACE_D_ACCUEIL, //
+					CEGEP_GABRIELLE_ROY_SHORT //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
+				return true;
+			}
 			if (Arrays.asList( //
 					CEGEP_GABRIELLE_ROY_SHORT, //
-					LAURIER, //
 					OTTAWA //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
