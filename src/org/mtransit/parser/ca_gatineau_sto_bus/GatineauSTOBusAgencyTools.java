@@ -378,37 +378,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
-		map2.put(79L, new RouteTripSpec(79L, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LORRAIN, // "St-Thomas"
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LABROSSE_STATION) //
-				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { //
-						"3997", // Quai local Labrosse
-								"3740", // ==
-								"3744", // !=
-								"3748", // ==
-								"4476", // == LORRAIN/des POMMETIERS est
-								"4478", // !=
-								"4480", // ==
-								"4482", // != LORRAIN/BLANCHETTE est
-								"4512", // != de CHAMBORD/LORRAIN =>
-								"4483", // != SAINT-THOMAS/LORRAIN
-								"4502", // != de CHAMBORD/LORRAIN =>
-						})) //
-				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { //
-						"4512", // != de CHAMBORD/LORRAIN
-								"4167", // LORRAIN/des FLEURS ouest
-								"3746", // ++
-								"8502" // Terminus ligne 79
-						})) //
-				.compileBothTripSort());
 		map2.put(325L, new RouteTripSpec(325L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2767", // PINK/de la SAPINIÈRE nord
+						"5767", // PINK/de la SAPINIÈRE
 								"2273", // du PLATEAU/SAINT-RAYMOND sud
 								"3440", // SAINT-LOUIS/LEBAUDY est
 								"9603", // ÉCOLE SAINT-ALEXANDRE
@@ -580,17 +555,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Le Manoir") //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2763", // des TREMBLES/des GRIVES ouest
-								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE sud
-								"2025", //
+						"1775", // LOUISE-CAMPAGNA/SAINT-RAYMOND
+								"2025", // ALEXANDRE-TACHÉ/SAINTE-THÉRÈSE
 								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR ouest
-								"2506", //
+						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR ouest #E_S_DE_L_ILE
+								"2506", // des ALLUMETTIÈRES/LABELLE
 								"2775", // LOUISE-CAMPAGNA/SAINT-RAYMOND nord
-								"2763", // des TREMBLES/des GRIVES ouest
+								"2763", // des TREMBLES/des GRIVES ouest =>
+								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 						})) //
 				.compileBothTripSort());
 		map2.put(633l, new RouteTripSpec(633l, //
@@ -651,9 +626,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"1124", // BROAD/ANNA est
 								"1355", // !=
+								"2377", // != PARC-O-BUS RIVERMEAD =>
 								"1377", // <> PARC-O-BUS RIVERMEAD ouest
 								"1307", // !=
-								"1403", // PINK/du CONSERVATOIRE sud
+								"1403", // PINK/du CONSERVATOIRE sud =>
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -687,15 +663,16 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"9036", // FICTIF GRANDE RIVIERE
-								"1128", // BROAD/LOUIS-SAINT-LAURENT est
+						"1128", // BROAD/LOUIS-SAINT-LAURENT est
+								"1188", // ++
 								"1358", // chemin d'AYLMER/RIVERMEAD sud
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1377", // PARC-O-BUS RIVERMEAD ouest
-								"1075", // ++
+								"1268", // ++
 								"9036", // FICTIF GRANDE RIVIERE
+								"9056", // FICTIF GRANDE RIVIERE
 						})) //
 				.compileBothTripSort());
 		map2.put(654L, new RouteTripSpec(654L, //
@@ -1004,19 +981,20 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"9036", // FICTIF GRANDE RIVIERE
 						})) //
 				.compileBothTripSort());
-		map2.put(753l, new RouteTripSpec(753l, //
+		map2.put(753L, new RouteTripSpec(753L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Lucerne" + SLASH + "Robert-Sterward", //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"9036", // FICTIF GRANDE RIVIERE
-								"1128", // ++
+						"1128", // BROAD/LOUIS-SAINT-LAURENT
 								"1073", // ++
 								"1298", // de LUCERNE/ROBERT-STEWARD
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1298", // de LUCERNE/ROBERT-STEWARD
+								"1263", // CÔTÉ/LUCERNE
+								"1268", // ++
 								"1075", // ++
 								"1082", // ++
 								"9036", // FICTIF GRANDE RIVIERE
@@ -1038,19 +1016,21 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"9036", // FICTIF GRANDE RIVIERE
 						})) //
 				.compileBothTripSort());
-		map2.put(767l, new RouteTripSpec(767l, //
+		map2.put(767L, new RouteTripSpec(767L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, P_O_B_LES_PROMENDADES, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
-								"3066", // GRÉBER/de la SAVANE est
+						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est #E_S_DE_L_ILE
+								"3066", // ++ GRÉBER/de la SAVANE est
 								"3000", // LES PROMENADES
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2714", // FOURNIER/JOANISSE ouest
-								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
+								"2696", // ++
+								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est #E_S_DE_L_ILE
+								"2624", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #E_S_DE_L_ILE
 						})) //
 				.compileBothTripSort());
 		map2.put(811L, new RouteTripSpec(811L, //
