@@ -348,7 +348,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String OTTAWA = "Ottawa";
 	private static final String PLACE_D_ACCUEIL = "Pl.Accueil"; // "Place d'Accueil";
 	private static final String DE_LA_CITÉ = "Cité"; // De La
-	private static final String LORRAIN = "Lorrain";
 	private static final String RIVERMEAD = "Rivermead";
 	private static final String LES_PROMENADES = "Les Promenades";
 	private static final String ALLUMETTIERES_SHORT = "Allum";
@@ -478,7 +477,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2604" // TERRASSES de la CHAUDIÈRE sud
 						})) //
 				.compileBothTripSort());
-		map2.put(439l, new RouteTripSpec(439l, //
+		map2.put(439L, new RouteTripSpec(439L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
@@ -568,7 +567,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 						})) //
 				.compileBothTripSort());
-		map2.put(633l, new RouteTripSpec(633l, //
+		map2.put(633L, new RouteTripSpec(633L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, FREEMAN, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
@@ -905,7 +904,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						// "2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU =>
 						})) //
 				.compileBothTripSort());
-		map2.put(739l, new RouteTripSpec(739l, //
+		map2.put(739L, new RouteTripSpec(739L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_JOSEPH_SHORT, //
 				1, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) //
 				.addTripSort(0, //
@@ -965,7 +964,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2806", // du PLATEAU/du MARIGOT
 						})) //
 				.compileBothTripSort());
-		map2.put(751l, new RouteTripSpec(751l, //
+		map2.put(751L, new RouteTripSpec(751L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, RIVERMEAD, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
@@ -1000,7 +999,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"9036", // FICTIF GRANDE RIVIERE
 						})) //
 				.compileBothTripSort());
-		map2.put(754l, new RouteTripSpec(754l, //
+		map2.put(754L, new RouteTripSpec(754L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "McConnell" + SLASH + "Vanier", //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
@@ -1087,7 +1086,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2064", // ALEXANDRE-TACHÉ/SAINT-JOSEPH
 						})) //
 				.compileBothTripSort());
-		map2.put(839l, new RouteTripSpec(839l, //
+		map2.put(839L, new RouteTripSpec(839L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Taché" + SLASH + "St-Joseph") //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
@@ -1103,7 +1102,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2064", // ALEXANDRE-TACHÉ/SAINT-JOSEPH sud
 						})) //
 				.compileBothTripSort());
-		map2.put(870l, new RouteTripSpec(870l, //
+		map2.put(870L, new RouteTripSpec(870L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Arena Guertin", //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LAURIER + SLASH + ALLUMETTIERES_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
