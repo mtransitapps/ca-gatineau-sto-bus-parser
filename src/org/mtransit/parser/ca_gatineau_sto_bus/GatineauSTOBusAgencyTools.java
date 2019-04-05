@@ -1271,11 +1271,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 35L) {
 			if (Arrays.asList( //
 					OTTAWA, // <>
+					PLACE_D_ACCUEIL, //
 					"H.De-Ville", //
 					CEGEP_GABRIELLE_ROY_SHORT, //
 					DE_LA_GALÈNE //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(DE_LA_GALÈNE, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId()); // DE_LA_GALÈNE
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 36L) {
