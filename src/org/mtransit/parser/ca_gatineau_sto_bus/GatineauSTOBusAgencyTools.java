@@ -496,11 +496,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
+								"2215", // de la CITÉ-DES-JEUNES/SAINT-RAYMOND
 								"3500", // QUAI LOCAL de la CITÉ arrivée
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"3483", // QUAI LOCAL de la CITÉ #8
+								"2218", // de la CITÉ-DES-JEUNES/ BÉDARD
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
@@ -526,11 +528,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
+								"2286", // SAINT-RAYMOND/ISABELLE
 								"3003", // LES PROMENADES
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"3000", // LES PROMENADES
+								"2288", // SAINT-RAYMOND/CORBEIL
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
@@ -702,6 +706,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND est
+								"2286", // SAINT-RAYMOND/ISABELLE
 								"3446", // ++
 								"4351", // de CANNES/de CAVAILLON ouest
 						})) //
@@ -709,6 +714,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"4352", // de CANNES/de CAVAILLON est
 								"4319", // ++
+								"2288", // SAINT-RAYMOND/CORBEIL
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
@@ -718,6 +724,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND est
+								"2286", // SAINT-RAYMOND/ISABELLE
 								"3666", // ++
 								"3990", // Terminus Labrosse
 						})) //
@@ -725,11 +732,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"3991", // Quai local LABROSSE #5
 								"8061", // == Station de la GAPPE #1
-								"2553", // != de la CARRIÈRE/d'EDMONTON
-								"2549", // != de la CARRIÈRE/du CASINO
 								"8051", // != Station LAC LEAMY
 								"2114", // != SAINT-JOSEPH/GAMELIN
 								"2404", // == SAINT-RAYMOND/ROY
+								"2288", // SAINT-RAYMOND/CORBEIL
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
@@ -767,6 +773,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
+								"2286", // SAINT-RAYMOND/ISABELLE
 								"4727", // ++
 								"4773", // de l'ARÉNA/LOMBARD arrivée
 						})) //
@@ -774,6 +781,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"4772", // de l'ARÉNA/LOMBARD
 								"4706", // ++
+								"2288", // SAINT-RAYMOND/CORBEIL
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
@@ -1364,6 +1372,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					OTTAWA //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(PLACE_D_ACCUEIL, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 338L) {
+			if (Arrays.asList( //
+					"Col NF", //
+					"Col St-Alex" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Col St-Alex", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 649L) {
