@@ -1258,6 +1258,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
+			if (Arrays.asList( //
+					LAURIER, //
+					OTTAWA //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 33L) {
 			if (Arrays.asList( // #GATINEAU
 					FREEMAN, //
@@ -1493,9 +1500,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
-		if (Utils.isUppercaseOnly(tripHeadsign, true, true)) {
-			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
-		}
+		tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
 		Matcher matcherTO = TO.matcher(tripHeadsign);
 		if (matcherTO.find()) {
 			String gTripHeadsignAfterTO = tripHeadsign.substring(matcherTO.end());
