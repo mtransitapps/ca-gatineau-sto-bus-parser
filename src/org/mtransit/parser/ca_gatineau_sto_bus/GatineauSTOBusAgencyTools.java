@@ -633,7 +633,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1124", // BROAD/ANNA est
+						"1124", // != BROAD/ANNA est <=
+								"9036", // != FICTIF GRANDE RIVIERE-Départ <=
+								"1128", // ==
 								"1355", // !=
 								"2377", // != PARC-O-BUS RIVERMEAD =>
 								"1377", // <> PARC-O-BUS RIVERMEAD ouest
@@ -672,7 +674,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1128", // BROAD/LOUIS-SAINT-LAURENT est
+						"9036", // <> FICTIF GRANDE RIVIERE-Départ
+								"1128", // != BROAD/LOUIS-SAINT-LAURENT est
 								"1188", // ++
 								"1358", // chemin d'AYLMER/RIVERMEAD sud
 						})) //
@@ -680,8 +683,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"1377", // PARC-O-BUS RIVERMEAD ouest
 								"1268", // ++
-								"9036", // FICTIF GRANDE RIVIERE
-								"9056", // FICTIF GRANDE RIVIERE
+								"1075", // == !=
+								"9036", // != <> FICTIF GRANDE RIVIERE
+								"9037", // != FICTIF GRANDE RIVIÈRE- Arrivée
 						})) //
 				.compileBothTripSort());
 		map2.put(654L, new RouteTripSpec(654L, //
@@ -983,15 +987,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"9036", // FICTIF GRANDE RIVIERE
-								"1124", // BROAD/ANNA est
+						"1124", // != BROAD/ANNA <=
+								"9036", // != <> FICTIF GRANDE RIVIERE <=
+								"1128", // == !=
 								"1358", // chemin d'AYLMER/RIVERMEAD sud
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1290", // chemin d'AYLMER/GRIMES nord
-								"1078", // WILFRID-LAVIGNE/JOHN-EGAN est
-								"9036", // FICTIF GRANDE RIVIERE
+								"1078", // == != WILFRID-LAVIGNE/JOHN-EGAN est
+								"9036", // != <> FICTIF GRANDE RIVIERE =>
+								"9037", // != FICTIF GRANDE RIVIÈRE- Arrivée =>
 						})) //
 				.compileBothTripSort());
 		map2.put(753L, new RouteTripSpec(753L, //
@@ -999,7 +1005,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1128", // BROAD/LOUIS-SAINT-LAURENT
+						"9036", // <> != FICTIF GRANDE RIVIERE-Départ <=
+								"1128", // != == BROAD/LOUIS-SAINT-LAURENT <=
 								"1073", // ++
 								"1263", // CÔTÉ/LUCERNE
 								"1358", // chemin d'AYLMER/RIVERMEAD
@@ -1009,8 +1016,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						"1298", // de LUCERNE/ROBERT-STEWARD
 								"1268", // ++
 								"1075", // ++
-								"1082", // ++
-								"9036", // FICTIF GRANDE RIVIERE
+								"1082", // == !=
+								"9036", // != <> FICTIF GRANDE RIVIERE =>
+								"9037", // != FICTIF GRANDE RIVIÈRE- Arrivée =>
 						})) //
 				.compileBothTripSort());
 		map2.put(754L, new RouteTripSpec(754L, //
@@ -1018,15 +1026,18 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1124", // BROAD/ANNA est
+						"1124", // != BROAD/ANNA est <=
+								"9036", // != <> FICTIF GRANDE RIVIERE-Départ <=
+								"1128", // == != BROAD/LOUIS-SAINT-LAURENT
 								"1347", // MC CONNELL/MORLEY-WALTERS nord
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1333", // MC CONNELL/MORLEY-WALTERS sud
 								"1075", // WILFRID-LAVIGNE/LEGUERRIER
-								"1078", // WILFRID-LAVIGNE/JOHN-EGAN est
-								"9036", // FICTIF GRANDE RIVIERE
+								"1078", // == != WILFRID-LAVIGNE/JOHN-EGAN est
+								"9036", // != <> FICTIF GRANDE RIVIERE-Départ =>
+								"9037", // != FICTIF GRANDE RIVIÈRE- Arrivée =>
 						})) //
 				.compileBothTripSort());
 		map2.put(767L, new RouteTripSpec(767L, //
