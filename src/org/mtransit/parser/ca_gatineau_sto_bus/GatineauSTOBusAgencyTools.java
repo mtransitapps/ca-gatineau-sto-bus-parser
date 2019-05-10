@@ -1132,7 +1132,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LAURIER + SLASH + ALLUMETTIERES_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2662", // SACRÉ-COEUR/NOTRE-DAME-de-l'ÎLE
+						"2682", // LAURIER/des ALLUMETTIÈRES
 								"2643", // SAINT-RÉDEMPTEUR/ALLARD
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
