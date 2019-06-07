@@ -944,14 +944,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1108", // FRONT/des ALLUMETTIÈRES est
-								"1441", // == KLOCK/de la CLÉMATITE
-								"1437", // != MAURICE-DUPLESSIS/KLOCK
-								"1425", // != MAURICE-DUPLESSIS/WILFRID-LAVIGNE
-								"1453", // != KLOCK/MAURICE-DUPLESSIS
-								"1123", // != WILFRID-LAVIGNE/MAURICE-DUPLESSIS
-								"1426", // == WILFRID-LAVIGNE/JEAN-LESAGE
 								"2604", // TERRASSES de la CHAUDIÈRE sud
 								"2615", // LAVAL/LAURIER
+								"2690", // des ALLUMETTIÈRES/CHAMPLAIN
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
