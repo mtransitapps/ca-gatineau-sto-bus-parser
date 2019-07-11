@@ -1569,6 +1569,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 33L) {
 			if (Arrays.asList( // #GATINEAU
 					FREEMAN, //
+					CEGEP_GABRIELLE_ROY_SHORT + SLASH + FREEMAN, //
 					CEGEP_GABRIELLE_ROY_SHORT + SLASH + FREEMAN + SLASH + DE_LA_CITÉ, //
 					DE_LA_CITÉ //
 					).containsAll(headsignsValues)) {
@@ -1680,6 +1681,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					"Affaires" + SLASH + "Entreprises" //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString("Affaires" + SLASH + "Entreprises", mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 78L) {
+			if (Arrays.asList( //
+					"Cheval-Blanc", //
+					"Chev Blanc" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Chev Blanc", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 87L) {
