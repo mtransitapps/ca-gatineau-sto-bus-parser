@@ -1521,6 +1521,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 23L) {
+			if (Arrays.asList( //
+					"Conservatoire", //
+					PLATEAU //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(PLATEAU, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 26L) {
 			if (Arrays.asList( //
 					OTTAWA, // ==
