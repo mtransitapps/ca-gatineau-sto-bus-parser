@@ -348,6 +348,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String OTTAWA = "Ottawa";
 	private static final String PLACE_D_ACCUEIL = "Pl.Accueil"; // "Place d'Accueil";
 	private static final String DE_LA_CITÉ = "Cité"; // De La
+	private static final String LORRAIN = "Lorrain";
 	private static final String RIVERMEAD = "Rivermead";
 	private static final String LES_PROMENADES = "Les Promenades";
 	private static final String ALLUMETTIERES_SHORT = "Allum";
@@ -355,7 +356,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String P_O_B_SHORT = "P-O-B";
 	private static final String P_O_B_ALLUMETTIERES = P_O_B_SHORT + " " + ALLUMETTIERES_SHORT;
 	private static final String P_O_B_LES_PROMENDADES = P_O_B_SHORT + " " + LES_PROMENADES;
-	private static final String DE_LA_GALÈNE = "Galène"; // De La
+	private static final String P_O_B_LORRAIN = P_O_B_SHORT + " " + LORRAIN;
 	private static final String PLATEAU = "Plateau";
 	private static final String TERRASSES = "Tsses";
 	private static final String TERRASSES_DE_LA_CHAUDIERE = TERRASSES + " Chaudière";
@@ -385,11 +386,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						"2767", // PINK/de la SAPINIÈRE
 								"2273", // du PLATEAU/SAINT-RAYMOND sud
 								"3440", // SAINT-LOUIS/LEBAUDY est
-								"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3334", // SAINT-LOUIS/LEBAUDY #StAlex
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3442", // SAINT-LOUIS/LEBAUDY ouest
+						"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3442", // SAINT-LOUIS/LEBAUDY ouest
 								"5767", // PINK/de la SAPINIÈRE
 								"5273", // du PLATEAU/ SAINT-RAYMOND
 						})) //
@@ -401,11 +403,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2777", // MARIE-BURGER/de la GALÈNE est
 								"3440", // SAINT-LOUIS/LEBAUDY est
-								"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3334", // SAINT-LOUIS/LEBAUDY #StAlex
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"9603", // ÉCOLE SAINT-ALEXANDRE
+						"9603", // ÉCOLE SAINT-ALEXANDRE #StAlex
 								"3442", // SAINT-LOUIS/LEBAUDY ouest
 								"2653", // de la GALÈNE/des MINEURS ouest
 						})) //
@@ -417,7 +419,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2015", // CEGEP GABRIELLE-ROY #
 								"3440", // SAINT-LOUIS/LEBAUDY est
-								"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3334", // SAINT-LOUIS/LEBAUDY #StAlex
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -435,11 +437,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2004", // ALEXANDRE-TACHÉ/SAINT-RAYMOND sud
 								"2239", // du PLATEAU/des CÈDRES
 								"3440", // SAINT-LOUIS/LEBAUDY est
-								"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3334", // SAINT-LOUIS/LEBAUDY #StAlex
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"3442", // SAINT-LOUIS/LEBAUDY
+						"9603", // ÉCOLE SAINT-ALEXANDRE
+								"3442", // SAINT-LOUIS/LEBAUDY
 								"2795", // ++
 								"2604", // TERRASSES de la CHAUDIÈRE sud
 						})) //
@@ -1529,6 +1532,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(PLATEAU, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 27L) {
+			if (Arrays.asList( //
+					"Galène", //
+					"Hplaines" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Hplaines", mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 26L) {
 			if (Arrays.asList( //
 					OTTAWA, // ==
@@ -1593,23 +1604,29 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 34L) {
+			if (Arrays.asList( //
+					P_O_B_ALLUMETTIERES, //
+					PLATEAU //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(PLATEAU, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 35L) {
 			if (Arrays.asList( //
-					OTTAWA, // <>
-					PLACE_D_ACCUEIL, //
+					"M.Burger", //
 					"H.De-Ville", //
-					CEGEP_GABRIELLE_ROY_SHORT, //
-					DE_LA_GALÈNE //
+					CEGEP_GABRIELLE_ROY_SHORT //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId()); // DE_LA_GALÈNE
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 36L) {
 			if (Arrays.asList( //
-					CEGEP_GABRIELLE_ROY_SHORT, // ==
-					OTTAWA //
+					OTTAWA, // ==
+					CEGEP_GABRIELLE_ROY_SHORT //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 37L) {
@@ -1660,10 +1677,19 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 50L) {
 			if (Arrays.asList( //
+					RIVERMEAD, //
 					GALERIES_AYLMER_SHORT, //
 					P_O_B_ALLUMETTIERES //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(P_O_B_ALLUMETTIERES, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 62L) {
+			if (Arrays.asList( //
+					"Nobert", //
+					"Davidson" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Davidson", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 64L) {
@@ -1693,6 +1719,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 78L) {
 			if (Arrays.asList( //
+					P_O_B_LORRAIN, //
 					"Cheval-Blanc", //
 					"Chev Blanc" //
 			).containsAll(headsignsValues)) {
