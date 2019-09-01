@@ -1843,6 +1843,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString("E Montbleu", mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 800L) {
+			if (Arrays.asList( //
+					GALERIES_AYLMER_SHORT, //
+					P_O_B_ALLUMETTIERES //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(P_O_B_ALLUMETTIERES, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 850L) {
 			if (Arrays.asList( //
 					COLLEGE_NOUVELLES_FRONTIERES_SHORT, //
