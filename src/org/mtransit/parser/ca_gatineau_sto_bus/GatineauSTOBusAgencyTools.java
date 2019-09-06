@@ -1100,7 +1100,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(753L, new RouteTripSpec(753L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Alymer" + _SLASH_ + "Rivermead", //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Lucerne" + _SLASH_ + "R.Steward", // "Alymer" + _SLASH_ + "Rivermead", //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -1109,14 +1109,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"1073", // ++
 								"1263", // CÔTÉ/LUCERNE
 								"1358", // chemin d'AYLMER/RIVERMEAD
+								"2298", // de LUCERNE/ROBERT/STEWARD
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1298", // de LUCERNE/ROBERT-STEWARD
+						"1299", // de LUCERNE/RIVERMEAD
+								"1298", // de LUCERNE/ROBERT-STEWARD
 								"1268", // ++
 								"1075", // ++
 								"1082", // == !=
-								"9036", // != <> FICTIF GRANDE RIVIERE =>
 								"9037", // != FICTIF GRANDE RIVIÈRE- Arrivée =>
 						})) //
 				.compileBothTripSort());
