@@ -1755,6 +1755,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(FREEMAN, mTrip.getHeadsignId());
 				return true;
 			}
+			if (Arrays.asList( //
+					COLLEGE_NOUVELLES_FRONTIERES_SHORT, //
+					CEGEP_GABRIELLE_ROY_SHORT //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 66L) {
 			if (Arrays.asList( //
 					PROMENADES, //
@@ -1807,10 +1814,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 338L) {
 			if (Arrays.asList( //
-					"Col NF", //
-					"Col St-Alex" //
-			).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString("Col St-Alex", mTrip.getHeadsignId());
+					COLLEGE_NOUVELLES_FRONTIERES_SHORT, //
+					COLLEGE_SAINT_ALEXANDRE_SHORT //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(COLLEGE_SAINT_ALEXANDRE_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 649L) {
@@ -1866,9 +1873,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		return false;
 	}
 
-	private static final Pattern TO = Pattern.compile("((^|\\W){1}(to)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-	private static final Pattern VIA = Pattern.compile("((^|\\W){1}(via)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-
 	private static final Pattern MUSEE_CANADIEN_HISTOIRE_ = Pattern.compile("((^|\\W){1}(mus[e|é]e canadien de l'histoire)(\\W|$){1})",
 			Pattern.CASE_INSENSITIVE);
 	private static final String MUSEE_CANADIEN_HISTOIRE_REPLACEMENT = "$2" + MUSEE_CANADIEN_HISTOIRE_SHORT + "$4";
@@ -1914,6 +1918,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W){1}(col nf)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_NOUVELLES_FRONTIERES_REPLACEMENT = "$2" + COLLEGE_NOUVELLES_FRONTIERES_SHORT + "$4";
 
+	private static final Pattern COLLEGE_SAINT_JOSEPH_ = Pattern.compile("((^|\\W){1}(c stjoseph)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String COLLEGE_SAINT_JOSEPH_REPLACEMENT = "$2" + COLLEGE_SAINT_JOSEPH_SHORT + "$4";
+
 	private static final Pattern COLLEGE_SAINY_ALEXANDRE_ = Pattern.compile("((^|\\W){1}(col stalex)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_SAINY_ALEXANDRE_REPLACEMENT = "$2" + COLLEGE_SAINT_ALEXANDRE_SHORT + "$4";
 
@@ -1933,20 +1940,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
 		tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
-		Matcher matcherTO = TO.matcher(tripHeadsign);
-		if (matcherTO.find()) {
-			String gTripHeadsignAfterTO = tripHeadsign.substring(matcherTO.end());
-			tripHeadsign = gTripHeadsignAfterTO;
-		}
-		Matcher matcherVIA = VIA.matcher(tripHeadsign);
-		if (matcherVIA.find()) {
-			String gTripHeadsignBeforeVIA = tripHeadsign.substring(0, matcherVIA.start());
-			tripHeadsign = gTripHeadsignBeforeVIA;
-		}
+		tripHeadsign = CleanUtils.keepToAndRemoveVia(tripHeadsign);
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
 		tripHeadsign = CEGEP_GABRIELLE_ROY_.matcher(tripHeadsign).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
 		tripHeadsign = COLLEGE_.matcher(tripHeadsign).replaceAll(COLLEGE_REPLACEMENT);
 		tripHeadsign = COLLEGE_NOUVELLES_FRONTIERES_.matcher(tripHeadsign).replaceAll(COLLEGE_NOUVELLES_FRONTIERES_REPLACEMENT);
+		tripHeadsign = COLLEGE_SAINT_JOSEPH_.matcher(tripHeadsign).replaceAll(COLLEGE_SAINT_JOSEPH_REPLACEMENT);
 		tripHeadsign = COLLEGE_SAINY_ALEXANDRE_.matcher(tripHeadsign).replaceAll(COLLEGE_SAINY_ALEXANDRE_REPLACEMENT);
 		tripHeadsign = ECOLE_SECONDAIRE_DE_L_ILE_.matcher(tripHeadsign).replaceAll(ECOLE_SECONDAIRE_DE_L_ILE_REPLACEMENT);
 		tripHeadsign = GALERIES_AYLMER_.matcher(tripHeadsign).replaceAll(GALERIES_AYLMER_REPLACEMENT);
