@@ -1072,11 +1072,19 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"9036", // FICTIF GRANDE RIVIERE-Départ
 								"1280", // ++
+								"1355", // == !=
+								"1377", // != <>
+								"1279", // !=
+								"1307", // == !=
 								"2237", // du PLATEAU/des CÈDRES
+								"2273", // du PLATEAU/ SAINT-RAYMOND
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2271", // du PLATEAU/ SAINT-RAYMOND
+								"1306", // !=
+								"1377", // <>
+								"1352", // !=
 								"1354", // ++
 								"9037", // FICTIF GRANDE RIVIÈRE- Arrivée
 						})) //
@@ -1126,18 +1134,20 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_GRANDE_RIVIERE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1124", // != BROAD/ANNA est <=
-								"9036", // != <> FICTIF GRANDE RIVIERE-Départ <=
-								"1128", // == != BROAD/LOUIS-SAINT-LAURENT
+						"9036", // FICTIF GRANDE RIVIERE-Départ <=
+								"1128", // ++ BROAD/LOUIS-SAINT-LAURENT
 								"1347", // MC CONNELL/MORLEY-WALTERS nord
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1333", // MC CONNELL/MORLEY-WALTERS sud
-								"1075", // WILFRID-LAVIGNE/LEGUERRIER
-								"1078", // == != WILFRID-LAVIGNE/JOHN-EGAN est
-								"9036", // != <> FICTIF GRANDE RIVIERE-Départ =>
-								"9037", // != FICTIF GRANDE RIVIÈRE- Arrivée =>
+								"1400", // ==
+								"1377", // !=
+								"1171", // !=
+								"1352", // ==
+								"1075", // ++ WILFRID-LAVIGNE/LEGUERRIER
+								"1078", // ++ WILFRID-LAVIGNE/JOHN-EGAN est
+								"9037", // FICTIF GRANDE RIVIÈRE- Arrivée =>
 						})) //
 				.compileBothTripSort());
 		map2.put(767L, new RouteTripSpec(767L, //
@@ -1330,6 +1340,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2424", // LIONEL-ÉMOND/ GAMELIN
+								"2282", // ISABELLE/FRÉCHETTE
 								"2242", // ++
 								"2089", // CENTRE ASTICOU
 						})) //
