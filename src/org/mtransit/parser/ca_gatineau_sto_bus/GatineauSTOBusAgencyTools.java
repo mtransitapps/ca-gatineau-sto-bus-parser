@@ -1038,7 +1038,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2612", // de l'HÔTEL-de-VILLE/du PORTAGE nord
+						"2610", // du PORTAGE/AUBRY
 								"1282", // ++
 								"1109", // FRONT/des ALLUMETTIÈRES ouest
 						})) //
