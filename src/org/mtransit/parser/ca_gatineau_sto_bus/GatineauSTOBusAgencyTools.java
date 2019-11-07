@@ -48,7 +48,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void start(String[] args) {
-		System.out.printf("\nGenerating STO bus data...");
+		System.out.print("\nGenerating STO bus data...");
 		long start = System.currentTimeMillis();
 		boolean isNext = "next_".equalsIgnoreCase(args[2]);
 		if (isNext) {
@@ -167,9 +167,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		if (isGoodEnoughAccepted()) {
-			return super.mergeRouteLongName(mRoute, mRouteToMerge);
-		}
 		System.out.printf("\nUnexpected routes to merge: %s & %s!\n", mRoute, mRouteToMerge);
 		System.exit(-1);
 		return false;
@@ -272,16 +269,25 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 327: return SCHOOL_BUS_COLOR;
 			case 331: return SCHOOL_BUS_COLOR;
 			case 333: return SCHOOL_BUS_COLOR;
+			case 334: return null; // TODO ?
 			case 338: return SCHOOL_BUS_COLOR;
 			case 339: return SCHOOL_BUS_COLOR;
 			case 371: return null; // TODO ?
 			case 400: return REGULAR_COLOR; // RAPIBUS_COLOR
+			case 434: return null; // TODO ?
 			case 439: return SCHOOL_BUS_COLOR;
 			case 472: return null; // TODO ?
 			case 500: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 533: return SCHOOL_BUS_COLOR;
+			case 534: return null; // TODO ?
 			case 539: return SCHOOL_BUS_COLOR;
+			case 549: return null; // TODO ?
+			case 550: return null; // TODO ?
 			case 564: return SCHOOL_BUS_COLOR;
+			case 566: return null; // TODO ?
+			case 571: return null; // TODO ?
+			case 576: return null; // TODO ?
+			case 597: return null; // TODO ?
 			case 625: return SCHOOL_BUS_COLOR;
 			case 627: return SCHOOL_BUS_COLOR;
 			case 629: return SCHOOL_BUS_COLOR;
@@ -290,6 +296,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 649: return SCHOOL_BUS_COLOR;
 			case 650: return SCHOOL_BUS_COLOR;
 			case 651: return SCHOOL_BUS_COLOR;
+			case 652: return null; // TODO ?
 			case 653: return SCHOOL_BUS_COLOR;
 			case 654: return SCHOOL_BUS_COLOR;
 			case 666: return SCHOOL_BUS_COLOR;
@@ -298,11 +305,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 696: return SCHOOL_BUS_COLOR;
 			case 731: return SCHOOL_BUS_COLOR;
 			case 733: return SCHOOL_BUS_COLOR;
+			case 734: return null; // TODO ?
 			case 735: return SCHOOL_BUS_COLOR;
 			case 737: return SCHOOL_BUS_COLOR;
 			case 739: return SCHOOL_BUS_COLOR;
 			case 740: return SCHOOL_BUS_COLOR;
 			case 749: return SCHOOL_BUS_COLOR;
+			case 750: return null; // TODO ?
 			case 751: return SCHOOL_BUS_COLOR;
 			case 753: return SCHOOL_BUS_COLOR;
 			case 754: return SCHOOL_BUS_COLOR;
@@ -315,20 +324,32 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 811: return null; // TODO ?
 			case 813: return null; // TODO
 			case 824: return null; // TODO
+			case 825: return null; // TODO ?
+			case 827: return null; // TODO ?
 			case 829: return SCHOOL_BUS_COLOR;
+			case 831: return null; // TODO ?
+			case 833: return null; // TODO ?
+			case 834: return null; // TODO ?
+			case 837: return null; // TODO ?
 			case 839: return SCHOOL_BUS_COLOR;
 			case 849: return SCHOOL_BUS_COLOR;
 			case 850: return SCHOOL_BUS_COLOR;
 			case 859: return null; // TODO
+			case 867: return null; // TODO ?
 			case 870: return PEAK_COLOR; // RAPIBUS_COLOR // TODO ??
 			case 873: return null; // TODO
 			case 901: return null;
 			case 904: return null; // TODO ?
+			case 929: return null; // TODO ?
+			case 931: return null; // TODO ?
+			case 932: return null; // TODO ?
+			case 933: return null; // TODO ?
+			case 934: return null; // TODO ?
+			case 935: return null; // TODO ?
+			case 937: return null; // TODO ?
+			case 949: return null; // TODO ?
 			case 950: return null; // TODO
 			// @formatter:on
-			}
-			if (isGoodEnoughAccepted()) {
-				return null;
 			}
 			System.out.printf("\nUnexpected route color %s!\n", gRoute);
 			System.exit(-1);
@@ -1890,68 +1911,68 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		return false;
 	}
 
-	private static final Pattern MUSEE_CANADIEN_HISTOIRE_ = Pattern.compile("((^|\\W){1}(mus[e|é]e canadien de l'histoire)(\\W|$){1})",
+	private static final Pattern MUSEE_CANADIEN_HISTOIRE_ = Pattern.compile("((^|\\W)(mus[e|é]e canadien de l'histoire)(\\W|$))",
 			Pattern.CASE_INSENSITIVE);
 	private static final String MUSEE_CANADIEN_HISTOIRE_REPLACEMENT = "$2" + MUSEE_CANADIEN_HISTOIRE_SHORT + "$4";
 
-	private static final Pattern CLEAN_STATION = Pattern.compile("((^|\\W){1}(station|ston|sta)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern CLEAN_STATION = Pattern.compile("((^|\\W)(station|ston|sta)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String CLEAN_STATION_REPLACEMENT = "$2" + STATION_ + "$4";
 
-	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile("((^|\\W){1}(" //
-			+ "c[é|É|e|è|È]gep gabrielle\\-roy" //
+	private static final Pattern CEGEP_GABRIELLE_ROY_ = Pattern.compile("((^|\\W)(" //
+			+ "c[é|É|e|è|È]gep gabrielle-roy" //
 			+ "|" //
 			+ "cegep gab\\.roy" //
 			+ "|" //
-			+ "cegep gab\\-roy"//
+			+ "cegep gab-roy"//
 			+ "|" //
 			+ "c[é|É|e|è|È]gep groy" //
 			+ "|" //
-			+ "cegep g\\-roy" //
+			+ "cegep g-roy" //
 			+ "|" //
 			+ "c[é|e]gep g\\.roy" //
 			+ "|" //
-			+ "cgp gabrielle\\-r" //
+			+ "cgp gabrielle-r" //
 			+ "|" //
 			+ "cgp groy" //
 			+ "|" //
-			+ "cgp g\\-roy" //
+			+ "cgp g-roy" //
 			+ "|" //
-			+ "g\\-roy" //
-			+ ")(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+			+ "g-roy" //
+			+ ")(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
 
-	private static final Pattern ECOLE_SECONDAIRE_DE_L_ILE_ = Pattern.compile("((^|\\W){1}([e|é]cole De l'[i|î]le)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern ECOLE_SECONDAIRE_DE_L_ILE_ = Pattern.compile("((^|\\W)([e|é]cole De l'[i|î]le)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String ECOLE_SECONDAIRE_DE_L_ILE_REPLACEMENT = "$2" + ECOLE_SECONDAIRE_DE_L_ILE_SHORT + "$4";
 
-	private static final Pattern JARDINS_LAVIGNE_ = Pattern.compile("((^|\\W){1}(jardins lavigne|jlavigne)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern JARDINS_LAVIGNE_ = Pattern.compile("((^|\\W)(jardins lavigne|jlavigne)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String JARDINS_LAVIGNE_REPLACEMENT = "$2" + JARDINS_LAVIGNE_SHORT + "$4";
 
-	private static final Pattern GALERIES_AYLMER_ = Pattern.compile("((^|\\W){1}(galeries aylmer|gal\\.aylmer)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern GALERIES_AYLMER_ = Pattern.compile("((^|\\W)(galeries aylmer|gal\\.aylmer)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String GALERIES_AYLMER_REPLACEMENT = "$2" + GALERIES_AYLMER_SHORT + "$4";
 
-	private static final Pattern COLLEGE_ = Pattern.compile("((^|\\W){1}(college)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COLLEGE_ = Pattern.compile("((^|\\W)(college)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_REPLACEMENT = "$2" + COLLEGE_SHORT + "$4";
 
-	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W){1}(col nf)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W)(col nf)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_NOUVELLES_FRONTIERES_REPLACEMENT = "$2" + COLLEGE_NOUVELLES_FRONTIERES_SHORT + "$4";
 
-	private static final Pattern COLLEGE_SAINT_JOSEPH_ = Pattern.compile("((^|\\W){1}(c stjoseph)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COLLEGE_SAINT_JOSEPH_ = Pattern.compile("((^|\\W)(c stjoseph)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_SAINT_JOSEPH_REPLACEMENT = "$2" + COLLEGE_SAINT_JOSEPH_SHORT + "$4";
 
-	private static final Pattern COLLEGE_SAINY_ALEXANDRE_ = Pattern.compile("((^|\\W){1}(col stalex)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COLLEGE_SAINY_ALEXANDRE_ = Pattern.compile("((^|\\W)(col stalex)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_SAINY_ALEXANDRE_REPLACEMENT = "$2" + COLLEGE_SAINT_ALEXANDRE_SHORT + "$4";
 
-	private static final Pattern ALLUMETTIERES_ = Pattern.compile("((^|\\W){1}(des allumetti[è|e]res|allumetti[è|e]res|allum)(\\W|$){1})",
+	private static final Pattern ALLUMETTIERES_ = Pattern.compile("((^|\\W)(des allumetti[è|e]res|allumetti[è|e]res|allum)(\\W|$))",
 			Pattern.CASE_INSENSITIVE);
 	private static final String ALLUMETTIERES_REPLACEMENT = "$2" + ALLUMETTIERES_SHORT + "$4";
 
-	private static final Pattern COTES_DES_NEIGES_ = Pattern.compile("((^|\\W){1}(c[ô|o]tes\\-des\\-neiges|coteneige)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COTES_DES_NEIGES_ = Pattern.compile("((^|\\W)(c[ô|o]tes-des-neiges|coteneige)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COTES_DES_NEIGES_REPLACEMENT = "$2" + COTES_DES_NEIGES + "$4";
 
-	private static final Pattern P_O_B = Pattern.compile("((^|\\W){1}(pob|p\\-o\\-b|parc o bus|parc\\-o\\-bus)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern P_O_B = Pattern.compile("((^|\\W)(pob|p-o-b|parc o bus|parc-o-bus)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String P_O_B_REPLACEMENT = "$2" + P_O_B_SHORT + "$4";
 
-	private static final Pattern PRE_TUNNEY_ = Pattern.compile("((^|\\W){1}(pr[e|é|É] tunney)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern PRE_TUNNEY_ = Pattern.compile("((^|\\W)(pr[e|é|É] tunney)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String PRE_TUNNEY__REPLACEMENT = "$2" + "Pré-Tunney" + "$4";
 
 	@Override
@@ -2019,7 +2040,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			if (matcher.find()) {
 				int digits = Integer.parseInt(matcher.group());
 				if (gStop.getStopId().toLowerCase(Locale.ENGLISH).endsWith("a")) {
-					return 100000 + digits;
+					return 100_000 + digits;
 				}
 			}
 			System.out.printf("\nUnexpected stop ID for %s!\n", gStop);
