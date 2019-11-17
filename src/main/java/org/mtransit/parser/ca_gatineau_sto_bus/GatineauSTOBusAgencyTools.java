@@ -348,7 +348,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 935: return null; // TODO ?
 			case 937: return null; // TODO ?
 			case 949: return null; // TODO ?
-			case 950: return null; // TODO
+			case 950: return null; // TODO ?
+			case 990: return null; // TODO ?
 			// @formatter:on
 			}
 			System.out.printf("\nUnexpected route color %s!\n", gRoute);
