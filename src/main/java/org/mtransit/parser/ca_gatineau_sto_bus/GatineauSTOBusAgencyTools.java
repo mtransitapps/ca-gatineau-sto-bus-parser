@@ -527,11 +527,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
 								"2215", // de la CITÉ-DES-JEUNES/SAINT-RAYMOND
-								"3500", // QUAI LOCAL de la CITÉ arrivée
+								"3500", // QUAI LOCAL de la CITÉ
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"3483", // QUAI LOCAL de la CITÉ #8
+						"3481", "3483", // QUAI LOCAL de la CITÉ
 								"2218", // de la CITÉ-DES-JEUNES/ BÉDARD
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
@@ -1954,7 +1954,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern COLLEGE_ = Pattern.compile("((^|\\W)(college)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_REPLACEMENT = "$2" + COLLEGE_SHORT + "$4";
 
-	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W)(col nf)(\\W|$))", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W)(col nf|coll[é|e]ge nf)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_NOUVELLES_FRONTIERES_REPLACEMENT = "$2" + COLLEGE_NOUVELLES_FRONTIERES_SHORT + "$4";
 
 	private static final Pattern COLLEGE_SAINT_JOSEPH_ = Pattern.compile("((^|\\W)(c stjoseph)(\\W|$))", Pattern.CASE_INSENSITIVE);
