@@ -970,14 +970,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2621", // LAURIER/ ÉLISABETH-BRUYÈRE
 								"2741", // SAINT-RAYMOND/LOUISE-CAMPAGNA
+								"2779", // ==
+								"2781", // !=
+								"2813", // !=
+								"2808", // !=
+								"2769", // == PINK/de la SAPINIÈRE
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
-								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
-								"2291", // ++
-								"2604", // TERRASSES de la CHAUDIÈRE
 						})) //
 				.compileBothTripSort());
 		map2.put(735L, new RouteTripSpec(735L, //
@@ -1374,6 +1375,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2210", // CENTRE ASTICOU
 								"2266", // ++
+								"2837", // ==
+								"2359", // !=
+								"2360", // !=
+								"2357", // ==
 								"2382", // ISABELLE/RICHARD
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
@@ -1445,13 +1450,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2210", // CENTRE ASTICOU
+								"2837", // ==
+								"2359", // !=
+								"2360", // !=
+								"2357", // ==
 								"2141", // ++
 								"2604", // TERRASSES de la CHAUDIÈRE
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2548", // ALEXANDRE-TACHÉ/FRONT
-								"2380/", // ++
+								"2380", // ++
 								"2210", // CENTRE ASTICOU
 						})) //
 				.compileBothTripSort());
