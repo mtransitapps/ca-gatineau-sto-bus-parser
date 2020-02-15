@@ -525,7 +525,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
+						"2418", "2422", // LIONEL-ÉMOND/SAINT-RAYMOND
 								"2215", // de la CITÉ-DES-JEUNES/SAINT-RAYMOND
 								"3500", // QUAI LOCAL de la CITÉ
 						})) //
@@ -573,14 +573,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
+						"2418", "2422", // LIONEL-ÉMOND/SAINT-RAYMOND
 								"5503", // ++
 								"4351", // de CANNES/de CAVAILLON
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"4352", // de CANNES/de CAVAILLON
-								"3442", // ++
+								"4319", // ++
 								"2420", // LIONEL-ÉMOND/SAINT-RAYMOND
 						})) //
 				.compileBothTripSort());
@@ -589,7 +589,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
+						"2418", "2422", // LIONEL-ÉMOND/SAINT-RAYMOND
 								"3666", // ++
 								"3990", // Terminus Labrosse
 						})) //
@@ -621,7 +621,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2422", // LIONEL-ÉMOND/SAINT-RAYMOND
+						"2418", "2422", // LIONEL-ÉMOND/SAINT-RAYMOND
 								"4723", // ++
 								"4773", // de l'ARÉNA/LOMBARD arrivée
 						})) //
