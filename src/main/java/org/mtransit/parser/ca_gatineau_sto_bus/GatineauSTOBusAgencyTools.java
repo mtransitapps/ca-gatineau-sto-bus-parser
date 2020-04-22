@@ -1937,6 +1937,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			+ "|" //
 			+ "c[é|É|e|è|È]gep groy" //
 			+ "|" //
+			+ "c[é|É|e|è|È]gep g-roy" //
+			+ "|" //
 			+ "cegep g-roy" //
 			+ "|" //
 			+ "c[é|e]gep g\\.roy" //
@@ -1976,6 +1978,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			Pattern.CASE_INSENSITIVE);
 	private static final String ALLUMETTIERES_REPLACEMENT = "$2" + ALLUMETTIERES_SHORT + "$4";
 
+	private static final Pattern PLACE_D_ACCUEIL_ = Pattern.compile("((^|\\W)(place d'accueil|pl\\.accueil)(\\W|$))",
+			Pattern.CASE_INSENSITIVE);
+	private static final String PLACE_D_ACCUEIL_REPLACEMENT = "$2" + PLACE_D_ACCUEIL + "$4";
+
 	private static final Pattern COTES_DES_NEIGES_ = Pattern.compile("((^|\\W)(c[ô|o]tes-des-neiges|coteneige)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COTES_DES_NEIGES_REPLACEMENT = "$2" + COTES_DES_NEIGES + "$4";
 
@@ -2001,6 +2007,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = ALLUMETTIERES_.matcher(tripHeadsign).replaceAll(ALLUMETTIERES_REPLACEMENT);
 		tripHeadsign = COTES_DES_NEIGES_.matcher(tripHeadsign).replaceAll(COTES_DES_NEIGES_REPLACEMENT);
 		tripHeadsign = P_O_B.matcher(tripHeadsign).replaceAll(P_O_B_REPLACEMENT);
+		tripHeadsign = PLACE_D_ACCUEIL_.matcher(tripHeadsign).replaceAll(PLACE_D_ACCUEIL_REPLACEMENT);
 		tripHeadsign = PRE_TUNNEY_.matcher(tripHeadsign).replaceAll(PRE_TUNNEY__REPLACEMENT);
 		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_ET.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_ET_REPLACEMENT);
