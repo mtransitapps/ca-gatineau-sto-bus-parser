@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
+import org.mtransit.parser.MTLog;
 import org.mtransit.parser.Pair;
 import org.mtransit.parser.SplitUtils;
 import org.mtransit.parser.SplitUtils.RouteTripSpec;
@@ -48,7 +49,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void start(String[] args) {
-		System.out.print("\nGenerating STO bus data...");
+		MTLog.log("Generating STO bus data...");
 		long start = System.currentTimeMillis();
 		boolean isNext = "next_".equalsIgnoreCase(args[2]);
 		if (isNext) {
@@ -56,7 +57,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		}
 		this.serviceIds = extractUsefulServiceIds(args, this, true);
 		super.start(args);
-		System.out.printf("\nGenerating STO bus data... DONE in %s.\n", Utils.getPrettyDuration(System.currentTimeMillis() - start));
+		MTLog.log("Generating STO bus data... DONE in %s.", Utils.getPrettyDuration(System.currentTimeMillis() - start));
 	}
 
 	private void setupNext() {
@@ -167,8 +168,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		System.out.printf("\nUnexpected routes to merge: %s & %s!\n", mRoute, mRouteToMerge);
-		System.exit(-1);
+		MTLog.logFatal("Unexpected routes to merge: %s & %s!", mRoute, mRouteToMerge);
 		return false;
 	}
 
@@ -352,8 +352,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 990: return null; // TODO ?
 			// @formatter:on
 			}
-			System.out.printf("\nUnexpected route color %s!\n", gRoute);
-			System.exit(-1);
+			MTLog.logFatal("Unexpected route color %s!", gRoute);
 			return null;
 		}
 		return super.getRouteColor(gRoute);
@@ -1844,6 +1843,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString("Chev Blanc", mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 75L) {
+			if (Arrays.asList( //
+					"Lorrain / Vérendrye", //
+					"Lorrain" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Lorrain", mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 87L) {
 			if (Arrays.asList( //
 					PLACE_D_ACCUEIL, //
@@ -1916,8 +1923,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		System.out.printf("\nUnexpected trips to merge: %s & %s!\n", mTrip, mTripToMerge);
-		System.exit(-1);
+		MTLog.logFatal("Unexpected trips to merge: %s & %s!", mTrip, mTripToMerge);
 		return false;
 	}
 
@@ -2060,8 +2066,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					return 100_000 + digits;
 				}
 			}
-			System.out.printf("\nUnexpected stop ID for %s!\n", gStop);
-			System.exit(-1);
+			MTLog.logFatal("Unexpected stop ID for %s!", gStop);
 			return -1;
 		}
 		return super.getStopId(gStop);
