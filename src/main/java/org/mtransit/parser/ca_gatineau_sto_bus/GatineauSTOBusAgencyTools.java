@@ -1843,6 +1843,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString("Chev Blanc", mTrip.getHeadsignId());
 				return true;
 			}
+			if (Arrays.asList( //
+					P_O_B_LORRAIN, //
+					"Labrosse" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Labrosse", mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 75L) {
 			if (Arrays.asList( //
 					"Lorrain / Vérendrye", //
