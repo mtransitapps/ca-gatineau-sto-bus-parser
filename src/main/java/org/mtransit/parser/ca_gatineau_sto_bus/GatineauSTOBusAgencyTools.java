@@ -274,9 +274,16 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 339: return SCHOOL_BUS_COLOR;
 			case 371: return null; // TODO ?
 			case 400: return REGULAR_COLOR; // RAPIBUS_COLOR
+			case 429: return null; // TODO ?
+			case 431: return null; // TODO ?
+			case 432: return null; // TODO ?
+			case 433: return null; // TODO ?
 			case 434: return null; // TODO ?
+			case 435: return null; // TODO ?
+			case 437: return null; // TODO ?
 			case 439: return SCHOOL_BUS_COLOR;
 			case 472: return null; // TODO ?
+			case 449: return null; // TODO ?
 			case 500: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 533: return SCHOOL_BUS_COLOR;
 			case 534: return null; // TODO ?
@@ -292,6 +299,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 627: return SCHOOL_BUS_COLOR;
 			case 629: return SCHOOL_BUS_COLOR;
 			case 633: return SCHOOL_BUS_COLOR;
+			case 634: return SCHOOL_BUS_COLOR;
 			case 637: return SCHOOL_BUS_COLOR;
 			case 649: return SCHOOL_BUS_COLOR;
 			case 650: return SCHOOL_BUS_COLOR;
@@ -352,7 +360,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 990: return null; // TODO ?
 			// @formatter:on
 			}
-			MTLog.logFatal("Unexpected route color %s!", gRoute);
+			MTLog.logFatal("Unexpected route color %s!", gRoute.toStringPlus());
 			return null;
 		}
 		return super.getRouteColor(gRoute);
@@ -491,18 +499,91 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2604", // TERRASSES de la CHAUDIÈRE sud
 						})) //
 				.compileBothTripSort());
-		map2.put(434L, new RouteTripSpec(434L, //
-				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
-				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
+		map2.put(431L, new RouteTripSpec(431L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
+				1, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU) //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
-						"2271", // du PLATEAU/SAINT-RAYMOND nord
-								"2642" // SAINT-RÉDEMPTEUR/SACRÉ-COEUR ouest
+						"2282", // ISABELLE/FRÉCHETTE
+								"2089", // CENTRE ASTICOU
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
-								"2604" // TERRASSES de la CHAUDIÈRE sud
+						"2210", // CENTRE ASTICOU
+								 "2680", // LAURIER/des ALLUMETTIÈRES
+						})) //
+				.compileBothTripSort());
+		map2.put(432L, new RouteTripSpec(431L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
+				1, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"2210", // CENTRE ASTICOU
+								"2382", // ISABELLE/RICHARD
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2140", // SAINT-JOSEPH/MEUNIER
+								"2089", // CENTRE ASTICOU
+						})) //
+				.compileBothTripSort());
+		map2.put(433L, new RouteTripSpec(433L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, FREEMAN, //
+				1, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"2210", // CENTRE ASTICOU
+								"2151", // TERMINUS Parc-o-bus FREEMAN
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2153", // TERMINUS FREEMAN
+								"2175", // des HAUTES-PLAINES/du TERROIR
+								"2210", // CENTRE ASTICOU
+						})) //
+				.compileBothTripSort());
+		map2.put(434L, new RouteTripSpec(434L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
+				1, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"2004", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
+								"2239", // du PLATEAU/des CÈDRES
+								"2210", // CENTRE ASTICOU
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2089", // CENTRE ASTICOU
+								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
+								"2064", // ALEXANDRE-TACHÉ/SAINT-JOSEPH
+						})) //
+				.compileBothTripSort());
+		map2.put(435L, new RouteTripSpec(435L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
+				1, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"2210", // CENTRE ASTICOU
+								"2653", // de la GALÈNE/des MINEURS
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2777", // MARIE-BURGER/de la GALÈNE
+								"2089", // CENTRE ASTICOU
+						})) //
+				.compileBothTripSort());
+		map2.put(437L, new RouteTripSpec(437L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
+				1, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"2548", // ALEXANDRE-TACHÉ/MILLAR
+								"2210", // CENTRE ASTICOU
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"2210", // CENTRE ASTICOU
+								"2604", // TERRASSES de la CHAUDIÈRE
 						})) //
 				.compileBothTripSort());
 		map2.put(439L, new RouteTripSpec(439L, //
@@ -517,6 +598,21 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR est
 								"2604" // TERRASSES de la CHAUDIÈRE sud
+						})) //
+				.compileBothTripSort());
+		map2.put(449L, new RouteTripSpec(449L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER, //
+				1, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+							"1377", // PARC-O-BUS RIVERMEAD
+							"1051", // VANIER/du PLATEAU
+							"2089", // CENTRE ASTICOU
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+							"2210", // CENTRE ASTICOU
+							"1171", // Parc-O-Bus RIVERMEAD
 						})) //
 				.compileBothTripSort());
 		map2.put(533L, new RouteTripSpec(533L, //
@@ -682,6 +778,20 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						"2153", "2642" //
 						})) //
 				.compileBothTripSort());
+		map2.put(634L, new RouteTripSpec(634L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
+				1, MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+							"2271", // du PLATEAU/ SAINT-RAYMOND
+							"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+							"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+							"2604", // TERRASSES de la CHAUDIÈRE
+						})) //
+				.compileBothTripSort());
 		map2.put(637L, new RouteTripSpec(637L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "St-Joseph") //
@@ -707,13 +817,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2273", // ==
 								"2215", // !=
 								"2089", // CENTRE ASTICOU =>
-						// "2285", // != #PLATEAU
-						// "2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU => #PLATEAU
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						// "2644", // != SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <= #PLATEAU
-						// "2287", // != #PLATEAU
 								"2210", // != CENTRE ASTICOU <=
 								"2218", // !=
 								"2766", // ==
@@ -1333,7 +1439,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2714", // FOURNIER/JOANISSE
-								"2624", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+								"2638", // SAINT-RÉDEMPTEUR/SAINT-ÉTIENNE
 						})) //
 				.compileBothTripSort());
 		map2.put(870L, new RouteTripSpec(870L, //
@@ -1866,6 +1972,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					COLLEGE_SAINT_ALEXANDRE_SHORT //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(COLLEGE_SAINT_ALEXANDRE_SHORT, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 371L) {
+			if (Arrays.asList( //
+					"H.De-Ville", //
+					CEGEP_GABRIELLE_ROY_SHORT //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(CEGEP_GABRIELLE_ROY_SHORT, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 649L) {
