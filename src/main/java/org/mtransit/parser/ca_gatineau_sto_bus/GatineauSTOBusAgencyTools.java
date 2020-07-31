@@ -1166,7 +1166,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2610", // du PORTAGE/AUBRY
+						"2612", // de l'HÔTEL-de-VILLE/du PORTAGE
+							"2610", // du PORTAGE/AUBRY
 								"1282", // ++
 								"1109", // FRONT/des ALLUMETTIÈRES ouest
 						})) //
@@ -1440,6 +1441,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2714", // FOURNIER/JOANISSE
 								"2638", // SAINT-RÉDEMPTEUR/SAINT-ÉTIENNE
+								"2624", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
 						})) //
 				.compileBothTripSort());
 		map2.put(870L, new RouteTripSpec(870L, //
@@ -1883,6 +1885,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					"Davidson" //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString("Davidson", mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					"Cité", //
+					"Nobert" //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Nobert", mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 64L) {
