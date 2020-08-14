@@ -1832,6 +1832,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
+			if (Arrays.asList( //
+					"Vanier", //
+					"Pink" //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString("Pink", mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 40L) {
 			if (Arrays.asList( //
 					FRONT + _SLASH_ + ALLUMETTIERES_SHORT, //
