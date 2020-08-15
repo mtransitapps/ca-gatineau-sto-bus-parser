@@ -513,7 +513,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								 "2680", // LAURIER/des ALLUMETTIÈRES
 						})) //
 				.compileBothTripSort());
-		map2.put(432L, new RouteTripSpec(431L, //
+		map2.put(432L, new RouteTripSpec(432L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_MONT_BLEU, //
 				1, MTrip.HEADSIGN_TYPE_STRING, ASTICOU_CENTER) //
 				.addTripSort(0, //
