@@ -168,8 +168,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		MTLog.logFatal("Unexpected routes to merge: %s & %s!", mRoute, mRouteToMerge);
-		return false;
+		throw new MTLog.Fatal("Unexpected routes to merge: %s & %s!", mRoute, mRouteToMerge);
 	}
 
 	@SuppressWarnings("unused")
@@ -264,6 +263,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 98: return PEAK_COLOR;
 			case 100: return RB100_COLOR; // RAPIBUS_COLOR
 			case 200: return RB200_COLOR; // RAPIBUS_COLOR
+			case 297: return SCHOOL_BUS_COLOR;
 			case 300: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 325: return SCHOOL_BUS_COLOR;
 			case 327: return SCHOOL_BUS_COLOR;
@@ -360,8 +360,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 990: return null; // TODO ?
 			// @formatter:on
 			}
-			MTLog.logFatal("Unexpected route color %s!", gRoute.toStringPlus());
-			return null;
+			throw new MTLog.Fatal("Unexpected route color %s!", gRoute.toStringPlus());
 		}
 		return super.getRouteColor(gRoute);
 	}
@@ -405,13 +404,28 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String JARDINS_LAVIGNE_SHORT = "J" + LAVIGNE;
 	private static final String ECOLE_SECONDAIRE_GRANDE_RIVIERE = "ES G Rivière";
 	private static final String ECOLE_SECONDAIRE_MONT_BLEU = "ES Mont-Bleu";
+	private static final String ECOLE_SECONDAIRE_HORMISDAS_GAMELIN = "ES H-Gamelin";
 	private static final String GALERIES_AYLMER_SHORT = "Gal.Aylmer";
 	private static final String GAMELIN_EMOND = "Gam.Emond";
 	private static final String FRONT = "Front";
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
-		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
+		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
+		map2.put(297L, new RouteTripSpec(297L, // because same trip_head-signs
+				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_HORMISDAS_GAMELIN, //
+				1, MTrip.HEADSIGN_TYPE_STRING, MASSON_ANGERS) // "Angers"
+				.addTripSort(0, //
+						Arrays.asList(new String[] { //
+						"4711", // des LAURENTIDES/du PROGRÈS
+								"4558", // MACLAREN EST/BREWER
+						})) //
+				.addTripSort(1, //
+						Arrays.asList(new String[] { //
+						"4562", // MACLAREN EST/BREWER
+								"4709", // des LAURENTIDES/du PROGRÈS
+						})) //
+				.compileBothTripSort());
 		map2.put(325L, new RouteTripSpec(325L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_SAINT_ALEXANDRE_SHORT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, PLATEAU) //
@@ -784,11 +798,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 							"2271", // du PLATEAU/ SAINT-RAYMOND
+							"2646", // SAINT-RÉDEMPTEUR/ADÉLARD-BEAUCHAMP
 							"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
 							"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+							"2648", // SAINT-RÉDEMPTEUR/ADÉLARD-BEAUCHAMP
 							"2604", // TERRASSES de la CHAUDIÈRE
 						})) //
 				.compileBothTripSort());
@@ -1333,11 +1349,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"1459", // du CONSERVATOIRE/du LOUVRE
 								"2213", // ++
+								"2638", // SAINT-RÉDEMPTEUR/SAINT-ÉTIENNE
 								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #E_S_DE_L_ILE
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #E_S_DE_L_ILE
+								"2643", // SAINT-RÉDEMPTEUR/ ALLARD
 								"2289", // ++
 								"1460", // du CONSERVATOIRE/du LOUVRE
 						})) //
@@ -1351,6 +1369,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2736", // ++
 								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 								"2070", // ++
+								"2638", // SAINT-RÉDEMPTEUR/SAINT-ÉTIENNE
 								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #E_S_DE_L_ILE
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
@@ -1385,11 +1404,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2239", // du PLATEAU/des CÈDRES
 								"2769", // ==
 								"2285", // !=
+								"2646", // SAINT-RÉDEMPTEUR/ADÉLARD-BEAUCHAMP
 								"2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
 						"2644", // != SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
+								"2648", // SAINT-RÉDEMPTEUR/ADÉLARD-BEAUCHAMP
 								"2287", // !=
 								"2767", // ==
 								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
@@ -1404,11 +1425,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 								"2066", // RIEL/ISABELLE
+								"2638", // SAINT-RÉDEMPTEUR/SAINT-ÉTIENNE
 								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #E_S_DE_L_ILE
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #E_S_DE_L_ILE
+								"2643", // SAINT-RÉDEMPTEUR/ ALLARD
 								"2068", // ++
 								"2004", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 						})) //
@@ -1435,6 +1458,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+								"2672", // SACRÉ-COEUR/SAINT-RÉDEMPTEUR
 								"3000", // LES PROMENADES
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
@@ -2046,8 +2070,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		MTLog.logFatal("Unexpected trips to merge: %s & %s!", mTrip, mTripToMerge);
-		return false;
+		throw new MTLog.Fatal("Unexpected trips to merge: %s & %s!", mTrip, mTripToMerge);
 	}
 
 	private static final Pattern MUSEE_CANADIEN_HISTOIRE_ = Pattern.compile("((^|\\W)(mus[e|é]e canadien de l'histoire)(\\W|$))",
@@ -2189,8 +2212,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					return 100_000 + digits;
 				}
 			}
-			MTLog.logFatal("Unexpected stop ID for %s!", gStop);
-			return -1;
+			throw new MTLog.Fatal("Unexpected stop ID for %s!", gStop);
 		}
 		return super.getStopId(gStop);
 	}
