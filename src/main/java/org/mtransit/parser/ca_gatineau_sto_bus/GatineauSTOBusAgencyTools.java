@@ -785,11 +785,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2644", "2015", "2151" //
+						"2644", //
+						"2015", //
+						"2151" //
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2153", "2642" //
+						"2153", //
+						"2642" //
 						})) //
 				.compileBothTripSort());
 		map2.put(634L, new RouteTripSpec(634L, //
@@ -799,11 +802,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 							"2271", // du PLATEAU/ SAINT-RAYMOND
 							"2646", // SAINT-RÉDEMPTEUR/ADÉLARD-BEAUCHAMP
-							"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR
+							"2664", // arrivée école secondaire de l'île
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-							"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+							"2663", // Départ école secondaire de l'île
 							"2648", // SAINT-RÉDEMPTEUR/ADÉLARD-BEAUCHAMP
 							"2604", // TERRASSES de la CHAUDIÈRE
 						})) //
@@ -1025,7 +1028,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				1, MTrip.HEADSIGN_TYPE_STRING, "E Montbleu") //
 				.addTripSort(0, //
 						Arrays.asList(new String[] { //
-						"2682", // LAURIER/des ALLUMETTIÈRES
+							"2690", // des ALLUMETTIÈRES/CHAMPLAIN
+								"2682", // LAURIER/des ALLUMETTIÈRES
 								"2650", // SACRÉ-COEUR/SAINT-HENRI
 								"2424", // LIONEL-ÉMOND/GAMELIN
 								"2008", // CEGEP GABRIELLE-ROY/arrivée
@@ -1176,14 +1180,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1108", // FRONT/des ALLUMETTIÈRES est
-								"2604", // TERRASSES de la CHAUDIÈRE sud
-								"2615", // LAVAL/LAURIER
+								"2546", // ==
+								"2604", // != TERRASSES de la CHAUDIÈRE sud
+								"2615", // != LAVAL/LAURIER
+								"2711", // ==
 								"2690", // des ALLUMETTIÈRES/CHAMPLAIN
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2612", // de l'HÔTEL-de-VILLE/du PORTAGE
-							"2610", // du PORTAGE/AUBRY
+								"2610", // du PORTAGE/AUBRY
+								"2550", // ALEXANDRE-TACHÉ/HANSON
 								"1282", // ++
 								"1109", // FRONT/des ALLUMETTIÈRES ouest
 						})) //
@@ -1350,11 +1357,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						"1459", // du CONSERVATOIRE/du LOUVRE
 								"2213", // ++
 								"2638", // SAINT-RÉDEMPTEUR/SAINT-ÉTIENNE
-								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #E_S_DE_L_ILE
+								"2664", // arrivée école secondaire de l'île
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #E_S_DE_L_ILE
+						"2663", // Départ école secondaire de l'île
 								"2643", // SAINT-RÉDEMPTEUR/ ALLARD
 								"2289", // ++
 								"1460", // du CONSERVATOIRE/du LOUVRE
@@ -1370,12 +1377,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 								"2070", // ++
 								"2638", // SAINT-RÉDEMPTEUR/SAINT-ÉTIENNE
-								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #E_S_DE_L_ILE
+								"2664", // arrivée école secondaire de l'île
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #E_S_DE_L_ILE
-								"2289", // ++
+						"2663", // Départ école secondaire de l'île
+								"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #E_S_DE_L_ILE
 								"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 						})) //
 				.compileBothTripSort());
@@ -1391,6 +1398,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2650", // SACRÉ-COEUR/SAINT-HENRI #E_S_DE_L_ILE
+								"2663", // Départ école secondaire de l'île
 								"2276", // ++
 								"2008", // CEGEP GABRIELLE-ROY/arrivée
 						})) //
@@ -1405,11 +1413,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2769", // ==
 								"2285", // !=
 								"2646", // SAINT-RÉDEMPTEUR/ADÉLARD-BEAUCHAMP
-								"2642", // != SAINT-RÉDEMPTEUR/SACRÉ-COEUR #PLATEAU =>
+								"2664", // arrivée école secondaire de l'île
 						})) //
 				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"2644", // != SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #PLATEAU <=
+						"2663", // Départ école secondaire de l'île
 								"2648", // SAINT-RÉDEMPTEUR/ADÉLARD-BEAUCHAMP
 								"2287", // !=
 								"2767", // ==
@@ -1426,11 +1434,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						"2006", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
 								"2066", // RIEL/ISABELLE
 								"2638", // SAINT-RÉDEMPTEUR/SAINT-ÉTIENNE
-								"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR #E_S_DE_L_ILE
+								"2664", // arrivée école secondaire de l'île
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2642", // SAINT-RÉDEMPTEUR/SACRÉ-COEUR #E_S_DE_L_ILE
+						"2663", // Départ école secondaire de l'île
 								"2643", // SAINT-RÉDEMPTEUR/ ALLARD
 								"2068", // ++
 								"2004", // ALEXANDRE-TACHÉ/SAINT-DOMINIQUE
@@ -1457,7 +1465,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_DE_L_ILE_SHORT) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2644", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+						"2663", // Départ école secondaire de l'île
 								"2672", // SACRÉ-COEUR/SAINT-RÉDEMPTEUR
 								"3000", // LES PROMENADES
 						})) //
@@ -1465,7 +1473,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2714", // FOURNIER/JOANISSE
 								"2638", // SAINT-RÉDEMPTEUR/SAINT-ÉTIENNE
-								"2624", // SAINT-RÉDEMPTEUR/SACRÉ-CŒUR
+								"2664", // arrivée école secondaire de l'île
 						})) //
 				.compileBothTripSort());
 		map2.put(870L, new RouteTripSpec(870L, //
@@ -1704,7 +1712,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 20L) {
 			if (Arrays.asList( //
 					TERRASSES, //
-					"Mhistoire", //
+					"MHistoire", //
 					OTTAWA + _SLASH_ + "Portage", //
 					OTTAWA // ++
 					).containsAll(headsignsValues)) {
@@ -1791,7 +1799,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			} else if (Arrays.asList( // #OTTAWA
 					TERRASSES, //
-					"Mhistoire", //
+					"MHistoire", //
 					CEGEP_GABRIELLE_ROY_SHORT, //
 					FREEMAN + _SLASH_ + CEGEP_GABRIELLE_ROY_SHORT + _SLASH_ + OTTAWA, //
 					OTTAWA //
@@ -1834,7 +1842,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 			if (Arrays.asList( //
-					"Mhistoire", //
+					"MHistoire", //
 					OTTAWA //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
@@ -1953,6 +1961,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					"E Montbleu", //
 					LABROSSE, //
+					"Sporthéque", //
 					"Affaires" //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString("Affaires", mTrip.getHeadsignId());
@@ -1988,6 +1997,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 					"Lorrain" //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString("Lorrain", mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 85L) {
+			if (Arrays.asList( //
+					"CôteNeiges", // <>
+					OTTAWA //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(OTTAWA, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 87L) {
@@ -2141,11 +2158,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String P_O_B_REPLACEMENT = "$2" + P_O_B_SHORT + "$4";
 
 	private static final Pattern PRE_TUNNEY_ = Pattern.compile("((^|\\W)(pr[e|é|É] tunney)(\\W|$))", Pattern.CASE_INSENSITIVE);
-	private static final String PRE_TUNNEY__REPLACEMENT = "$2" + "Pré-Tunney" + "$4";
+	private static final String PRE_TUNNEY_REPLACEMENT = "$2" + "Pré-Tunney" + "$4";
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
-		tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
+		if (Utils.isUppercaseOnly(tripHeadsign, true, true)) {
+			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
+		}
 		tripHeadsign = CleanUtils.keepToAndRemoveVia(tripHeadsign);
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
 		tripHeadsign = CEGEP_GABRIELLE_ROY_.matcher(tripHeadsign).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
@@ -2160,7 +2179,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = COTES_DES_NEIGES_.matcher(tripHeadsign).replaceAll(COTES_DES_NEIGES_REPLACEMENT);
 		tripHeadsign = P_O_B.matcher(tripHeadsign).replaceAll(P_O_B_REPLACEMENT);
 		tripHeadsign = PLACE_D_ACCUEIL_.matcher(tripHeadsign).replaceAll(PLACE_D_ACCUEIL_REPLACEMENT);
-		tripHeadsign = PRE_TUNNEY_.matcher(tripHeadsign).replaceAll(PRE_TUNNEY__REPLACEMENT);
+		tripHeadsign = PRE_TUNNEY_.matcher(tripHeadsign).replaceAll(PRE_TUNNEY_REPLACEMENT);
 		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_ET.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_ET_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
@@ -2180,7 +2199,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String cleanStopName(String gStopName) {
-		gStopName = gStopName.toLowerCase(Locale.ENGLISH);
+		if (Utils.isUppercaseOnly(gStopName, true, true)) {
+			gStopName = gStopName.toLowerCase(Locale.ENGLISH);
+		}
 		gStopName = ENDS_WITH_BOUNDS.matcher(gStopName).replaceAll(StringUtils.EMPTY);
 		gStopName = STARTS_ENDS_WITH_ARRIVAL_DEPARTURE.matcher(gStopName).replaceAll(StringUtils.EMPTY);
 		gStopName = CLEAN_ARRET_DE_COURTOISIE.matcher(gStopName).replaceAll(CLEAN_ARRET_DE_COURTOISIE_REPLACEMENT);
