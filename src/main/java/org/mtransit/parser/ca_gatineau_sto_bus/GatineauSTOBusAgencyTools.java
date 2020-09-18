@@ -412,6 +412,21 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
+		map2.put(85L, new RouteTripSpec(85L, // because same trip_head-signs for both directions
+				0, MTrip.HEADSIGN_TYPE_STRING, "CôteNeiges", //
+				1, MTrip.HEADSIGN_TYPE_STRING, OTTAWA) //
+				.addTripSort(0, //
+						Arrays.asList(
+						"5003", // KING EDWARD/ST-PATRICK
+								"5026", // MACKENZIE/RIDEAU
+								"3631" // DE LA CITÉ / LA VÉRENDRYE
+						)) //
+				.addTripSort(1, //
+						Arrays.asList(
+						"3630", // de l'OASIS/de la CITÉ
+								"5027" // CENTRE RIDEAU #OTTAWA
+						)) //
+				.compileBothTripSort());
 		map2.put(297L, new RouteTripSpec(297L, // because same trip_head-signs
 				0, MTrip.HEADSIGN_TYPE_STRING, ECOLE_SECONDAIRE_HORMISDAS_GAMELIN, //
 				1, MTrip.HEADSIGN_TYPE_STRING, MASSON_ANGERS) // "Angers"
