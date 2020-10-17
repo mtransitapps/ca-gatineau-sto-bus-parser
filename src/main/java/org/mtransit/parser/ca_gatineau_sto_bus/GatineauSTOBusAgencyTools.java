@@ -326,13 +326,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 754: return SCHOOL_BUS_COLOR;
 			case 767: return SCHOOL_BUS_COLOR;
 			case 800: return PEAK_COLOR; // RAPIBUS_COLOR
-			case 804: return null; // TODO
-			case 805: return null; // TODO
+			case 804: return null; // TODO ?
+			case 805: return null; // TODO ?
 			case 807: return null; // TODO ?
 			case 810: return PEAK_COLOR; // RAPIBUS_COLOR
 			case 811: return null; // TODO ?
-			case 813: return null; // TODO
-			case 824: return null; // TODO
+			case 813: return null; // TODO ?
+			case 824: return null; // TODO ?
 			case 825: return null; // TODO ?
 			case 827: return null; // TODO ?
 			case 829: return SCHOOL_BUS_COLOR;
@@ -343,11 +343,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 839: return SCHOOL_BUS_COLOR;
 			case 849: return SCHOOL_BUS_COLOR;
 			case 850: return SCHOOL_BUS_COLOR;
-			case 859: return null; // TODO
+			case 859: return null; // TODO ?
 			case 867: return null; // TODO ?
 			case 870: return PEAK_COLOR; // RAPIBUS_COLOR // TODO ??
-			case 873: return null; // TODO
-			case 901: return null;
+			case 873: return null; // TODO ?
+			case 874: return null; // TODO ?
+			case 901: return null; // TODO ?
 			case 904: return null; // TODO ?
 			case 929: return null; // TODO ?
 			case 931: return null; // TODO ?
@@ -1690,6 +1691,15 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
+		}
+		if (mRoute.getId() == 874L) {
+			if (gTrip.getTripHeadsign().equalsIgnoreCase("Nolisé")) {
+				mTrip.setHeadsignString(
+					"Nolisé" + (gTrip.getDirectionId() == 0 ? "" : " "),
+					gTrip.getDirectionId()
+				);
+				return;
+			}
 		}
 		if (mRoute.getId() == 990L) {
 			if (gTrip.getTripHeadsign().equalsIgnoreCase("TEST ROUTIER")) {
