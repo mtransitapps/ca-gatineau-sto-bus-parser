@@ -669,12 +669,17 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2420" // LIONEL-ÉMOND/SAINT-RAYMOND
 						)) //
 				.compileBothTripSort());
-		map2.put(534L, new RouteTripSpec(534L, //
+		map2.put(534L, new RouteTripSpec(534L, // BECAUSE same head-sign for 2 trips
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLLEGE_NOUVELLES_FRONTIERES_SHORT, // "Émond / Gamelin"
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Taché" + _SLASH_ + "St-Joseph") //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList( //
 						"2065", // ALEXANDRE-TACHÉ/SAINT-JOSEPH
+								"2540", // ==
+								"2743", // !=
+								"2728", // !=
+								"2753", // !=
+								"2741", // ==
 								"2239", // du PLATEAU/des CÈDRES
 								"2420" // LIONEL-ÉMOND/SAINT-RAYMOND
 						)) //
@@ -682,6 +687,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList( //
 						"2427", // LIONEL-ÉMOND/ GAMELIN
 								"2233", // ++
+								"2273", // ==
+								"2742", // !=
+								"2775", // !=
+								"2727", // !=
+								"2542", // ==
 								"2064" // ALEXANDRE-TACHÉ/SAINT-JOSEPH
 						)) //
 				.compileBothTripSort());
