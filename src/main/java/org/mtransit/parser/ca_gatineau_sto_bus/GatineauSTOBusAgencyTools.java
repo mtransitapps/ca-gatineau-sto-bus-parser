@@ -94,11 +94,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public boolean excludeRoute(GRoute gRoute) {
-		return super.excludeRoute(gRoute);
-	}
-
-	@Override
 	public Integer getAgencyRouteType() {
 		return MAgency.ROUTE_TYPE_BUS;
 	}
@@ -395,7 +390,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String PARC_CHAMPLAIN = "Parc Champlain";
 	private static final String PARC_LA_BAIE = "Parc La Baie";
 	private static final String MONT_LUC = "Mont-Luc";
-	private static final String MASSON_ANGERS = "Masson-Angers";
+	private static final String MASSON_ANGERS = "M-Angers";
 	private static final String CEGEP_GABRIELLE_ROY_SHORT = "Cgp GRoy";
 	private static final String COLLEGE_SHORT = "Col";
 	private static final String COLLEGE_SAINT_ALEXANDRE_SHORT = COLLEGE_SHORT + " St-Alex";
@@ -536,12 +531,18 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(0, //
 						Arrays.asList( //
 						"2282", // ISABELLE/FRÉCHETTE
+								"2226", // ==
+								"2224", // !=
+								"2223", // !=
+								"2187", // ==
 								"2089" // CENTRE ASTICOU
 						)) //
 				.addTripSort(1, //
 						Arrays.asList( //
 						"2090", // CENTRE ASTICOU
-								"2210", // CENTRE ASTICOU
+								"2188", // ==
+								"2222", // !=
+								"2228", // ==
 								"2680" // LAURIER/des ALLUMETTIÈRES
 						)) //
 				.compileBothTripSort());
@@ -567,12 +568,23 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList( //
 						"2210", // CENTRE ASTICOU
 								"2090", // CENTRE ASTICOU
+								"2188", // ==
+								"2222", // !=
+								"2227", // !=
+								"2191", // ==
+								"2189", // ==
+								"2183", // !=
+								"2762", // ==
 								"2151" // TERMINUS Parc-o-bus FREEMAN
 						)) //
 				.addTripSort(1, //
 						Arrays.asList( //
 						"2153", // TERMINUS FREEMAN
 								"2175", // des HAUTES-PLAINES/du TERROIR
+								"2197", // ==
+								"2223", // !=
+								"2186", // !=
+								"2187", // ==
 								"2210" // CENTRE ASTICOU
 						)) //
 				.compileBothTripSort());
@@ -600,11 +612,22 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList( //
 						"2210", // CENTRE ASTICOU
 								"2090", // CENTRE ASTICOU
+								"2188", // ==
+								"2222", // !=
+								"2227", // !=
+								"2191", // ==
+								"2189", // ==
+								"2183", // !=
+								"2760", // ==
 								"2653" // de la GALÈNE/des MINEURS
 						)) //
 				.addTripSort(1, //
 						Arrays.asList( //
 						"2777", // MARIE-BURGER/de la GALÈNE
+								"2197", // ==
+								"2223", // !=
+								"2186", // !=
+								"2187", // ==
 								"2089" // CENTRE ASTICOU
 						)) //
 				.compileBothTripSort());
@@ -659,13 +682,29 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList( //
 						"2418", "2422", // LIONEL-ÉMOND/SAINT-RAYMOND
-								"2215", // de la CITÉ-DES-JEUNES/SAINT-RAYMOND
+								"2188", // ==
+								"2222", // !=
+								"2227", // !=
+								"2191", // ==
+								"2189", // ==
+								"2183", // !=
+								"2762", // ==
 								"3500" // QUAI LOCAL de la CITÉ
 						)) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList( //
 						"3481", "3483", // QUAI LOCAL de la CITÉ
-								"2218", // de la CITÉ-DES-JEUNES/ BÉDARD
+								"3693", // ==
+								"3601", // !=
+								"3614", // ==
+								"3385", // ==
+								"3377", // !=
+								"3376", // !=
+								"3368", // ==
+								"2197", // ==
+								"2223", // !=
+								"2186", // !=
+								"2187", // ==
 								"2420" // LIONEL-ÉMOND/SAINT-RAYMOND
 						)) //
 				.compileBothTripSort());
@@ -1066,6 +1105,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 								"2682", // LAURIER/des ALLUMETTIÈRES
 								"2650", // SACRÉ-COEUR/SAINT-HENRI
 								"2424", // LIONEL-ÉMOND/GAMELIN
+								"2226", // ==
+								"2224", // !=
+								"2223", // !=
+								"2187", // ==
 								"2008" // CEGEP GABRIELLE-ROY/arrivée
 						)) //
 				.addTripSort(1, //
@@ -1435,6 +1478,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 						"2650", // SACRÉ-COEUR/SAINT-HENRI #E_S_DE_L_ILE
 								"2663", // Départ école secondaire de l'île
 								"2276", // ++
+								"2226", // ==
+								"2224", // !=
+								"2223", // !=
+								"2187", // ==
 								"2008" // CEGEP GABRIELLE-ROY/arrivée
 						)) //
 				.compileBothTripSort());
@@ -2135,7 +2182,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	private static final Pattern MUSEE_CANADIEN_HISTOIRE_ = Pattern.compile("((^|\\W)(mus[e|é]e canadien de l'histoire)(\\W|$))",
-			Pattern.CASE_INSENSITIVE);
+			Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String MUSEE_CANADIEN_HISTOIRE_REPLACEMENT = "$2" + MUSEE_CANADIEN_HISTOIRE_SHORT + "$4";
 
 	private static final Pattern CLEAN_STATION = Pattern.compile("((^|\\W)(station|ston|sta)(\\W|$))", Pattern.CASE_INSENSITIVE);
@@ -2163,10 +2210,10 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			+ "cgp g-roy" //
 			+ "|" //
 			+ "g-roy" //
-			+ ")(\\W|$))", Pattern.CASE_INSENSITIVE);
+			+ ")(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
 
-	private static final Pattern ECOLE_SECONDAIRE_DE_L_ILE_ = Pattern.compile("((^|\\W)([e|é]cole De l'[i|î]le)(\\W|$))", Pattern.CASE_INSENSITIVE);
+	private static final Pattern ECOLE_SECONDAIRE_DE_L_ILE_ = Pattern.compile("((^|\\W)([e|é]cole De l'[i|î]le)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String ECOLE_SECONDAIRE_DE_L_ILE_REPLACEMENT = "$2" + ECOLE_SECONDAIRE_DE_L_ILE_SHORT + "$4";
 
 	private static final Pattern JARDINS_LAVIGNE_ = Pattern.compile("((^|\\W)(jardins lavigne|jlavigne)(\\W|$))", Pattern.CASE_INSENSITIVE);
@@ -2178,7 +2225,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern COLLEGE_ = Pattern.compile("((^|\\W)(college)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_REPLACEMENT = "$2" + COLLEGE_SHORT + "$4";
 
-	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W)(col nf|coll[é|e]ge nf)(\\W|$))", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W)(col nf|coll[é|e]ge nf)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String COLLEGE_NOUVELLES_FRONTIERES_REPLACEMENT = "$2" + COLLEGE_NOUVELLES_FRONTIERES_SHORT + "$4";
 
 	private static final Pattern COLLEGE_SAINT_JOSEPH_ = Pattern.compile("((^|\\W)(c stjoseph)(\\W|$))", Pattern.CASE_INSENSITIVE);
@@ -2187,29 +2234,32 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern COLLEGE_SAINY_ALEXANDRE_ = Pattern.compile("((^|\\W)(col stalex)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_SAINY_ALEXANDRE_REPLACEMENT = "$2" + COLLEGE_SAINT_ALEXANDRE_SHORT + "$4";
 
+	private static final Pattern MASSON_ANGERS_ = Pattern.compile("((^|\\W)(masson\\-angers)(\\W|$))", Pattern.CASE_INSENSITIVE);
+	private static final String MASSON_ANGERS_REPLACEMENT = "$2" + MASSON_ANGERS + "$4";
+
 	private static final Pattern ALLUMETTIERES_ = Pattern.compile("((^|\\W)(des allumetti[è|e]res|allumetti[è|e]res|allum)(\\W|$))",
-			Pattern.CASE_INSENSITIVE);
+			Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String ALLUMETTIERES_REPLACEMENT = "$2" + ALLUMETTIERES_SHORT + "$4";
 
 	private static final Pattern PLACE_D_ACCUEIL_ = Pattern.compile("((^|\\W)(place d'accueil|pl\\.accueil)(\\W|$))",
 			Pattern.CASE_INSENSITIVE);
 	private static final String PLACE_D_ACCUEIL_REPLACEMENT = "$2" + PLACE_D_ACCUEIL + "$4";
 
-	private static final Pattern COTES_DES_NEIGES_ = Pattern.compile("((^|\\W)(c[ô|o]tes-des-neiges|coteneige)(\\W|$))", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COTES_DES_NEIGES_ = Pattern.compile("((^|\\W)(c[ô|o]tes-des-neiges|coteneige)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String COTES_DES_NEIGES_REPLACEMENT = "$2" + COTES_DES_NEIGES + "$4";
 
 	private static final Pattern P_O_B = Pattern.compile("((^|\\W)(pob|p-o-b|parc o bus|parc-o-bus)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String P_O_B_REPLACEMENT = "$2" + P_O_B_SHORT + "$4";
 
-	private static final Pattern PRE_TUNNEY_ = Pattern.compile("((^|\\W)(pr[e|é|É] tunney)(\\W|$))", Pattern.CASE_INSENSITIVE);
+	private static final Pattern PRE_TUNNEY_ = Pattern.compile("((^|\\W)(pr[e|é|É] tunney)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String PRE_TUNNEY_REPLACEMENT = "$2" + "Pré-Tunney" + "$4";
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
+		tripHeadsign = CleanUtils.keepToAndRemoveVia(tripHeadsign);
 		if (Utils.isUppercaseOnly(tripHeadsign, true, true)) {
 			tripHeadsign = tripHeadsign.toLowerCase(Locale.ENGLISH);
 		}
-		tripHeadsign = CleanUtils.keepToAndRemoveVia(tripHeadsign);
 		tripHeadsign = CLEAN_STATION.matcher(tripHeadsign).replaceAll(CLEAN_STATION_REPLACEMENT);
 		tripHeadsign = CEGEP_GABRIELLE_ROY_.matcher(tripHeadsign).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
 		tripHeadsign = COLLEGE_.matcher(tripHeadsign).replaceAll(COLLEGE_REPLACEMENT);
@@ -2225,6 +2275,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = PLACE_D_ACCUEIL_.matcher(tripHeadsign).replaceAll(PLACE_D_ACCUEIL_REPLACEMENT);
 		tripHeadsign = PRE_TUNNEY_.matcher(tripHeadsign).replaceAll(PRE_TUNNEY_REPLACEMENT);
 		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
+		tripHeadsign = MASSON_ANGERS_.matcher(tripHeadsign).replaceAll(MASSON_ANGERS_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_ET.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_ET_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
@@ -2236,9 +2287,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern ENDS_WITH_BOUNDS = Pattern.compile("((dir )?(est|ouest|nord|sud)$)", Pattern.CASE_INSENSITIVE);
 
 	private static final Pattern STARTS_ENDS_WITH_ARRIVAL_DEPARTURE = Pattern.compile("(" + "^(arriv[e|é]e|d[e|é]part)" + "|"
-			+ "(arr[e|ê]t d'arriv[e|é]e|arriv[e|é]e|d[e|é]part)$" + ")", Pattern.CASE_INSENSITIVE);
+			+ "(arr[e|ê]t d'arriv[e|é]e|arriv[e|é]e|d[e|é]part)$" + ")", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 
-	private static final Pattern CLEAN_ARRET_DE_COURTOISIE = Pattern.compile("((arr[e|ê|Ê]t de courtoisie[\\s]*)(.*))", Pattern.CASE_INSENSITIVE);
+	private static final Pattern CLEAN_ARRET_DE_COURTOISIE = Pattern.compile("((arr[e|ê|Ê]t de courtoisie[\\s]*)(.*))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String CLEAN_ARRET_DE_COURTOISIE_REPLACEMENT = "$3 (Arrêt de Courtoisie)";
 
 	@Override
