@@ -2,23 +2,17 @@ package org.mtransit.parser.ca_gatineau_sto_bus;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mtransit.parser.CleanUtils;
+import org.mtransit.commons.CharUtils;
+import org.mtransit.commons.CleanUtils;
+import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
-import org.mtransit.parser.StringUtils;
-import org.mtransit.parser.Utils;
-import org.mtransit.parser.gtfs.data.GCalendar;
-import org.mtransit.parser.gtfs.data.GCalendarDate;
 import org.mtransit.parser.gtfs.data.GRoute;
-import org.mtransit.parser.gtfs.data.GSpec;
 import org.mtransit.parser.gtfs.data.GStop;
-import org.mtransit.parser.gtfs.data.GTrip;
 import org.mtransit.parser.mt.data.MAgency;
 import org.mtransit.parser.mt.data.MRoute;
-import org.mtransit.parser.mt.data.MTrip;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -32,54 +26,18 @@ import static org.mtransit.parser.StringUtils.EMPTY;
 public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(@Nullable String[] args) {
-		if (args == null || args.length == 0) {
-			args = new String[3];
-			args[0] = "input/gtfs.zip";
-			args[1] = "../../mtransitapps/ca-gatineau-sto-bus-android/res/raw/";
-			args[2] = ""; // files-prefix
-		}
 		new GatineauSTOBusAgencyTools().start(args);
 	}
 
-	@Nullable
-	private HashSet<Integer> serviceIdInts;
-
 	@Override
-	public void start(@NotNull String[] args) {
-		MTLog.log("Generating STO bus data...");
-		long start = System.currentTimeMillis();
-		this.serviceIdInts = extractUsefulServiceIdInts(args, this, true);
-		super.start(args);
-		MTLog.log("Generating STO bus data... DONE in %s.", Utils.getPrettyDuration(System.currentTimeMillis() - start));
+	public boolean defaultExcludeEnabled() {
+		return true;
 	}
 
+	@NotNull
 	@Override
-	public boolean excludingAll() {
-		return this.serviceIdInts != null && this.serviceIdInts.isEmpty();
-	}
-
-	@Override
-	public boolean excludeCalendar(@NotNull GCalendar gCalendar) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessCalendarInt(gCalendar, this.serviceIdInts);
-		}
-		return super.excludeCalendar(gCalendar);
-	}
-
-	@Override
-	public boolean excludeCalendarDate(@NotNull GCalendarDate gCalendarDates) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessCalendarDateInt(gCalendarDates, this.serviceIdInts);
-		}
-		return super.excludeCalendarDate(gCalendarDates);
-	}
-
-	@Override
-	public boolean excludeTrip(@NotNull GTrip gTrip) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessTripInt(gTrip, this.serviceIdInts);
-		}
-		return super.excludeTrip(gTrip);
+	public String getAgencyName() {
+		return "STO";
 	}
 
 	@NotNull
@@ -95,13 +53,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	@NotNull
 	@Override
-	public String getRouteLongName(@NotNull GRoute gRoute) {
-		return cleanRouteLongName(gRoute);
-	}
-
-	private String cleanRouteLongName(GRoute gRoute) {
-		String routeLongName = gRoute.getRouteLongName();
-		routeLongName = routeLongName.toLowerCase(Locale.FRENCH);
+	public String cleanRouteLongName(@NotNull String routeLongName) {
+		routeLongName = CleanUtils.toLowerCaseUpperCaseWords(Locale.FRENCH, routeLongName, getIgnoredWords());
 		routeLongName = CEGEP_GABRIELLE_ROY_.matcher(routeLongName).replaceAll(CEGEP_GABRIELLE_ROY_REPLACEMENT);
 		routeLongName = CleanUtils.cleanSlashes(routeLongName);
 		return CleanUtils.cleanLabel(routeLongName);
@@ -358,21 +311,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String _SLASH_ = " / ";
 
 	@Override
-	public void setTripHeadsign(@NotNull MRoute mRoute, @NotNull MTrip mTrip, @NotNull GTrip gTrip, @NotNull GSpec gtfs) {
-		mTrip.setHeadsignString(
-				cleanTripHeadsign(gTrip.getTripHeadsignOrDefault()),
-				gTrip.getDirectionIdOrDefault()
-		);
-	}
-
-	@Override
 	public boolean directionFinderEnabled() {
 		return true;
-	}
-
-	@Override
-	public boolean mergeHeadsign(@NotNull MTrip mTrip, @NotNull MTrip mTripToMerge) {
-		throw new MTLog.Fatal("Unexpected trips to merge: %s & %s!", mTrip, mTripToMerge);
 	}
 
 	private static final String MUSEE_CANADIEN_HISTOIRE_SHORT = "Musée de l'Histoire";
@@ -410,9 +350,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			+ ")(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String CEGEP_GABRIELLE_ROY_REPLACEMENT = "$2" + CEGEP_GABRIELLE_ROY_SHORT + "$4";
 
-	private static final String ECOLE_SECONDAIRE_SHORT = "ES";
-	private static final Pattern ECOLE_SECONDAIRE_ = Pattern.compile("((^|\\W)([e|é]cole secondaire)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
-	private static final String ECOLE_SECONDAIRE_REPLACEMENT = "$2" + ECOLE_SECONDAIRE_SHORT + "$4";
+	private static final Pattern ECOLE_X_ = CleanUtils.cleanWordFR("((école secondaire|ecole secondaire|école sec|ecole sec|école|ecole|e)(\\.|\\s){1,2}(\\w+))");
+	private static final String ECOLE_X_REPLACEMENT = CleanUtils.cleanWordsReplacement("É $7");
 
 	private static final String LAVIGNE = "Lavigne";
 	private static final String JARDINS_LAVIGNE_SHORT = "J" + LAVIGNE;
@@ -424,16 +363,19 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String GALERIES_AYLMER_REPLACEMENT = "$2" + GALERIES_AYLMER_SHORT + "$4";
 
 	private static final String COLLEGE_SHORT = "Col";
-	private static final Pattern COLLEGE_ = Pattern.compile("((^|\\W)(college)(\\W|$))", Pattern.CASE_INSENSITIVE);
+	private static final Pattern COLLEGE_ = Pattern.compile("((^|\\W)(college|collège|collége)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE | Pattern.CANON_EQ);
 	private static final String COLLEGE_REPLACEMENT = "$2" + COLLEGE_SHORT + "$4";
 
 	private static final String COLLEGE_NOUVELLES_FRONTIERES_SHORT = COLLEGE_SHORT + " NF";
-	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W)(col nf|coll[é|e]ge nf)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+	private static final Pattern COLLEGE_NOUVELLES_FRONTIERES_ = Pattern.compile("((^|\\W)(col nf|col nouvelles frontieres|col nouvelles frontières)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String COLLEGE_NOUVELLES_FRONTIERES_REPLACEMENT = "$2" + COLLEGE_NOUVELLES_FRONTIERES_SHORT + "$4";
 
 	private static final String COLLEGE_SAINT_JOSEPH_SHORT = COLLEGE_SHORT + " St-Jo";
 	private static final Pattern COLLEGE_SAINT_JOSEPH_ = Pattern.compile("((^|\\W)(c stjoseph)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String COLLEGE_SAINT_JOSEPH_REPLACEMENT = "$2" + COLLEGE_SAINT_JOSEPH_SHORT + "$4";
+
+	private static final Pattern GRANDE_RIVIERE_ = CleanUtils.cleanWordsFR("grande-rivière", "gr-rivière");
+	private static final String GRANDE_RIVIERE_REPLACEMENT = CleanUtils.cleanWordsReplacement("Gr-Riv");
 
 	private static final String COLLEGE_SAINT_ALEXANDRE_SHORT = COLLEGE_SHORT + " St-Alex";
 	private static final Pattern COLLEGE_SAINT_ALEXANDRE_ = Pattern.compile("((^|\\W)(col stalex)(\\W|$))", Pattern.CASE_INSENSITIVE);
@@ -449,8 +391,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String ALLUMETTIERES_REPLACEMENT = "$2" + ALLUMETTIERES_SHORT + "$4";
 
 	private static final String PLACE_D_ACCUEIL = "Pl.Accueil"; // "Place d'Accueil";
-	private static final Pattern PLACE_D_ACCUEIL_ = Pattern.compile("((^|\\W)(place d'accueil|pl\\.accueil)(\\W|$))",
-			Pattern.CASE_INSENSITIVE);
+	private static final Pattern PLACE_D_ACCUEIL_ = Pattern.compile("((^|\\W)(place d'accueil|pl\\.accueil)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String PLACE_D_ACCUEIL_REPLACEMENT = "$2" + PLACE_D_ACCUEIL + "$4";
 
 	private static final String COTES_DES_NEIGES = "Côtes-Des-Neiges";
@@ -475,7 +416,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = COLLEGE_NOUVELLES_FRONTIERES_.matcher(tripHeadsign).replaceAll(COLLEGE_NOUVELLES_FRONTIERES_REPLACEMENT);
 		tripHeadsign = COLLEGE_SAINT_JOSEPH_.matcher(tripHeadsign).replaceAll(COLLEGE_SAINT_JOSEPH_REPLACEMENT);
 		tripHeadsign = COLLEGE_SAINT_ALEXANDRE_.matcher(tripHeadsign).replaceAll(COLLEGE_SAINT_ALEXANDRE_REPLACEMENT);
-		tripHeadsign = ECOLE_SECONDAIRE_.matcher(tripHeadsign).replaceAll(ECOLE_SECONDAIRE_REPLACEMENT);
+		tripHeadsign = ECOLE_X_.matcher(tripHeadsign).replaceAll(ECOLE_X_REPLACEMENT); // E instead of ES
+		tripHeadsign = GRANDE_RIVIERE_.matcher(tripHeadsign).replaceAll(GRANDE_RIVIERE_REPLACEMENT);
 		tripHeadsign = GALERIES_AYLMER_.matcher(tripHeadsign).replaceAll(GALERIES_AYLMER_REPLACEMENT);
 		tripHeadsign = JARDINS_LAVIGNE_.matcher(tripHeadsign).replaceAll(JARDINS_LAVIGNE_REPLACEMENT);
 		tripHeadsign = ALLUMETTIERES_.matcher(tripHeadsign).replaceAll(ALLUMETTIERES_REPLACEMENT);
@@ -518,7 +460,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		gStopName = STARTS_ENDS_WITH_ARRIVAL_DEPARTURE.matcher(gStopName).replaceAll(EMPTY);
 		gStopName = CLEAN_ARRET_DE_COURTOISIE.matcher(gStopName).replaceAll(CLEAN_ARRET_DE_COURTOISIE_REPLACEMENT);
 		gStopName = P_O_B.matcher(gStopName).replaceAll(P_O_B_REPLACEMENT);
-		gStopName = ECOLE_SECONDAIRE_.matcher(gStopName).replaceAll(ECOLE_SECONDAIRE_REPLACEMENT);
+		gStopName = ECOLE_X_.matcher(gStopName).replaceAll(ECOLE_X_REPLACEMENT); // E instead of ES
 		gStopName = CleanUtils.SAINT.matcher(gStopName).replaceAll(CleanUtils.SAINT_REPLACEMENT);
 		gStopName = CleanUtils.CLEAN_ET.matcher(gStopName).replaceAll(CleanUtils.CLEAN_ET_REPLACEMENT);
 		gStopName = CleanUtils.cleanSlashes(gStopName);
@@ -542,7 +484,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	public int getStopId(@NotNull GStop gStop) {
 		//noinspection deprecation
 		final String stopId = gStop.getStopId();
-		if (!Utils.isDigitsOnly(stopId)) {
+		if (!CharUtils.isDigitsOnly(stopId)) {
 			Matcher matcher = DIGITS.matcher(stopId);
 			if (matcher.find()) {
 				int digits = Integer.parseInt(matcher.group());
