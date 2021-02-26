@@ -25,7 +25,7 @@ import static org.mtransit.parser.StringUtils.EMPTY;
 // http://www.contenu.sto.ca/GTFS/GTFS.zip
 public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
-	public static void main(@Nullable String[] args) {
+	public static void main(@NotNull String[] args) {
 		new GatineauSTOBusAgencyTools().start(args);
 	}
 
@@ -47,7 +47,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public long getRouteId(@NotNull GRoute gRoute) {
+	public long getRouteId(@NotNull GRoute gRoute) { // used for GTFS-RT
 		return Long.parseLong(gRoute.getRouteShortName()); // using route short name as route ID
 	}
 
@@ -497,6 +497,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 			throw new MTLog.Fatal("Unexpected stop ID for %s!", gStop);
 		}
-		return super.getStopId(gStop);
+		return super.getStopId(gStop); // used for GTFS-RT
 	}
 }
