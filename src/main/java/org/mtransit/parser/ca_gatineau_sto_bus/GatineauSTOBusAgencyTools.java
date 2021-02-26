@@ -386,8 +386,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final String MASSON_ANGERS_REPLACEMENT = "$2" + MASSON_ANGERS + "$4";
 
 	private static final String ALLUMETTIERES_SHORT = "Allum";
-	private static final Pattern ALLUMETTIERES_ = Pattern.compile("((^|\\W)(des allumetti[è|e]res|allumetti[è|e]res|allum)(\\W|$))",
-			Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+	private static final Pattern ALLUMETTIERES_ = Pattern.compile("((^|\\W)(des allumetti[è|e]res|allumetti[è|e]res|allum)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String ALLUMETTIERES_REPLACEMENT = "$2" + ALLUMETTIERES_SHORT + "$4";
 
 	private static final String PLACE_D_ACCUEIL = "Pl.Accueil"; // "Place d'Accueil";
@@ -404,6 +403,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	private static final Pattern PRE_TUNNEY_ = Pattern.compile("((^|\\W)(pr[e|é] tunney)(\\W|$))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String PRE_TUNNEY_REPLACEMENT = "$2" + "Pré-Tunney" + "$4";
+
+	private static final Pattern MONT_BLEU_ = CleanUtils.cleanWordFR("mont-bleu");
+	private static final String MONT_BLEU_REPLACEMENT = CleanUtils.cleanWordsReplacement("MontBleu");
 
 	@NotNull
 	@Override
@@ -427,6 +429,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = PRE_TUNNEY_.matcher(tripHeadsign).replaceAll(PRE_TUNNEY_REPLACEMENT);
 		tripHeadsign = MUSEE_CANADIEN_HISTOIRE_.matcher(tripHeadsign).replaceAll(MUSEE_CANADIEN_HISTOIRE_REPLACEMENT);
 		tripHeadsign = MASSON_ANGERS_.matcher(tripHeadsign).replaceAll(MASSON_ANGERS_REPLACEMENT);
+		tripHeadsign = MONT_BLEU_.matcher(tripHeadsign).replaceAll(MONT_BLEU_REPLACEMENT);
 		tripHeadsign = CleanUtils.CLEAN_ET.matcher(tripHeadsign).replaceAll(CleanUtils.CLEAN_ET_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanSlashes(tripHeadsign);
 		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
@@ -485,9 +488,9 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		//noinspection deprecation
 		final String stopId = gStop.getStopId();
 		if (!CharUtils.isDigitsOnly(stopId)) {
-			Matcher matcher = DIGITS.matcher(stopId);
+			final Matcher matcher = DIGITS.matcher(stopId);
 			if (matcher.find()) {
-				int digits = Integer.parseInt(matcher.group());
+				final int digits = Integer.parseInt(matcher.group());
 				if (stopId.toLowerCase(Locale.FRENCH).endsWith("a")) {
 					return 100_000 + digits;
 				}
