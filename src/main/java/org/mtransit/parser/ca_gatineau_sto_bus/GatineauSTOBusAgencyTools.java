@@ -133,7 +133,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String getRouteColor(@NotNull GRoute gRoute) {
 		if (StringUtils.isEmpty(gRoute.getRouteColor())) {
-			int rsn = Integer.parseInt(gRoute.getRouteShortName());
+			final int rsn = Integer.parseInt(gRoute.getRouteShortName());
+			final String rln = gRoute.getRouteLongNameOrDefault();
+			if (rsn > 100 && SCHOOL_ROUTE_LONG_NAME_.matcher(rln).find()) {
+				return SCHOOL_BUS_COLOR;
+			}
 			switch (rsn) {
 			// @formatter:off
 			case 11: return PEAK_COLOR;
@@ -206,85 +210,35 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 100: return RB100_COLOR; // RAPIBUS_COLOR
 			case 134: return null; // TODO ?
 			case 200: return RB200_COLOR; // RAPIBUS_COLOR
-			case 297: return SCHOOL_BUS_COLOR;
 			case 300: return REGULAR_COLOR; // RAPIBUS_COLOR
-			case 325: return SCHOOL_BUS_COLOR;
-			case 327: return SCHOOL_BUS_COLOR;
-			case 331: return SCHOOL_BUS_COLOR;
-			case 333: return SCHOOL_BUS_COLOR;
-			case 334: return null; // TODO ?
-			case 338: return SCHOOL_BUS_COLOR;
-			case 339: return SCHOOL_BUS_COLOR;
-			case 371: return null; // TODO ?
 			case 400: return REGULAR_COLOR; // RAPIBUS_COLOR
-			case 429: return null; // TODO ?
-			case 431: return null; // TODO ?
 			case 432: return null; // TODO ?
-			case 433: return null; // TODO ?
-			case 434: return null; // TODO ?
-			case 435: return null; // TODO ?
-			case 437: return null; // TODO ?
-			case 439: return SCHOOL_BUS_COLOR;
 			case 472: return null; // TODO ?
-			case 449: return null; // TODO ?
 			case 500: return REGULAR_COLOR; // RAPIBUS_COLOR
-			case 533: return SCHOOL_BUS_COLOR;
 			case 534: return null; // TODO ?
-			case 539: return SCHOOL_BUS_COLOR;
 			case 549: return null; // TODO ?
 			case 550: return null; // TODO ?
-			case 564: return SCHOOL_BUS_COLOR;
 			case 566: return null; // TODO ?
 			case 571: return null; // TODO ?
 			case 576: return null; // TODO ?
 			case 597: return null; // TODO ?
-			case 625: return SCHOOL_BUS_COLOR;
-			case 627: return SCHOOL_BUS_COLOR;
-			case 629: return SCHOOL_BUS_COLOR;
-			case 633: return SCHOOL_BUS_COLOR;
-			case 634: return SCHOOL_BUS_COLOR;
-			case 637: return SCHOOL_BUS_COLOR;
-			case 649: return SCHOOL_BUS_COLOR;
-			case 650: return SCHOOL_BUS_COLOR;
-			case 651: return SCHOOL_BUS_COLOR;
-			case 652: return null; // TODO ?
-			case 653: return SCHOOL_BUS_COLOR;
-			case 654: return SCHOOL_BUS_COLOR;
-			case 666: return SCHOOL_BUS_COLOR;
-			case 671: return SCHOOL_BUS_COLOR;
-			case 676: return SCHOOL_BUS_COLOR;
-			case 696: return SCHOOL_BUS_COLOR;
-			case 731: return SCHOOL_BUS_COLOR;
-			case 733: return SCHOOL_BUS_COLOR;
 			case 734: return null; // TODO ?
-			case 735: return SCHOOL_BUS_COLOR;
-			case 737: return SCHOOL_BUS_COLOR;
-			case 739: return SCHOOL_BUS_COLOR;
-			case 740: return SCHOOL_BUS_COLOR;
-			case 749: return SCHOOL_BUS_COLOR;
+			case 747: return null; // TODO ?
 			case 750: return null; // TODO ?
-			case 751: return SCHOOL_BUS_COLOR;
-			case 753: return SCHOOL_BUS_COLOR;
-			case 754: return SCHOOL_BUS_COLOR;
-			case 767: return SCHOOL_BUS_COLOR;
-			case 800: return PEAK_COLOR; // RAPIBUS_COLOR
+			case 800: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 804: return null; // TODO ?
 			case 805: return null; // TODO ?
 			case 807: return null; // TODO ?
-			case 810: return PEAK_COLOR; // RAPIBUS_COLOR
+			case 810: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 811: return null; // TODO ?
 			case 813: return null; // TODO ?
 			case 824: return null; // TODO ?
 			case 825: return null; // TODO ?
 			case 827: return null; // TODO ?
-			case 829: return SCHOOL_BUS_COLOR;
 			case 831: return null; // TODO ?
 			case 833: return null; // TODO ?
 			case 834: return null; // TODO ?
 			case 837: return null; // TODO ?
-			case 839: return SCHOOL_BUS_COLOR;
-			case 849: return SCHOOL_BUS_COLOR;
-			case 850: return SCHOOL_BUS_COLOR;
 			case 859: return null; // TODO ?
 			case 867: return null; // TODO ?
 			case 870: return PEAK_COLOR; // RAPIBUS_COLOR // TODO ??
@@ -308,6 +262,30 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		}
 		return super.getRouteColor(gRoute);
 	}
+
+	private static final Pattern SCHOOL_ROUTE_LONG_NAME_ = Pattern.compile("("
+			+ "cgp|c(e|é)gep"
+			+ "|"
+			+ "(e|é)cole"
+			+ "|"
+			+ "gabrielle-roy|g-roy"
+			+ "|"
+			+ "de l'(i|î)le"
+			+ "|"
+			+ "mont-bleu"
+			+ "|"
+			+ "(grande|gr)-rivi(è|e)re|esgr"
+			+ "|"
+			+ "stjo|st-joseph"
+			+ "|"
+			+ "st-alexandre"
+			+ "|"
+			+ "(nv|nouvelles) fronti(è|e)res"
+			+ "|"
+			+ "hormisdas-gamelin"
+			+ "|"
+			+ "cado" // Centre Académique De L'Outaouais
+			+ ")", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 
 	private static final String _SLASH_ = " / ";
 
