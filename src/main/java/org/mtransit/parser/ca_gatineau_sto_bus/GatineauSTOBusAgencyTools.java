@@ -274,7 +274,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			+ "|"
 			+ "mont-bleu"
 			+ "|"
-			+ "(grande|gr)-rivi(è|e)re|esgr"
+			+ "(grande|gr)( |-)rivi(è|e)re|esgr"
 			+ "|"
 			+ "stjo|st-joseph"
 			+ "|"
