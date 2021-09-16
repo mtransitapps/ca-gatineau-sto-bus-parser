@@ -18,7 +18,8 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.mtransit.parser.StringUtils.EMPTY;
+import static org.mtransit.commons.RegexUtils.DIGITS;
+import static org.mtransit.commons.StringUtils.EMPTY;
 
 // http://www.sto.ca/index.php?id=575
 // http://www.sto.ca/index.php?id=596
@@ -47,8 +48,13 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public long getRouteId(@NotNull GRoute gRoute) { // used for GTFS-RT
-		return Long.parseLong(gRoute.getRouteShortName()); // using route short name as route ID
+	public boolean defaultRouteIdEnabled() {
+		return true;
+	}
+
+	@Override
+	public boolean useRouteShortNameForRouteId() {
+		return true; // used for GTFS-RT
 	}
 
 	@NotNull
@@ -111,6 +117,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		throw new MTLog.Fatal("Unexpected routes to merge: %s & %s!", mRoute, mRouteToMerge);
 	}
 
+	@Override
+	public boolean defaultAgencyColorEnabled() {
+		return true;
+	}
+
 	// private static final String AGENCY_COLOR_GREEN = "33A949"; // GREEN PANTONE 360 / 361 (90%) (from Corporate Logo Usage PDF)
 	private static final String AGENCY_COLOR_BLUE = "007F89"; // BLUE PANTONE 7474 (from Corporate Logo Usage PDF)
 
@@ -131,7 +142,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	@SuppressWarnings("DuplicateBranchesInSwitch")
 	@Nullable
 	@Override
-	public String getRouteColor(@NotNull GRoute gRoute) {
+	public String getRouteColor(@NotNull GRoute gRoute, @NotNull MAgency agency) {
 		if (StringUtils.isEmpty(gRoute.getRouteColor())) {
 			final int rsn = Integer.parseInt(gRoute.getRouteShortName());
 			final String rln = gRoute.getRouteLongNameOrDefault();
@@ -244,6 +255,8 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 870: return PEAK_COLOR; // RAPIBUS_COLOR // TODO ??
 			case 873: return null; // TODO ?
 			case 874: return null; // TODO ?
+			case 876: return null; // TODO ?
+			case 878: return null; // TODO ?
 			case 901: return null; // TODO ?
 			case 904: return null; // TODO ?
 			case 929: return null; // TODO ?
@@ -260,27 +273,27 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			}
 			throw new MTLog.Fatal("Unexpected route color %s!", gRoute.toStringPlus());
 		}
-		return super.getRouteColor(gRoute);
+		return super.getRouteColor(gRoute, agency);
 	}
 
 	private static final Pattern SCHOOL_ROUTE_LONG_NAME_ = Pattern.compile("("
-			+ "cgp|c(e|é)gep"
+			+ "cgp|c([eé])gep"
 			+ "|"
-			+ "(e|é)cole"
+			+ "([eé])cole"
 			+ "|"
 			+ "gabrielle-roy|g-roy"
 			+ "|"
-			+ "de l'(i|î)le"
+			+ "de l'([iî])le"
 			+ "|"
 			+ "mont-bleu"
 			+ "|"
-			+ "(grande|gr)( |-)rivi(è|e)re|esgr"
+			+ "(grande|gr)([ \\-])rivi([èe])re|esgr"
 			+ "|"
 			+ "stjo|st-joseph"
 			+ "|"
 			+ "st-alexandre"
 			+ "|"
-			+ "(nv|nouvelles) fronti(è|e)res"
+			+ "(nv|nouvelles) fronti([èe])res"
 			+ "|"
 			+ "hormisdas-gamelin"
 			+ "|"
@@ -459,8 +472,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		}
 		return super.getStopCode(gStop);
 	}
-
-	private static final Pattern DIGITS = Pattern.compile("[\\d]+");
 
 	@Override
 	public int getStopId(@NotNull GStop gStop) {
