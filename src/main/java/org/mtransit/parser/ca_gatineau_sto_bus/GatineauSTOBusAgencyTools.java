@@ -142,8 +142,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	@SuppressWarnings("DuplicateBranchesInSwitch")
 	@Nullable
 	@Override
-	public String getRouteColor(@NotNull GRoute gRoute, @NotNull MAgency agency) {
-		if (StringUtils.isEmpty(gRoute.getRouteColor())) {
+	public String provideMissingRouteColor(@NotNull GRoute gRoute) {
 			final int rsn = Integer.parseInt(gRoute.getRouteShortName());
 			final String rln = gRoute.getRouteLongNameOrDefault();
 			if (rsn > 100 && SCHOOL_ROUTE_LONG_NAME_.matcher(rln).find()) {
@@ -258,6 +257,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 876: return null; // TODO ?
 			case 878: return null; // TODO ?
 			case 901: return null; // TODO ?
+			case 902: return null; // TODO ?
 			case 904: return null; // TODO ?
 			case 929: return null; // TODO ?
 			case 931: return null; // TODO ?
@@ -272,8 +272,6 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			// @formatter:on
 			}
 			throw new MTLog.Fatal("Unexpected route color %s!", gRoute.toStringPlus());
-		}
-		return super.getRouteColor(gRoute, agency);
 	}
 
 	private static final Pattern SCHOOL_ROUTE_LONG_NAME_ = Pattern.compile("("
