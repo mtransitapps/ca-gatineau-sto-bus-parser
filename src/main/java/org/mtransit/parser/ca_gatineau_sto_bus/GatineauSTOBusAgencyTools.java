@@ -23,7 +23,6 @@ import static org.mtransit.commons.StringUtils.EMPTY;
 
 // http://www.sto.ca/index.php?id=575
 // http://www.sto.ca/index.php?id=596
-// http://www.contenu.sto.ca/GTFS/GTFS.zip
 public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(@NotNull String[] args) {
@@ -153,11 +152,11 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 11: return PEAK_COLOR;
 			case 15: return PEAK_COLOR;
 			case 17: return PEAK_COLOR;
-			case 18: return null; // TODO ?
+			case 18: return REGULAR_COLOR;
 			case 20: return PEAK_COLOR;
 			case 21: return REGULAR_COLOR;
 			case 22: return PEAK_COLOR;
-			case 23: return null; // TODO ?
+			case 23: return PEAK_COLOR;
 			case 24: return PEAK_COLOR;
 			case 25: return PEAK_COLOR;
 			case 26: return PEAK_COLOR;
@@ -167,7 +166,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 31: return REGULAR_COLOR; // OCCASIONAL_COLOR;
 			case 32: return PEAK_COLOR;
 			case 33: return REGULAR_COLOR; // OCCASIONAL_COLOR;
-			case 34: return null; // TODO ?
+			case 34: return REGULAR_COLOR;
 			case 35: return REGULAR_COLOR; // OCCASIONAL_COLOR;
 			case 36: return REGULAR_COLOR; // OCCASIONAL_COLOR;
 			case 37: return REGULAR_COLOR; // OCCASIONAL_COLOR;
@@ -187,7 +186,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 53: return REGULAR_COLOR;
 			case 54: return PEAK_COLOR;
 			case 55: return REGULAR_COLOR;
-			case 56: return null; // TODO ?
+			case 56: return REGULAR_COLOR;
 			case 57: return REGULAR_COLOR;
 			case 58: return PEAK_COLOR;
 			case 59: return REGULAR_COLOR; // OCCASIONAL_COLOR;
@@ -202,6 +201,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 68: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 69: return REGULAR_COLOR;
 			case 71: return REGULAR_COLOR;
+			case 72: return null; // TODO ?
 			case 73: return REGULAR_COLOR;
 			case 74: return PEAK_COLOR;
 			case 75: return REGULAR_COLOR;
@@ -218,7 +218,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 97: return REGULAR_COLOR;
 			case 98: return PEAK_COLOR;
 			case 100: return RB100_COLOR; // RAPIBUS_COLOR
-			case 134: return null; // TODO ?
+			case 134: return REGULAR_COLOR;
 			case 200: return RB200_COLOR; // RAPIBUS_COLOR
 			case 300: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 400: return REGULAR_COLOR; // RAPIBUS_COLOR
@@ -232,6 +232,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 571: return null; // TODO ?
 			case 576: return null; // TODO ?
 			case 597: return null; // TODO ?
+			case 726: return null; // TODO ?
 			case 734: return null; // TODO ?
 			case 747: return null; // TODO ?
 			case 750: return null; // TODO ?
