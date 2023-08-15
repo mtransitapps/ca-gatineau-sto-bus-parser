@@ -306,6 +306,14 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 		return true;
 	}
 
+	@Override
+	public boolean allowNonDescriptiveHeadSigns(long routeId) {
+		if (routeId == 79L) {
+			return true; // 2023-08-15: 2 directions with 2 head-signs merged into 2 directions with same head-signs
+		}
+		return super.allowNonDescriptiveHeadSigns(routeId);
+	}
+
 	private static final String MUSEE_CANADIEN_HISTOIRE_SHORT = "Musée de l'Histoire";
 	private static final Pattern MUSEE_CANADIEN_HISTOIRE_ = Pattern.compile("((^|\\W)(mus[e|é]e canadien de l'histoire)(\\W|$))",
 			Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
@@ -438,12 +446,12 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern STARTS_ENDS_WITH_ARRIVAL_DEPARTURE = Pattern.compile("(^"
 			+ "(arriv[e|é]e|d[e|é]part)"
 			+ "|"
-			+ "[/\\-]?[\\s]*(arr[e|ê]t d'arriv[e|é]e|arriv[e|é]e|d[e|é]part)"
+			+ "[/\\-]?\\s*(arr[e|ê]t d'arriv[e|é]e|arriv[e|é]e|d[e|é]part)"
 			+ "|"
 			+ "( - temps d'attente)"
 			+ "$)", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 
-	private static final Pattern CLEAN_ARRET_DE_COURTOISIE = Pattern.compile("((arr[e|ê]t de courtoisie[\\s]*)(.*))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+	private static final Pattern CLEAN_ARRET_DE_COURTOISIE = Pattern.compile("((arr[e|ê]t de courtoisie\\s*)(.*))", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	private static final String CLEAN_ARRET_DE_COURTOISIE_REPLACEMENT = "$3 (Arrêt de Courtoisie)";
 
 	@NotNull
