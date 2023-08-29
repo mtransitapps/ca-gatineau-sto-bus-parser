@@ -222,6 +222,7 @@ public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 			case 200: return RB200_COLOR; // RAPIBUS_COLOR
 			case 300: return REGULAR_COLOR; // RAPIBUS_COLOR
 			case 400: return REGULAR_COLOR; // RAPIBUS_COLOR
+			case 425: return null; // TODO ?
 			case 432: return null; // TODO ?
 			case 472: return null; // TODO ?
 			case 500: return REGULAR_COLOR; // RAPIBUS_COLOR
