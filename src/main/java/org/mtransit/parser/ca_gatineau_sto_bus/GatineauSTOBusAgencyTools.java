@@ -21,8 +21,8 @@ import java.util.regex.Pattern;
 import static org.mtransit.commons.RegexUtils.DIGITS;
 import static org.mtransit.commons.StringUtils.EMPTY;
 
-// http://www.sto.ca/index.php?id=575
-// http://www.sto.ca/index.php?id=596
+// https://www.sto.ca/en/business/developer-space-open-data/
+// https://www.sto.ca/affaires/espace-developpeurs-donnees-ouvertes/
 public class GatineauSTOBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(@NotNull String[] args) {
